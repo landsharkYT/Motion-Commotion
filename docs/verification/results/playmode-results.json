@@ -1,0 +1,164 @@
+{
+  "success": true,
+  "command": "command test status",
+  "data": {
+    "command": "test status",
+    "parameters": {
+      "detail": "full"
+    },
+    "result": {
+      "status": "completed",
+      "duration": 12.53,
+      "summary": {
+        "total": 19,
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.BothOuterTargetColorsCountAsSuccess",
+          "status": "Passed",
+          "duration": 1.2262179,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.FallEndsBeforeLongWaitAndFinalLandingStepWinsOverExhaustion",
+          "status": "Passed",
+          "duration": 0.8547945,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.GapHasReachableTopLandingAndStopsRemainingCommands",
+          "status": "Passed",
+          "duration": 0.575015,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.KickWithoutWaitFailsAtZeroTimeAndRetryRetainsDraft",
+          "status": "Passed",
+          "duration": 0.5585698,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.PanelsReflowWithoutChangingZoomOrPhysics",
+          "status": "Passed",
+          "duration": 0.5888342,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.SettingsPauseAndCloseNeverAutomaticallyResumes",
+          "status": "Passed",
+          "duration": 0.5915657,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.SideAndAirContactsDoNotWin",
+          "status": "Passed",
+          "duration": 0.5661763,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.StrictlyPositiveInputsShowApprovedValidationText",
+          "status": "Passed",
+          "duration": 0.6282825,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PassTwoTests.UndersideAndExistingReadyContactDoNotWin",
+          "status": "Passed",
+          "duration": 0.5598499,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.FixedImpulseUsesActualBodyMass",
+          "status": "Passed",
+          "duration": 0.5830673,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.InvalidProgramNeverPartiallyExecutes",
+          "status": "Passed",
+          "duration": 0.5595195,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.OrthogonalKicksCombineBeforeAnyPhysicsStep",
+          "status": "Passed",
+          "duration": 0.5607618,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.PauseStopsClockAndPhysicsAndResumeDoesNotRepeatKick",
+          "status": "Passed",
+          "duration": 0.6442794,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.RebuildingWorkspaceLeavesNoActiveOrphanCards",
+          "status": "Passed",
+          "duration": 0.5747096,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.ResetRestoresRenderedTransformAfterMotion",
+          "status": "Passed",
+          "duration": 0.5623706,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.SmallPhysicalValuesRemainVisibleInHudAndFormulaPreview",
+          "status": "Passed",
+          "duration": 0.569646,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.TitleNavigationStartsFreshSessionAndHasNoDeveloperButtons",
+          "status": "Passed",
+          "duration": 1.110422,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.UnsafeKickRejectsWholeProgramBeforeGravityChanges",
+          "status": "Passed",
+          "duration": 0.5719216,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.PhysicsTests.WeightExecutionAndResetRestoreEditedStartingState",
+          "status": "Passed",
+          "duration": 0.5638357,
+          "message": null,
+          "stackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/vincenth/MotionCommotion"
+    },
+    "success": true
+  },
+  "errors": [],
+  "warnings": []
+}

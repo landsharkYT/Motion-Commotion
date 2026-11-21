@@ -1,0 +1,1 @@
+{"name":"MotionCommotion.Runtime","rootNamespace":"MotionCommotion","references":["MotionCommotion.Core","Unity.ugui","Unity.InputSystem"]}

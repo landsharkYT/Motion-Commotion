@@ -1,0 +1,213 @@
+{
+  "success": true,
+  "command": "command test status",
+  "data": {
+    "command": "test status",
+    "parameters": {
+      "detail": "full"
+    },
+    "result": {
+      "status": "completed",
+      "duration": 0.39,
+      "summary": {
+        "total": 26,
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageVelocity,3)",
+          "status": "Passed",
+          "duration": 0.024026,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageAcceleration,3)",
+          "status": "Passed",
+          "duration": 0.0002104,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(MotionPosition,16)",
+          "status": "Passed",
+          "duration": 0.0001458,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Force,20)",
+          "status": "Passed",
+          "duration": 0.0001106,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Weight,19.62d)",
+          "status": "Passed",
+          "duration": 0.0001145,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.CommandsCompileToIndependentSnapshot",
+          "status": "Passed",
+          "duration": 0.0021596,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"0\")",
+          "status": "Passed",
+          "duration": 0.002175,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"-1\")",
+          "status": "Passed",
+          "duration": 0.0001146,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.EveryForceRequiresItsOwnAdjacentDirection",
+          "status": "Passed",
+          "duration": 0.0006037,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.ExtremeFiniteKickIsRejectedWithoutDiscardingDraft",
+          "status": "Passed",
+          "duration": 0.0008237,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.GameplayPrefabHasPersistentUiInputReferences",
+          "status": "Passed",
+          "duration": 0.0172665,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.GravityAndCumulativeWaitsRespectOperationalLimits",
+          "status": "Passed",
+          "duration": 0.0004281,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.IndividuallySupportedKicksCannotExceedCombinedBudget",
+          "status": "Passed",
+          "duration": 0.0003932,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"\")",
+          "status": "Passed",
+          "duration": 0.0003231,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"NaN\")",
+          "status": "Passed",
+          "duration": 8.89e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"Infinity\")",
+          "status": "Passed",
+          "duration": 7.19e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"abc\")",
+          "status": "Passed",
+          "duration": 8.31e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"1e999\")",
+          "status": "Passed",
+          "duration": 7.49e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.InvalidQuantitiesAndCyclesAreRejected",
+          "status": "Passed",
+          "duration": 0.0004268,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.KicksShareTimestampAndWaitsAdvanceTime",
+          "status": "Passed",
+          "duration": 0.0013974,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.NestedAccelerationFeedsForceWithoutChangingSource",
+          "status": "Passed",
+          "duration": 0.0002132,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.PrefabsAndSceneInventoryExist",
+          "status": "Passed",
+          "duration": 0.0015431,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0\",0)",
+          "status": "Passed",
+          "duration": 0.0003466,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.000000000001\",1)",
+          "status": "Passed",
+          "duration": 6.52e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.03\",2)",
+          "status": "Passed",
+          "duration": 5.02e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"1\",50)",
+          "status": "Passed",
+          "duration": 4.47e-05,
+          "message": null,
+          "stackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/vincenth/MotionCommotion"
+    },
+    "success": true
+  },
+  "errors": [],
+  "warnings": []
+}

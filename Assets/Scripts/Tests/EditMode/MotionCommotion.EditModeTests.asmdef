@@ -1,0 +1,1 @@
+{"name":"MotionCommotion.EditModeTests","references":["MotionCommotion.Core","MotionCommotion.Runtime","MotionCommotion.Editor","Unity.ugui","Unity.InputSystem"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}

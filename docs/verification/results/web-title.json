@@ -1,0 +1,80 @@
+{
+  "scene": "Title",
+  "state": "",
+  "validation": "",
+  "time": 0,
+  "mass": 0,
+  "gravity": 0,
+  "x": 0,
+  "y": 0,
+  "vx": 0,
+  "vy": 0,
+  "visualX": 0,
+  "visualY": 0,
+  "commands": 0,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 0,
+  "mouseY": 0,
+  "hit": "TitleBackground",
+  "notice": "",
+  "measurements": "",
+  "controls": [
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/Level1",
+      "text": "Level 1  ·  Not available in this pass",
+      "x": 347.9682922363281,
+      "y": 437.036865234375,
+      "width": 904.0635986328125,
+      "height": 37.291015625,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/Level2",
+      "text": "Level 2  ·  Not available in this pass",
+      "x": 347.9682922363281,
+      "y": 497.63470458984375,
+      "width": 904.0635986328125,
+      "height": 37.291015625,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/Level3",
+      "text": "Level 3  ·  Not available in this pass",
+      "x": 347.9682922363281,
+      "y": 558.2325439453125,
+      "width": 904.0635986328125,
+      "height": 37.290985107421875,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/Level4",
+      "text": "Level 4  ·  Not available in this pass",
+      "x": 347.9682922363281,
+      "y": 618.8304443359375,
+      "width": 904.0635986328125,
+      "height": 37.29095458984375,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/Level5",
+      "text": "Level 5  ·  Not available in this pass",
+      "x": 347.9682922363281,
+      "y": 679.4282836914062,
+      "width": 904.0635986328125,
+      "height": 37.29095458984375,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/TitleBackground/TitleMenu/OpenDemo",
+      "text": "Open mechanics demo",
+      "x": 347.9682922363281,
+      "y": 740.026123046875,
+      "width": 904.0635986328125,
+      "height": 37.29095458984375,
+      "enabled": true
+    }
+  ]
+}

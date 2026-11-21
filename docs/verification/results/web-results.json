@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": [
+    "Title contains supplied logo and PLAY without selection rows",
+    "Separate three-over-two selection has one available tile and four locked tiles",
+    "All four sidebar combinations reflow the world with fixed zoom and accessible controls",
+    "Only executable equation tiles join the stack; Direction validates and mass edits affect the body",
+    "Zero and negative denominators show Must be positive beside the equation and prevent Run",
+    "Existing stack blocks reorder and remove without deleting their neighbors",
+    "Typed inline nesting, rejection, deep horizontal scrolling and literal restoration work",
+    "Settings and Hint pause, block background controls, close without resuming, and expose inert volume and pencil",
+    "Following camera keeps fixed zoom and the physical gap landing opens the minimal win row",
+    "Zero-time exhaustion fails; Retry retains the draft and selection reentry starts fresh",
+    "Long programs remain vertically scrollable while paused with edits and physics locked",
+    "Standalone Weight preserves gravity semantics and unsafe drafts remain editable without execution",
+    "Desktop sizes retain controls and Settings returns directly to Title"
+  ],
+  "errors": []
+}

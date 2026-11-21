@@ -1,0 +1,7 @@
+{
+  "name": "motion-commotion-verification",
+  "private": true,
+  "type": "module",
+  "scripts": { "verify:web": "node verify-web.mjs" },
+  "devDependencies": { "playwright": "1.59.1" }
+}

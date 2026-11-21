@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Motion Commotion</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #ffffff; font: 16px Arial, sans-serif; }
+    #unity-canvas { display: block; width: 100%; height: 100%; outline: none; }
+    #loading { position: fixed; inset: 0; display: grid; place-content: center; gap: 12px; text-align: center; background: #ffffff; }
+    progress { width: 280px; }
+    #error { position: fixed; bottom: 12px; left: 12px; right: 12px; padding: 12px; background: #fff; color: #8d1616; display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="0" aria-label="Motion Commotion physics block workspace"></canvas>
+  <div id="loading"><progress aria-label="Loading" max="1" value="0"></progress></div>
+  <div id="error" role="alert"></div>
+  <script>
+    const canvas = document.getElementById('unity-canvas');
+    const error = document.getElementById('error');
+    const loader = document.createElement('script');
+    loader.src = 'Build/{{{ LOADER_FILENAME }}}';
+    loader.onload = () => createUnityInstance(canvas, {
+      dataUrl: 'Build/{{{ DATA_FILENAME }}}',
+      frameworkUrl: 'Build/{{{ FRAMEWORK_FILENAME }}}',
+      codeUrl: 'Build/{{{ CODE_FILENAME }}}',
+      streamingAssetsUrl: 'StreamingAssets',
+      companyName: 'Motion Commotion Team',
+      productName: 'Motion Commotion',
+      productVersion: '{{{ PRODUCT_VERSION }}}',
+      devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      showBanner: (message, type) => {
+        if (type === 'error') { console.error(message); error.textContent = 'Simulation stopped'; error.style.display = 'block'; }
+      }
+    }, progress => { document.querySelector('progress').value = progress; })
+    .then(() => { document.getElementById('loading').remove(); canvas.focus(); })
+    .catch(message => { console.error(message); error.textContent = 'Simulation stopped'; error.style.display = 'block'; });
+    document.body.appendChild(loader);
+  </script>
+</body>
+</html>

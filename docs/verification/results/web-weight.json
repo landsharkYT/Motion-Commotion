@@ -1,0 +1,323 @@
+{
+  "scene": "InGame",
+  "state": "Completed",
+  "validation": "",
+  "time": 0,
+  "mass": 3,
+  "gravity": 0,
+  "x": 0,
+  "y": 0,
+  "vx": 0,
+  "vy": 0,
+  "visualX": 0,
+  "visualY": 0,
+  "commands": 1,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 969,
+  "mouseY": 1033,
+  "hit": "Run",
+  "notice": "",
+  "measurements": "Completed   t = 0 s\nPosition  (0, 0) m\nVelocity  (0, 0) m/s\nMass  3 kg    Gravity  0 m/s² ↓",
+  "controls": [
+    {
+      "name": "InGameGameplay/Canvas/TopBar/Run",
+      "text": "Run",
+      "x": 919.75439453125,
+      "y": 11,
+      "width": 99.05419921875,
+      "height": 110,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/TopBar/Pause",
+      "text": "Pause",
+      "x": 1030.4619140625,
+      "y": 11,
+      "width": 99.05419921875,
+      "height": 110,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/TopBar/Reset",
+      "text": "Reset",
+      "x": 1141.1695556640625,
+      "y": 11,
+      "width": 99.05419921875,
+      "height": 110,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/TopBar/Clear",
+      "text": "Clear",
+      "x": 1251.877197265625,
+      "y": 11,
+      "width": 99.05419921875,
+      "height": 110,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/TopBar/EquationEdit",
+      "text": "",
+      "x": 1362.584716796875,
+      "y": 11,
+      "width": 64.093994140625,
+      "height": 110,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/TopBar/BackToTitle",
+      "text": "Back to title",
+      "x": 1438.33203125,
+      "y": 11,
+      "width": 145.66796875,
+      "height": 110,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Direction/DragHandle",
+      "text": "Direction",
+      "x": 34.64549255371094,
+      "y": 217.29888916015625,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Force/DragHandle",
+      "text": "Force · single kick",
+      "x": 34.64549255371094,
+      "y": 351.3133544921875,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Wait/DragHandle",
+      "text": "Wait",
+      "x": 34.64549255371094,
+      "y": 485.32781982421875,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Weight/DragHandle",
+      "text": "Weight · set gravity",
+      "x": 34.64549255371094,
+      "y": 619.34228515625,
+      "width": 314.708984375,
+      "height": 41.95233154296875,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_AverageVelocity/DragHandle",
+      "text": "Average velocity",
+      "x": 34.64549255371094,
+      "y": 753.3568115234375,
+      "width": 314.708984375,
+      "height": 41.95233154296875,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_AverageAcceleration/DragHandle",
+      "text": "Average acceleration",
+      "x": 34.64549255371094,
+      "y": 894.36328125,
+      "width": 314.708984375,
+      "height": 41.952362060546875,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_MotionPosition/DragHandle",
+      "text": "Motion position",
+      "x": 34.64549255371094,
+      "y": 1035.3697509765625,
+      "width": 314.708984375,
+      "height": 41.95235824584961,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Force/DragHandle",
+      "text": "Force formula",
+      "x": 34.64549255371094,
+      "y": 1176.3763427734375,
+      "width": 314.708984375,
+      "height": 41.952362060546875,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Weight/DragHandle",
+      "text": "Weight formula",
+      "x": 34.64549255371094,
+      "y": 1317.3829345703125,
+      "width": 314.708984375,
+      "height": 41.95234680175781,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/DragHandle/Remove",
+      "text": "×",
+      "x": 799.0554809570312,
+      "y": 217.29888916015625,
+      "width": 30.2989501953125,
+      "height": 41.952392578125,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/Body/Formula_498878b06b224c53a9de575cbefd7026/Body/Slot_m/Input_m",
+      "text": "3",
+      "x": 416.629638671875,
+      "y": 365.2974853515625,
+      "width": 398.74072265625,
+      "height": 34.9603271484375,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/Body/Formula_498878b06b224c53a9de575cbefd7026/Body/Slot_g/Input_g",
+      "text": "0",
+      "x": 416.629638671875,
+      "y": 442.21014404296875,
+      "width": 398.74072265625,
+      "height": 34.9603271484375,
+      "enabled": false
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Direction/DragHandle",
+      "text": "Direction",
+      "x": 34.64549255371094,
+      "y": 217.29888916015625,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Force/DragHandle",
+      "text": "Force · single kick",
+      "x": 34.64549255371094,
+      "y": 351.3133544921875,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Wait/DragHandle",
+      "text": "Wait",
+      "x": 34.64549255371094,
+      "y": 485.32781982421875,
+      "width": 314.708984375,
+      "height": 41.952392578125,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Weight/DragHandle",
+      "text": "Weight · set gravity",
+      "x": 34.64549255371094,
+      "y": 619.34228515625,
+      "width": 314.708984375,
+      "height": 41.95233154296875,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_AverageVelocity/DragHandle",
+      "text": "Average velocity",
+      "x": 34.64549255371094,
+      "y": 753.3568115234375,
+      "width": 314.708984375,
+      "height": 41.95233154296875,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_AverageAcceleration/DragHandle",
+      "text": "Average acceleration",
+      "x": 34.64549255371094,
+      "y": 894.36328125,
+      "width": 314.708984375,
+      "height": 41.952362060546875,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_MotionPosition/DragHandle",
+      "text": "Motion position",
+      "x": 34.64549255371094,
+      "y": 1035.3697509765625,
+      "width": 314.708984375,
+      "height": 41.95235824584961,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Force/DragHandle",
+      "text": "Force formula",
+      "x": 34.64549255371094,
+      "y": 1176.3763427734375,
+      "width": 314.708984375,
+      "height": 41.952362060546875,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport/Content/Palette_Weight/DragHandle",
+      "text": "Weight formula",
+      "x": 34.64549255371094,
+      "y": 1317.3829345703125,
+      "width": 314.708984375,
+      "height": 41.95234680175781,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/DragHandle",
+      "text": "Weight · set gravity",
+      "x": 402.6455383300781,
+      "y": 217.29888916015625,
+      "width": 426.7089538574219,
+      "height": 41.952392578125,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/Body/Formula_498878b06b224c53a9de575cbefd7026/Body/Slot_m",
+      "text": "m  [kg]",
+      "x": 411.96826171875,
+      "y": 333.833251953125,
+      "width": 408.0634765625,
+      "height": 71.0859375,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport/Content/Command_504216651e454fd4b08eba049f3c0555/Body/Formula_498878b06b224c53a9de575cbefd7026/Body/Slot_g",
+      "text": "g  [m/s²]",
+      "x": 411.96826171875,
+      "y": 410.745849609375,
+      "width": 408.0634765625,
+      "height": 71.0859375,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Palette/Viewport",
+      "text": "Direction",
+      "x": 16,
+      "y": 187,
+      "width": 352,
+      "height": 869,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/Program/Viewport",
+      "text": "Weight · set gravity",
+      "x": 384.00006103515625,
+      "y": 187,
+      "width": 463.9998779296875,
+      "height": 792,
+      "enabled": true
+    },
+    {
+      "name": "InGameGameplay/Canvas/ActionFeedback/Viewport",
+      "text": "t=0s  Gravity → 0 m/s² downward; no kick\nCompleted. Reset to edit. Add Wait to observe travel after a kick.",
+      "x": 880,
+      "y": 951.5,
+      "width": 704,
+      "height": 137.50003051757812,
+      "enabled": true
+    }
+  ]
+}

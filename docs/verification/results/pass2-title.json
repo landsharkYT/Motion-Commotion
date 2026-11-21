@@ -1,0 +1,43 @@
+{
+  "scene": "Title",
+  "state": "",
+  "validation": "",
+  "view": "Title",
+  "outcome": "",
+  "modal": "",
+  "blocksOpen": false,
+  "activeOpen": false,
+  "zoom": 0,
+  "cameraX": 0,
+  "cameraY": 0,
+  "time": 0,
+  "mass": 0,
+  "gravity": 0,
+  "x": 0,
+  "y": 0,
+  "vx": 0,
+  "vy": 0,
+  "visualX": 0,
+  "visualY": 0,
+  "commands": 0,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 0,
+  "mouseY": 0,
+  "hit": "TitleView",
+  "notice": "",
+  "measurements": "",
+  "controls": [
+    {
+      "name": "Title/Canvas/TitleView/Play",
+      "text": "PLAY",
+      "x": 475.1999816894531,
+      "y": 639,
+      "width": 489.6000671386719,
+      "height": 144,
+      "enabled": true
+    }
+  ]
+}

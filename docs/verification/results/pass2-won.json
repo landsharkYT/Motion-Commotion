@@ -1,0 +1,124 @@
+{
+  "scene": "InGame",
+  "state": "Completed",
+  "validation": "",
+  "view": "",
+  "outcome": "Won",
+  "modal": "Outcome",
+  "blocksOpen": false,
+  "activeOpen": false,
+  "zoom": 5,
+  "cameraX": 7.215376377105713,
+  "cameraY": 3.2432045936584473,
+  "time": 1.28,
+  "mass": 3,
+  "gravity": 9.8100004196167,
+  "x": 8.145873069763184,
+  "y": 0.004374988377094269,
+  "vx": 6.363961219787598,
+  "vy": 0,
+  "visualX": 8.145873069763184,
+  "visualY": 0.004374988377094269,
+  "commands": 3,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 99,
+  "mouseY": 854,
+  "hit": "OutcomeModal",
+  "notice": "",
+  "measurements": "Completed   t = 1.28 s\nPosition (8.1459, 0.004375) m\nVelocity (6.364, 0) m/s\nMass  3 kg    Gravity  9.81",
+  "controls": [
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Menu",
+      "text": "",
+      "x": 28.79998779296875,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Pause",
+      "text": "",
+      "x": 77.79998779296875,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Reset",
+      "text": "",
+      "x": 126.79998779296875,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Clear",
+      "text": "",
+      "x": 175.79998779296875,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/EquationEdit",
+      "text": "",
+      "x": 224.79998779296875,
+      "y": 29,
+      "width": 44,
+      "height": 32,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SettingsOpen",
+      "text": "",
+      "x": 1383,
+      "y": 11,
+      "width": 46,
+      "height": 46,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/HintOpen",
+      "text": "",
+      "x": 1383,
+      "y": 67,
+      "width": 46,
+      "height": 46,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/Retry",
+      "text": "",
+      "x": 617.5,
+      "y": 428,
+      "width": 44,
+      "height": 44,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/LevelSelect",
+      "text": "Level Select",
+      "x": 683.5,
+      "y": 434,
+      "width": 150,
+      "height": 32,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/Next",
+      "text": "",
+      "x": 855.5,
+      "y": 428,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "migratedAssetChecks": 64,
+  "uniqueAssetGuids": 124,
+  "buildScenes": [
+    "Assets/Scenes/Application/Title.unity",
+    "Assets/Scenes/Application/InGame.unity",
+    "Assets/Scenes/Application/LevelEditor.unity",
+    "Assets/Scenes/Testing/Sandbox.unity"
+  ],
+  "assemblyCount": 5,
+  "documentationLinks": 125
+}

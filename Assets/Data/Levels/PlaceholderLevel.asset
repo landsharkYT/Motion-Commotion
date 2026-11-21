@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd71c3a073c642ea071aca310afdcd, type: 3}
+  m_Name: PlaceholderLevel
+  m_EditorClassIdentifier: MotionCommotion.Runtime::MotionCommotion.LevelDefinition
+  Environment: {fileID: 2469651162795388216, guid: 1d17980298bcd4599b3790b383a78707, type: 3}
+  Spawn: {x: 0, y: 0}
+  FallY: -6
+  CameraBounds:
+    serializedVersion: 2
+    x: -12
+    y: -8
+    width: 36
+    height: 22
+  CameraSize: 5
+  CameraOffset: {x: 0, y: 2.5}
+  CameraSmoothing: 0.15
+  Hint: Use an upward kick and allow time to land.

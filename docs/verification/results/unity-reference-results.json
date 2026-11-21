@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "command": "command script eval",
+  "data": {
+    "command": "script eval",
+    "parameters": {
+      "code": "var issues = new System.Collections.Generic.List<string>(); int checkedObjects = 0;\nSystem.Action<UnityEngine.Object> inspect = obj => {\n if (!obj) return;\n checkedObjects++;\n var serialized = new UnityEditor.SerializedObject(obj);\n var property = serialized.GetIterator();\n while (property.Next(true)) if (property.propertyType == UnityEditor.SerializedPropertyType.ObjectReference && property.objectReferenceValue == null && property.objectReferenceInstanceIDValue != 0) issues.Add(obj.name + \":\" + property.propertyPath);\n};\nforeach (var guid in UnityEditor.AssetDatabase.FindAssets(\"\", new[] { \"Assets\" })) {\n var path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);\n if (path.EndsWith(\".prefab\")) {\n  var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(path);\n  foreach (var transform in prefab.GetComponentsInChildren<UnityEngine.Transform>(true)) {\n   if (UnityEditor.GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject) > 0) issues.Add(path + \":missing script\");\n   foreach (var component in transform.GetComponents<UnityEngine.Component>()) inspect(component);\n  }\n } else if (path.EndsWith(\".asset\") || path.EndsWith(\".mat\")) {\n  foreach (var asset in UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path)) inspect(asset);\n }\n}\nforeach (var buildScene in UnityEditor.EditorBuildSettings.scenes) {\n var scene = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(buildScene.path);\n foreach (var root in scene.GetRootGameObjects()) foreach (var transform in root.GetComponentsInChildren<UnityEngine.Transform>(true)) {\n  if (UnityEditor.GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject) > 0) issues.Add(buildScene.path + \":missing script\");\n  foreach (var component in transform.GetComponents<UnityEngine.Component>()) inspect(component);\n }\n}\nUnityEditor.SceneManagement.EditorSceneManager.OpenScene(\"Assets/Scenes/Application/Title.unity\");\nreturn new { checkedObjects, issues = issues.ToArray(), passed = issues.Count == 0 };"
+    },
+    "result": {
+      "checkedObjects": 669,
+      "issues": [
+        "Renderer2D:probeVolumeResources.probeVolumeDebugShader",
+        "Renderer2D:probeVolumeResources.probeVolumeFragmentationDebugShader",
+        "Renderer2D:probeVolumeResources.probeVolumeOffsetDebugShader",
+        "Renderer2D:probeVolumeResources.probeVolumeSamplingDebugShader",
+        "Renderer2D:probeVolumeResources.probeSamplingDebugMesh",
+        "Renderer2D:probeVolumeResources.probeSamplingDebugTexture"
+      ],
+      "passed": false
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/vincenth/MotionCommotion"
+    },
+    "success": true
+  },
+  "errors": [],
+  "warnings": [],
+  "migrationAssessment": {
+    "passed": true,
+    "rendererMatchesPreMigrationSha256": true,
+    "missingScripts": 0,
+    "newUnresolvedReferences": 0,
+    "preexistingUnresolvedReferences": [
+      "Renderer2D:probeVolumeResources.probeVolumeDebugShader",
+      "Renderer2D:probeVolumeResources.probeVolumeFragmentationDebugShader",
+      "Renderer2D:probeVolumeResources.probeVolumeOffsetDebugShader",
+      "Renderer2D:probeVolumeResources.probeVolumeSamplingDebugShader",
+      "Renderer2D:probeVolumeResources.probeSamplingDebugMesh",
+      "Renderer2D:probeVolumeResources.probeSamplingDebugTexture"
+    ],
+    "note": "Raw scan retains passed:false for six unresolved URP debug-resource references. The renderer bytes match the pre-migration SHA256; no new unresolved references were found."
+  }
+}

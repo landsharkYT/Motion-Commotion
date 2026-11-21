@@ -1,0 +1,738 @@
+{
+  "moved": [
+    {
+      "old": "Assets/MotionCommotion/Core/MotionCommotion.Core.asmdef",
+      "new": "Assets/Scripts/Core/MotionCommotion.Core.asmdef",
+      "guid": "9d1cda9e37ec9236284649dbaf4f6341",
+      "sha256": "6ff6b20d7afe36fb32577e3de11865772a0c0352b164f6220ec7aeb597d60c1c"
+    },
+    {
+      "old": "Assets/MotionCommotion/Core/Formulas.cs",
+      "new": "Assets/Scripts/Core/Formulas.cs",
+      "guid": "a28788e43840a2ad19d4904964cb9e4e",
+      "sha256": "cda4faa94cad37be5ec1a39be2cdb5dbbf7f0f7b636a436a65ccaf0d8c10213f"
+    },
+    {
+      "old": "Assets/MotionCommotion/Core/Programs.cs",
+      "new": "Assets/Scripts/Core/Programs.cs",
+      "guid": "9fbff02094399e69c9dd05a608923e0a",
+      "sha256": "e358946e7f20ac32d18feb4af06518690dffd343f02fb18664dd5a679f98243c"
+    },
+    {
+      "old": "Assets/MotionCommotion/Core/ProgramRunner.cs",
+      "new": "Assets/Scripts/Core/ProgramRunner.cs",
+      "guid": "cac52139be2456eb1919bc0a61039f30",
+      "sha256": "a61f44a67be07ad00e55fe027e072175766ee6eb4345bee024badec424f5238d"
+    },
+    {
+      "old": "Assets/MotionCommotion/Core/PhysicsLimits.cs",
+      "new": "Assets/Scripts/Core/PhysicsLimits.cs",
+      "guid": "958382adf12b8c94c911441e0be8f66a",
+      "sha256": "b31ff71a82f6cca4d112027b777fb6815299967c7c2095ee91ccbaef5defbea7"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/MotionCommotion.Runtime.asmdef",
+      "new": "Assets/Scripts/Runtime/MotionCommotion.Runtime.asmdef",
+      "guid": "141682612a6488802bf70b7933c35516",
+      "sha256": "b4e7505e77d268a3838ec7a1379b7016156cd094033a850c88b60844110eacf2"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Physics/BallBody.cs",
+      "new": "Assets/Scripts/Runtime/Physics/BallBody.cs",
+      "guid": "0707a4f59b8e85858be3e43f95cd38c5",
+      "sha256": "3d40aa4d290ebf7131684512b157a47c510ceb0e81416a3049898bfb09aea22a"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Physics/SimulationController.cs",
+      "new": "Assets/Scripts/Runtime/Physics/SimulationController.cs",
+      "guid": "94ee64058d9d4cfc6a58dfd4499fedf0",
+      "sha256": "25f00e003e46b1b35e8bf535bbaeee7deec702a51ba85f03a106515b8ceb6910"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Session/WorkspaceSettings.cs",
+      "new": "Assets/Scripts/Runtime/Configuration/WorkspaceSettings.cs",
+      "guid": "7c75a62c62f45d119afea53819f2569b",
+      "sha256": "c6e9b2e158dee5fe07ea104a1fdf57a31c4ca2683b8e867f4e2ba77c0e436033"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Session/MotionCommotionSession.cs",
+      "new": "Assets/Scripts/Runtime/Session/MotionCommotionSession.cs",
+      "guid": "490e92bd553c7192ea59bd1cdb579238",
+      "sha256": "cd3b26a093eb470858a880b350b13c7aae0cdb8c1c25bc6d48e4d9bbfbfa6308"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Session/PaletteDefinition.cs",
+      "new": "Assets/Scripts/Runtime/Configuration/PaletteDefinition.cs",
+      "guid": "c08009710cc6a008a8fe16d9605ed255",
+      "sha256": "3240a1e7cf9e0a7b34a0e4060a179979ebb0972ee0a9e9952ce5a09dbed95157"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/UiFactory.cs",
+      "new": "Assets/Scripts/Runtime/UI/UiFactory.cs",
+      "guid": "7fb10f81bf90d22efaa58d52a044745e",
+      "sha256": "80295f08479567870158d17f0e493d80b8954a4d9161421f1c6a75155c6ba31b"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/BlockCard.cs",
+      "new": "Assets/Scripts/Runtime/UI/BlockCard.cs",
+      "guid": "9bd74d37ebbf96350be6dfb940a0a0e8",
+      "sha256": "040362ab151ea8e4ba42c9893f188f95cae608bfb467f49cd13e62f2d5f7e5a1"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/BlockDrag.cs",
+      "new": "Assets/Scripts/Runtime/UI/BlockDrag.cs",
+      "guid": "9c793ee50a32b4247bd43b23fcb373ce",
+      "sha256": "6e80caab24ec3a866b2f1501b0196ce2b085c49e002d4f5ba291ebd4589bd3b9"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/BlockWorkspace.cs",
+      "new": "Assets/Scripts/Runtime/UI/BlockWorkspace.cs",
+      "guid": "f54a82ea914c565b7b9f31d19d05fa84",
+      "sha256": "c45f7319f10f5d78bf169807aa0d9383c5559f2e004f27f630813445cc9c38d5"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/SimulationHUD.cs",
+      "new": "Assets/Scripts/Runtime/UI/SimulationHUD.cs",
+      "guid": "07a0454e426169a4cad1fdf3b9d93bc5",
+      "sha256": "5c4473280c72354f9828e7f2d591470f1522015e43faa661c1091be007641037"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/WorkspaceEditingGate.cs",
+      "new": "Assets/Scripts/Runtime/UI/WorkspaceEditingGate.cs",
+      "guid": "7b400e431312f8003941732b71673ac1",
+      "sha256": "d40f17c90406ec229517fe67fca5d653839ba9260221e71aba36768c096921d4"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/VerificationTelemetry.cs",
+      "new": "Assets/Scripts/Runtime/Diagnostics/VerificationTelemetry.cs",
+      "guid": "6f4d0fd72686817fc8f54f01cce2c4fc",
+      "sha256": "14fe7ffb2b3a1f5825f28c36390daa0148d04ecf0cdfc887f755a9ac8aa6246b"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/EquationEditIcon.cs",
+      "new": "Assets/Scripts/Runtime/UI/EquationEditIcon.cs",
+      "guid": "4c3a9bcfd4b19ecc99e32a1816139fff",
+      "sha256": "40fe679b6456642387162f54a86f88ac7b33de68ba12bf0a8ac1f9fe0ec10d5e"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/Navigation/SceneNavigator.cs",
+      "new": "Assets/Scripts/Runtime/Navigation/SceneNavigator.cs",
+      "guid": "c9a3c2586e3d997589080cc566d632f7",
+      "sha256": "c0b799fd5a834d5cb1f8034cb9791fc39e021c41e563542e45378d2cb75fffdd"
+    },
+    {
+      "old": "Assets/MotionCommotion/Runtime/UI/Plugins/Verification.jslib",
+      "new": "Assets/Plugins/WebGL/Verification.jslib",
+      "guid": "da8363b52bcf981e4ae1bcd2448ad4e0",
+      "sha256": "118564dfca53110d529b0fd82692353188b22bc4571492dc084c1cabc94908da"
+    },
+    {
+      "old": "Assets/MotionCommotion/Editor/MotionCommotion.Editor.asmdef",
+      "new": "Assets/Scripts/Editor/MotionCommotion.Editor.asmdef",
+      "guid": "bdac344b993ff7072a5b014c189b0f02",
+      "sha256": "a7c012f3667624e94908f1cae61f021a17cf692d1510e81a5fb2956c6bef07f0"
+    },
+    {
+      "old": "Assets/MotionCommotion/Editor/FoundationAssets.cs",
+      "new": "Assets/Scripts/Editor/FoundationAssets.cs",
+      "guid": "349a0b9fd1f3005c7aba281a13895c8c",
+      "sha256": "ba8c95a47c27e5f88a36622ab6ce0bc290aefdb013325843011d7ce5d559b135"
+    },
+    {
+      "old": "Assets/MotionCommotion/Tests/EditMode/MotionCommotion.EditModeTests.asmdef",
+      "new": "Assets/Scripts/Tests/EditMode/MotionCommotion.EditModeTests.asmdef",
+      "guid": "4c02e2118d41452aeb7b199ee19b2385",
+      "sha256": "a26dd63135594d8e0e0c2cdc5c5dc0151c6cd5eb1aa9104e6e1bfe108727bf80"
+    },
+    {
+      "old": "Assets/MotionCommotion/Tests/EditMode/CoreTests.cs",
+      "new": "Assets/Scripts/Tests/EditMode/CoreTests.cs",
+      "guid": "95dfa6326cfc7bd0591920f53199ad56",
+      "sha256": "609a4e51b4ab14ad547f24220e1f27b7b4bb100e0532209e74dab35b0b1d6fc2"
+    },
+    {
+      "old": "Assets/MotionCommotion/Tests/PlayMode/MotionCommotion.PlayModeTests.asmdef",
+      "new": "Assets/Scripts/Tests/PlayMode/MotionCommotion.PlayModeTests.asmdef",
+      "guid": "cda9a783fdbba8a37b3d6ce587b61f39",
+      "sha256": "1c5a0f827cb40d275fc4fcdeeb939bcb4f81a17a829ba9b93ea62516d31202ae"
+    },
+    {
+      "old": "Assets/MotionCommotion/Tests/PlayMode/PhysicsTests.cs",
+      "new": "Assets/Scripts/Tests/PlayMode/PhysicsTests.cs",
+      "guid": "0afa1bf7ac7ba8017878bb8738989006",
+      "sha256": "10b5056d58fb911c39890b33d5f362966cd9de7bd2052baa3d65712b4195a118"
+    },
+    {
+      "old": "Assets/MotionCommotion/Scenes/Title.unity",
+      "new": "Assets/Scenes/Application/Title.unity",
+      "guid": "17f327c999e69b352a4e9ca6020195e0",
+      "sha256": "d81492940ceadcc2a4bb24151a1af6db4a6010a32861c0ecb6c5c794d5ee567f"
+    },
+    {
+      "old": "Assets/MotionCommotion/Scenes/InGame.unity",
+      "new": "Assets/Scenes/Application/InGame.unity",
+      "guid": "25640fc37c129cab19ad5054af1d76c5",
+      "sha256": "e10c4c2f1e7e172a14e657b158e842aed5c64deb2d40f2e1fa317c2ce71b7a6f"
+    },
+    {
+      "old": "Assets/MotionCommotion/Scenes/Editor.unity",
+      "new": "Assets/Scenes/Application/LevelEditor.unity",
+      "guid": "706c81647c6ff1431a79b2a2e19c20b1",
+      "sha256": "d1b573e54279226a603037a851afb43d3bddfba341e9e0a02e94d176833426a2"
+    },
+    {
+      "old": "Assets/MotionCommotion/Scenes/Sandbox.unity",
+      "new": "Assets/Scenes/Testing/Sandbox.unity",
+      "guid": "1dc948789c6466346ab5fe2592efb2b5",
+      "sha256": "53b84efe5e41eaef7f9c1c2ac150330d158167c45aecfa648cad89f12e83a080"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/Gameplay.prefab",
+      "new": "Assets/Prefabs/Gameplay/Gameplay.prefab",
+      "guid": "daaa14552f285840b8e0b92f5dbedc80",
+      "sha256": "d90dcaea384971496c792a25547bfffe71219799b5b1c85fa62328bb4d095673"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/BlockCard.prefab",
+      "new": "Assets/Prefabs/UI/BlockCard.prefab",
+      "guid": "7a5d90f9e8ef0006a9d5bef936c19ca3",
+      "sha256": "2b15a73752b1e14e33528cbff206a763b6552d9586c2913ff5d128a6f55d16b7"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/Circle.prefab",
+      "new": "Assets/Prefabs/Shapes/Circle.prefab",
+      "guid": "160f62f796ab77e3483e118612806104",
+      "sha256": "a2a5808c9b8555d419fac6430d36b650d18915dff31d7240e21b8b519e7ed3f8"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/Triangle.prefab",
+      "new": "Assets/Prefabs/Shapes/Triangle.prefab",
+      "guid": "62ed6a65087c464bb95cdf7cc369a0b0",
+      "sha256": "b4f3a2160d0c1e3c4d2de4b476d00bfef068634b3168e058f5896ef2373df6a7"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/Square.prefab",
+      "new": "Assets/Prefabs/Shapes/Square.prefab",
+      "guid": "598dac895eeed8e5ca168eb551a65c79",
+      "sha256": "7a97246068e84ce5ecd865898c22b85b28b42f9918fdf1d315714256392af370"
+    },
+    {
+      "old": "Assets/MotionCommotion/Prefabs/Rectangle.prefab",
+      "new": "Assets/Prefabs/Shapes/Rectangle.prefab",
+      "guid": "1db504f080b849793a59338a129102a3",
+      "sha256": "9b38da469b25fff72771e89fa5fe0c82af67e2d3dec586cdc5c3c3c52e861e0c"
+    },
+    {
+      "old": "Assets/MotionCommotion/Geometry/Circle.asset",
+      "new": "Assets/Meshes/Circle.asset",
+      "guid": "b43e0cb5ffe1e15799d9f1d82a26684a",
+      "sha256": "fd47b8c13dc7efb26683c55d8249c3432688d5797157e26ccf8d7964302bd8c9"
+    },
+    {
+      "old": "Assets/MotionCommotion/Geometry/Square.asset",
+      "new": "Assets/Meshes/Square.asset",
+      "guid": "96f169cfe0ec0cf8ea59863fced88e84",
+      "sha256": "91f96eb12b3b5f31f836f6a95119bc5200cf4132f3e3fc0822975ed28352179c"
+    },
+    {
+      "old": "Assets/MotionCommotion/Geometry/Triangle.asset",
+      "new": "Assets/Meshes/Triangle.asset",
+      "guid": "3f026c402ef174012bd1cbfaab0fe03e",
+      "sha256": "31be64d9eef63e9dd196ae800e9c8b5221b6ecf78d433bb802c4c6599f38b703"
+    },
+    {
+      "old": "Assets/MotionCommotion/Materials/NoFriction.physicsMaterial2D",
+      "new": "Assets/Materials/NoFriction.physicsMaterial2D",
+      "guid": "be8feaf232ce622c79b4b4b04b9b5d96",
+      "sha256": "6ca766e106e5b6237c0ddbb1796c9097042ae766a0b7a48ad6f18733f1749931"
+    },
+    {
+      "old": "Assets/MotionCommotion/Materials/GeometryGray.mat",
+      "new": "Assets/Materials/GeometryGray.mat",
+      "guid": "765d9f3064409e67c9b34f5e36347421",
+      "sha256": "648cc653907e206925c8bf6d0df157b8bfa9f9f9ee34f783dd320cb9904d013e"
+    },
+    {
+      "old": "Assets/MotionCommotion/Materials/BallGray.mat",
+      "new": "Assets/Materials/BallGray.mat",
+      "guid": "aa30c3580eb3a07c7b1cbfe65dfe4841",
+      "sha256": "503cb058cbece53e8eacaacb94a7be56f001d37a86dd315b86dcac20ec0fdee8"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Workspace.asset",
+      "new": "Assets/Settings/Gameplay/Workspace.asset",
+      "guid": "c55578fc108743cedab9026a478dab7e",
+      "sha256": "00ade7d9873e99a570d84dfdfc6398ac02de241e97f7ad3bde7b73523de5fdc8"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Command0.asset",
+      "new": "Assets/Data/Blocks/Commands/Direction.asset",
+      "guid": "d764ad19200eae628a9d62ca1dfe7f0c",
+      "sha256": "e22f78a2cec4c636374f011eb74ddad340a3bb4f4dcd80faa9e4fe26055a7716"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Command1.asset",
+      "new": "Assets/Data/Blocks/Commands/Force.asset",
+      "guid": "2b9ff1c2968c7c3e191252d7a9e86a99",
+      "sha256": "7fc139acff93b4479a3e319c40a258a279151cdabbec4483820413da0ae699cb"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Command2.asset",
+      "new": "Assets/Data/Blocks/Commands/Wait.asset",
+      "guid": "947feafc338a7c809a274e1edc5c3570",
+      "sha256": "07a395accf901fdbb52a93a155f9ed58fdd8c13bf7771e8697fd9cff633862ec"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Command3.asset",
+      "new": "Assets/Data/Blocks/Commands/Weight.asset",
+      "guid": "4ade247f0fe0a396f8c4e22c214ed3bf",
+      "sha256": "e0794e9378d3ef01424fe0b491071ca30ad8c474e1f07720250d370464b24a56"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Formula0.asset",
+      "new": "Assets/Data/Blocks/Formulas/AverageVelocity.asset",
+      "guid": "0f058bb9f33454b0da1e975fc321649c",
+      "sha256": "e61c54943fbaf395a88cbe874b5d1edcbbf65262d2f4448264f4fba1ae52a4eb"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Formula1.asset",
+      "new": "Assets/Data/Blocks/Formulas/AverageAcceleration.asset",
+      "guid": "9acad4e8f22aa2a68be826859f1080cd",
+      "sha256": "018a395ecf5d9bbad3b3f5e6677e8c5ad35369efe7df4dfafb789c5e6f00ce74"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Formula2.asset",
+      "new": "Assets/Data/Blocks/Formulas/MotionPosition.asset",
+      "guid": "61b2956a44ddeef8486f612495057334",
+      "sha256": "fa3631ab234f33dc5950217c48a05cb4f1b36fa02eb4e4bd980ef76b0538ba1f"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Formula3.asset",
+      "new": "Assets/Data/Blocks/Formulas/Force.asset",
+      "guid": "8fdf8760d8feac700a09c53647f17781",
+      "sha256": "83ad7bc0dc7b73cd8afb23fa2c05baa94552dee9fd37f4c94f2def0395649fa6"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/Formula4.asset",
+      "new": "Assets/Data/Blocks/Formulas/Weight.asset",
+      "guid": "2ec0cd9fd7f28bc0d952c194a49e79c2",
+      "sha256": "0a96658125e67f1acff417ea79cca374961411c919542c447bf974c9be658617"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionNavigate.asset",
+      "new": "Assets/Input/UIReferences/UIActionNavigate.asset",
+      "guid": "fdeed227a1cdc7643ba0885d0b650a5b",
+      "sha256": "68c72720c7f3670c386a77a615b0e6b7891ea6e28eda9fef32192c63989809e9"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionSubmit.asset",
+      "new": "Assets/Input/UIReferences/UIActionSubmit.asset",
+      "guid": "312625977ad342d478a50378fdf8a36f",
+      "sha256": "5e60c8cd36c1605b5b581285d92be8c4be70a9837ae8c0d75d61d6de5e8d2035"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionPoint.asset",
+      "new": "Assets/Input/UIReferences/UIActionPoint.asset",
+      "guid": "341a4765ed5883c64b8fd7d376bdb34f",
+      "sha256": "a13c1b5bc7405d64210ff373956f072dee07f4b98af9f3286f173dcb75bccc39"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionCancel.asset",
+      "new": "Assets/Input/UIReferences/UIActionCancel.asset",
+      "guid": "9de2d542ff329daddab8d0e8f5f6b3c3",
+      "sha256": "320383518245b376fd5406f5f09cdacefb56310ffdf44d1d85c1a5ce1ae24334"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionScrollWheel.asset",
+      "new": "Assets/Input/UIReferences/UIActionScrollWheel.asset",
+      "guid": "5c9b92e9e05f207f387abffa88e4b9a7",
+      "sha256": "d82604473ac7db1e436b6c6c7b233bddfda3d30b195f633ac86e14b5964d6cc3"
+    },
+    {
+      "old": "Assets/MotionCommotion/Settings/UIActionClick.asset",
+      "new": "Assets/Input/UIReferences/UIActionClick.asset",
+      "guid": "8915329ce7697e39cb9b3190167e181e",
+      "sha256": "d46199d26389105562e734ea5c1f92c1c767eea40ed4aa0a5bcaa9d71cc70805"
+    },
+    {
+      "old": "Assets/InputSystem_Actions.inputactions",
+      "new": "Assets/Input/Actions/InputSystem_Actions.inputactions",
+      "guid": "2bcd2660ca9b64942af0de543d8d7100",
+      "sha256": "1c6cbb519d65ecfe19a29231735b7f54741a20ac1a8ad4f46a18e1bfb28a3c39"
+    },
+    {
+      "old": "Assets/Settings/UniversalRP.asset",
+      "new": "Assets/Settings/Rendering/UniversalRP.asset",
+      "guid": "681886c5eb7344803b6206f758bf0b1c",
+      "sha256": "167d20e3285f9071dc9bcb0a4fee7cdf8bb335dd849ec96e4b3fa39bd401f266"
+    },
+    {
+      "old": "Assets/Settings/Renderer2D.asset",
+      "new": "Assets/Settings/Rendering/Renderer2D.asset",
+      "guid": "424799608f7334c24bf367e4bbfa7f9a",
+      "sha256": "900455794d0d788504847c3aa54e03a0374fd3635afa295ed05c2f646f974705"
+    },
+    {
+      "old": "Assets/UniversalRenderPipelineGlobalSettings.asset",
+      "new": "Assets/Settings/Rendering/UniversalRenderPipelineGlobalSettings.asset",
+      "guid": "93b439a37f63240aca3dd4e01d978a9f",
+      "sha256": "a424df85747917323f75857c54c41c31b1c718665b3f10beabd6cc7bc20dc60c"
+    },
+    {
+      "old": "Assets/DefaultVolumeProfile.asset",
+      "new": "Assets/Settings/Rendering/DefaultVolumeProfile.asset",
+      "guid": "3f9215ea0144899419cfbc0957140d3f",
+      "sha256": "cb88ac788e6f2ac42dda3d6bc1593cefaba460e96aeae1b1c8fa7bef3e90e1e7"
+    },
+    {
+      "old": "scripts/package.json",
+      "new": "Tools/package.json",
+      "guid": null,
+      "sha256": "4ec08661cf7b8bbb90490d6cb09281ecdd99c5cbccf532e950d4e78685711b9c"
+    },
+    {
+      "old": "scripts/serve-web.py",
+      "new": "Tools/serve-web.py",
+      "guid": null,
+      "sha256": "ca39ddea5ab55cf508bd784e5bb66e90eae0ed068bdc039e711be5aa7f64a4cf"
+    },
+    {
+      "old": "scripts/verify-web.mjs",
+      "new": "Tools/verify-web.mjs",
+      "guid": null,
+      "sha256": "2bfaa9dce916590ea5cf1b24ff2376e354bf0778e81489891fd06de992573770"
+    },
+    {
+      "old": "scripts/package-lock.json",
+      "new": "Tools/package-lock.json",
+      "guid": null,
+      "sha256": "5fc268aac18b7047e8d08a11af3d2e450c1760c60f4e3e1d97ac4b56a850613a"
+    },
+    {
+      "old": "scripts/verify-unity.py",
+      "new": "Tools/verify-unity.py",
+      "guid": null,
+      "sha256": "220fb01e4205adb0ecaf2aacbd7869e60c9f16e9431fef15527c3e3a3034fc80"
+    },
+    {
+      "old": "Information/490 Motion Commotion GDD.md",
+      "new": "docs/design/490 Motion Commotion GDD.md",
+      "guid": null,
+      "sha256": "87bcb928260641b3334790f9a177b3d0f118df95722851304a0f20be00962880"
+    },
+    {
+      "old": "Information/FoundationScope.md",
+      "new": "docs/design/FoundationScope.md",
+      "guid": null,
+      "sha256": "782d4cbca2643a343c0a200ca0073db1eca5f70696ad314b5c77caae81ea142b"
+    },
+    {
+      "old": "Information/FoundationArchitecture.md",
+      "new": "docs/architecture/FoundationArchitecture.md",
+      "guid": null,
+      "sha256": "f55904f49143a0144871f40b37f3fc5270a76241264662f1193886de03ff632e"
+    },
+    {
+      "old": "pass1spec.md",
+      "new": "docs/design/pass1spec.md",
+      "guid": null,
+      "sha256": "d4ef0e932fdd8c6a11eb6081a6c9e3239977470f2eef24a4b705c05565b408c8"
+    },
+    {
+      "old": "ReferenceImages/settingsWireFrame.png",
+      "new": "docs/references/settingsWireFrame.png",
+      "guid": null,
+      "sha256": "62884d4008a7018ace10c5718994bf822c6550e11810f1860e5ef1cfdaccd0ce"
+    },
+    {
+      "old": "ReferenceImages/Sample_equation_editor.png",
+      "new": "docs/references/Sample_equation_editor.png",
+      "guid": null,
+      "sha256": "5a6771b6b50c30d338d7b8ac6d7f375039aa17718f25129a48f474246ba7f2f7"
+    },
+    {
+      "old": "ReferenceImages/manipulateEquationsWireframe.png",
+      "new": "docs/references/manipulateEquationsWireframe.png",
+      "guid": null,
+      "sha256": "2fc3392ee942f416da8be78d3e8b8a589c37f435246d6f9972d390f072e71a17"
+    },
+    {
+      "old": "ReferenceImages/levelSelectWireframe.png",
+      "new": "docs/references/levelSelectWireframe.png",
+      "guid": null,
+      "sha256": "ddeb3f293d132a0b294136a18e9901f85026c754e5f7e61c39c7fae1eddae5cc"
+    },
+    {
+      "old": "ReferenceImages/IngameDiagram2.png",
+      "new": "docs/references/IngameDiagram2.png",
+      "guid": null,
+      "sha256": "2c61510c54484edd9d56da3301f77b67912de7032b40f63a7917ed3ba6d5737b"
+    },
+    {
+      "old": "ReferenceImages/IngameDiagram.png",
+      "new": "docs/references/IngameDiagram.png",
+      "guid": null,
+      "sha256": "69e2682c4ee644b6512331bc62f16720f978d8a99a465fe3f4a9db3463d4bd29"
+    },
+    {
+      "old": "ReferenceImages/hintWireframe.png",
+      "new": "docs/references/hintWireframe.png",
+      "guid": null,
+      "sha256": "a7d1c5a45eaf10abb37b04947c13ed0b73fefa41ae163020a56062c11c3790a4"
+    },
+    {
+      "old": "ReferenceImages/colorone.png",
+      "new": "docs/references/colorone.png",
+      "guid": null,
+      "sha256": "0ea1dcf31363261d14e781354da1f63fb0dec93004aec7bb920b9a5eac8d2830"
+    },
+    {
+      "old": "Verification/editmode-start.json",
+      "new": "docs/verification/results/editmode-start.json",
+      "guid": null,
+      "sha256": "45f904b827e4b10f40bad8da98d2213e5da5aaf7e5ab33a56b02cb396ea588aa"
+    },
+    {
+      "old": "Verification/editmode-results.json",
+      "new": "docs/verification/results/editmode-results.json",
+      "guid": null,
+      "sha256": "62225007cbdbebc1ecec880accf0db3055a9cbe7f6da32f2bf7c79632e2b7760"
+    },
+    {
+      "old": "Verification/playmode-start.json",
+      "new": "docs/verification/results/playmode-start.json",
+      "guid": null,
+      "sha256": "10fc4d91839d11b59e0364c2b52295fb4d2350dd2d071466af6431a3028129c3"
+    },
+    {
+      "old": "Verification/playmode-results.json",
+      "new": "docs/verification/results/playmode-results.json",
+      "guid": null,
+      "sha256": "38b5b53b48a166c0c5bed2523c0af2b14b027cb34316a51fa385bc3d9569545d"
+    },
+    {
+      "old": "Verification/web-build-start.json",
+      "new": "docs/verification/results/web-build-start.json",
+      "guid": null,
+      "sha256": "f517ca16bbfed0793cfbdc8855bb34dec85a2366d251ab0ff717127971f74a13"
+    },
+    {
+      "old": "Verification/web-build-result.json",
+      "new": "docs/verification/results/web-build-result.json",
+      "guid": null,
+      "sha256": "0587e03368b72f6ad4c5af5398bef1027a13a50c703448ea609a59101233599c"
+    },
+    {
+      "old": "Verification/web-title.png",
+      "new": "docs/verification/screenshots/web-title.png",
+      "guid": null,
+      "sha256": "2a608b88204fdb8d22935c0c7359ca16412429d4d15305c9ee007dea660ddbd8"
+    },
+    {
+      "old": "Verification/web-title.json",
+      "new": "docs/verification/results/web-title.json",
+      "guid": null,
+      "sha256": "09c21b564a59904dd6de2b8776ed2722798c35e3df222591b3ce989454235b9e"
+    },
+    {
+      "old": "Verification/web-failure.png",
+      "new": "docs/verification/screenshots/web-failure.png",
+      "guid": null,
+      "sha256": "6f826fd80cbac2b3d02a0a2229142c1487ebf6d733077a2799d0a3937d5410f2"
+    },
+    {
+      "old": "Verification/web-failure.json",
+      "new": "docs/verification/results/web-failure.json",
+      "guid": null,
+      "sha256": "0b4fe25a117bf82d2c0f6460e2cbd8fa194354afbd0ee6c0c028109998dae8b6"
+    },
+    {
+      "old": "Verification/web-results.json",
+      "new": "docs/verification/results/web-results.json",
+      "guid": null,
+      "sha256": "7e0ed324f438b95b06258bbbec54f9158d8117d7ab0b3642cb3a3fcae76203c3"
+    },
+    {
+      "old": "Verification/editor-empty.png",
+      "new": "docs/verification/screenshots/editor-empty.png",
+      "guid": null,
+      "sha256": "a1c2b995f5aa8255a4730d662d5052fe58b8f9eff6008c6005c2aacecf8ed539"
+    },
+    {
+      "old": "Verification/editor-program.png",
+      "new": "docs/verification/screenshots/editor-program.png",
+      "guid": null,
+      "sha256": "8ede9cd2e0bd81c25d873789d9b762efa834451bce3e0c81678591fec9f818f5"
+    },
+    {
+      "old": "Verification/web-empty.png",
+      "new": "docs/verification/screenshots/web-empty.png",
+      "guid": null,
+      "sha256": "592e5967cb0d5e0354532381b266679d3e1762c453853875ade4043092dc2e02"
+    },
+    {
+      "old": "Verification/web-empty.json",
+      "new": "docs/verification/results/web-empty.json",
+      "guid": null,
+      "sha256": "734548a3d1f8bdc5c02ca5deb4ea118ebdf61eabf010c030da2e40241f119215"
+    },
+    {
+      "old": "Verification/drag-start.png",
+      "new": "docs/verification/screenshots/drag-start.png",
+      "guid": null,
+      "sha256": "3d80d394ae504ee2ccfc69bd5f7377316dbf8259ac417e0797f7aa076f5dd0ac"
+    },
+    {
+      "old": "Verification/drag-before-drop.png",
+      "new": "docs/verification/screenshots/drag-before-drop.png",
+      "guid": null,
+      "sha256": "d84c411fbebe1e2b4e5bef17e8dacc8f64dd54d5d5a7c9370e1c5964cc5e96b3"
+    },
+    {
+      "old": "Verification/drag-after.png",
+      "new": "docs/verification/screenshots/drag-after.png",
+      "guid": null,
+      "sha256": "d84c411fbebe1e2b4e5bef17e8dacc8f64dd54d5d5a7c9370e1c5964cc5e96b3"
+    },
+    {
+      "old": "Verification/coverage.md",
+      "new": "docs/verification/reports/coverage.md",
+      "guid": null,
+      "sha256": "b8ff8090a0009dc0de4a87ac8bc8ba2d52b397dc876714a2f0d5e02d74c3bfe2"
+    },
+    {
+      "old": "Verification/web-program.png",
+      "new": "docs/verification/screenshots/web-program.png",
+      "guid": null,
+      "sha256": "00e9126d08159a74b9cb3836c43da9a49a43a18e1a8f1c6535d769da921c8600"
+    },
+    {
+      "old": "Verification/web-program.json",
+      "new": "docs/verification/results/web-program.json",
+      "guid": null,
+      "sha256": "2468703c9e6ab9f12f3991c8370425be748bc7b68cde47039eb4c1c0e86e3795"
+    },
+    {
+      "old": "Verification/web-paused.png",
+      "new": "docs/verification/screenshots/web-paused.png",
+      "guid": null,
+      "sha256": "1bb441570ee944f8c0b42257d25e532411cb8629f45edb384a204e9ec0d8a9d4"
+    },
+    {
+      "old": "Verification/web-paused.json",
+      "new": "docs/verification/results/web-paused.json",
+      "guid": null,
+      "sha256": "de3b1fbf900b3d47e2e04aea648778b3856fba3b8aaa93cb6a09616c6118c805"
+    },
+    {
+      "old": "Verification/web-completed.png",
+      "new": "docs/verification/screenshots/web-completed.png",
+      "guid": null,
+      "sha256": "c9d2fa5dd4fc996bc9565e52d7cd1f195be1b7c28b6a6217f53dc37137aec7d9"
+    },
+    {
+      "old": "Verification/web-completed.json",
+      "new": "docs/verification/results/web-completed.json",
+      "guid": null,
+      "sha256": "d679e146d3bbc5daece9edbf2c17b46d4857b67f0fddaa123820c2d561c102c0"
+    },
+    {
+      "old": "Verification/web-weight.png",
+      "new": "docs/verification/screenshots/web-weight.png",
+      "guid": null,
+      "sha256": "1ad5009e623a6d7f1b36b198ba8538c72a2681fe37a7ec93d89458f4d3fd24e4"
+    },
+    {
+      "old": "Verification/web-weight.json",
+      "new": "docs/verification/results/web-weight.json",
+      "guid": null,
+      "sha256": "0c0d95f5bdf0ebd8e5dacd70b4626a0dc2b17297abbc9fa8b70dfff0881eda5f"
+    },
+    {
+      "old": "Verification/web-resized.png",
+      "new": "docs/verification/screenshots/web-resized.png",
+      "guid": null,
+      "sha256": "2e21582dd3d1d4f3c689e6f5f73e81527335bd725ab81fbc66c495dd121f93cd"
+    },
+    {
+      "old": "Verification/web-resized.json",
+      "new": "docs/verification/results/web-resized.json",
+      "guid": null,
+      "sha256": "133d9b3b7886c11431b547ab99455dc00c8f8252190ce47bede451292cd1d577"
+    },
+    {
+      "old": "Verification/web-reset.png",
+      "new": "docs/verification/screenshots/web-reset.png",
+      "guid": null,
+      "sha256": "cdf4efafacc20d23aafd4268e24ac7c518bb45a3ce83fb85d27986a90643ffae"
+    },
+    {
+      "old": "Verification/web-reset.json",
+      "new": "docs/verification/results/web-reset.json",
+      "guid": null,
+      "sha256": "7928cbf75f0d1d80a3be2265b788903042117e939e19aab12fcb640f4eb2b36f"
+    },
+    {
+      "old": "Verification/implementation-report.md",
+      "new": "docs/verification/reports/implementation-report.md",
+      "guid": null,
+      "sha256": "2b8e5f477199c5785ac23398336dcd7df156ad6c5de6c4acbed250b75b2eabbb"
+    },
+    {
+      "old": "Verification/adversarial-review.md",
+      "new": "docs/verification/reports/adversarial-review.md",
+      "guid": null,
+      "sha256": "5b6dbce2a5948c6639ac9e27fb4153bdd8c63db90554bdc8c80523dc6920457f"
+    },
+    {
+      "old": "Verification/adversarial-review-round1.md",
+      "new": "docs/verification/reports/adversarial-review-round1.md",
+      "guid": null,
+      "sha256": "2934924e86c2f641b374b085651364b8770f79c4e9aa0fe15af29fe863f8b08b"
+    },
+    {
+      "old": "Verification/web-invalid-extreme.png",
+      "new": "docs/verification/screenshots/web-invalid-extreme.png",
+      "guid": null,
+      "sha256": "4b11c2d3d6dfc2dc80e88c809087c4badda811c4fed70919dec2aa51e0914895"
+    },
+    {
+      "old": "Verification/web-invalid-extreme.json",
+      "new": "docs/verification/results/web-invalid-extreme.json",
+      "guid": null,
+      "sha256": "c638003cebb578cd6a8f7109287110b774c2e6cc8c882b6f64f64f072611fce8"
+    },
+    {
+      "old": "Verification/web-invalid-cumulative.png",
+      "new": "docs/verification/screenshots/web-invalid-cumulative.png",
+      "guid": null,
+      "sha256": "8d49e3021fd0b3715f6895203d2dbd3af9d0c6e3383ad309a177f3c8de9e0d20"
+    },
+    {
+      "old": "Verification/web-invalid-cumulative.json",
+      "new": "docs/verification/results/web-invalid-cumulative.json",
+      "guid": null,
+      "sha256": "19f5e154e4b568a9deb77118e8822368d950e9e44b91a975b00e8548d1e378bd"
+    },
+    {
+      "old": "Verification/adversarial-review-round2.md",
+      "new": "docs/verification/reports/adversarial-review-round2.md",
+      "guid": null,
+      "sha256": "568953b2022f6e0ece24487b9217c6198878150f9014d3d5661b8bbc13de57ac"
+    }
+  ],
+  "removed": [
+    {
+      "path": "Assets/Scenes/SampleScene.unity",
+      "guid": "8c9cfa26abfee488c85f1582747f6a02"
+    },
+    {
+      "path": "Assets/Settings/Scenes/URP2DSceneTemplate.unity",
+      "guid": "2cda990e2423bbf4892e6590ba056729"
+    },
+    {
+      "path": "Assets/Settings/Lit2DSceneTemplate.scenetemplate",
+      "guid": "d03ed43fc9d8a4f2e9fa70c1c7916eb9"
+    }
+  ]
+}

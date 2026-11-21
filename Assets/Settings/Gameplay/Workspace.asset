@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c75a62c62f45d119afea53819f2569b, type: 3}
+  m_Name: Workspace
+  m_EditorClassIdentifier: MotionCommotion.Runtime::MotionCommotion.WorkspaceSettings
+  SimulationStep: 0.02
+  StartingMass: 1
+  StartingGravity: 9.81
+  StartingVelocity: {x: 0, y: 0}
+  Palette:
+  - {fileID: 11400000, guid: d764ad19200eae628a9d62ca1dfe7f0c, type: 2}
+  - {fileID: 11400000, guid: 2b9ff1c2968c7c3e191252d7a9e86a99, type: 2}
+  - {fileID: 11400000, guid: 947feafc338a7c809a274e1edc5c3570, type: 2}
+  - {fileID: 11400000, guid: 4ade247f0fe0a396f8c4e22c214ed3bf, type: 2}
+  - {fileID: 11400000, guid: 0f058bb9f33454b0da1e975fc321649c, type: 2}
+  - {fileID: 11400000, guid: 9acad4e8f22aa2a68be826859f1080cd, type: 2}
+  - {fileID: 11400000, guid: 61b2956a44ddeef8486f612495057334, type: 2}
+  - {fileID: 11400000, guid: 8fdf8760d8feac700a09c53647f17781, type: 2}
+  - {fileID: 11400000, guid: 2ec0cd9fd7f28bc0d952c194a49e79c2, type: 2}
+  CommandColor: {r: 0.88, g: 0.89, b: 0.9, a: 1}
+  FormulaColor: {r: 0.91, g: 0.93, b: 0.94, a: 1}
+  Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}

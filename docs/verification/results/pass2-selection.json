@@ -1,0 +1,88 @@
+{
+  "scene": "Title",
+  "state": "",
+  "validation": "",
+  "view": "Level Select",
+  "outcome": "",
+  "modal": "",
+  "blocksOpen": false,
+  "activeOpen": false,
+  "zoom": 0,
+  "cameraX": 0,
+  "cameraY": 0,
+  "time": 0,
+  "mass": 0,
+  "gravity": 0,
+  "x": 0,
+  "y": 0,
+  "vx": 0,
+  "vy": 0,
+  "visualX": 0,
+  "visualY": 0,
+  "commands": 0,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 720,
+  "mouseY": 188,
+  "hit": "SelectionView",
+  "notice": "",
+  "measurements": "",
+  "controls": [
+    {
+      "name": "Title/Canvas/SelectionView/SelectionBack",
+      "text": "",
+      "x": 25,
+      "y": 23,
+      "width": 50,
+      "height": 50,
+      "enabled": true
+    },
+    {
+      "name": "Title/Canvas/SelectionView/Level1",
+      "text": "1",
+      "x": 198,
+      "y": 252,
+      "width": 180,
+      "height": 180,
+      "enabled": true
+    },
+    {
+      "name": "Title/Canvas/SelectionView/Level2",
+      "text": "",
+      "x": 630,
+      "y": 252,
+      "width": 180,
+      "height": 180,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/SelectionView/Level3",
+      "text": "",
+      "x": 1062,
+      "y": 252,
+      "width": 180,
+      "height": 180,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/SelectionView/Level4",
+      "text": "",
+      "x": 414,
+      "y": 594,
+      "width": 180,
+      "height": 180,
+      "enabled": false
+    },
+    {
+      "name": "Title/Canvas/SelectionView/Level5",
+      "text": "",
+      "x": 845.9999389648438,
+      "y": 594,
+      "width": 180.00006103515625,
+      "height": 180,
+      "enabled": false
+    }
+  ]
+}

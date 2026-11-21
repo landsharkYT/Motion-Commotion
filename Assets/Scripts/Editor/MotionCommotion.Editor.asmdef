@@ -1,0 +1,1 @@
+{"name":"MotionCommotion.Editor","references":["MotionCommotion.Core","MotionCommotion.Runtime","Unity.ugui","Unity.InputSystem"],"includePlatforms":["Editor"]}
