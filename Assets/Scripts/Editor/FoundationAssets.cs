@@ -28,7 +28,7 @@ namespace MotionCommotion.Editor
         {
             foreach (string folder in new[] { "Scenes/Application", "Scenes/Testing", "Prefabs/Gameplay", "Prefabs/UI", "Prefabs/Shapes", "Settings/Gameplay", "Data/Blocks/Commands", "Data/Blocks/Formulas", "Input/UIReferences", "Meshes", "Materials" }) Directory.CreateDirectory(Root + folder);
             AssetDatabase.Refresh();
-            font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            font = AssetDatabase.LoadAssetAtPath<Font>(Root + "Fonts/DejaVuSans.ttf");
             settings = Asset<WorkspaceSettings>(Root + "Settings/Gameplay/Workspace.asset"); settings.Font = font;
             settings.Palette = new PaletteDefinition[4 + FormulaCatalog.All.Count];
             string[] commandLabels = { "Direction", "Force · single kick", "Wait", "Weight · set gravity" };
@@ -188,9 +188,6 @@ namespace MotionCommotion.Editor
             var heading=UiFactory.Text("Heading",top,font,"MOTION COMMOTION  /  Mechanics demo",24); heading.gameObject.AddComponent<LayoutElement>().flexibleWidth=1;
             var run=UiFactory.Button("Run",top,font,"Run",null); var pause=UiFactory.Button("Pause",top,font,"Pause",null); var reset=UiFactory.Button("Reset",top,font,"Reset",null); var clear=UiFactory.Button("Clear",top,font,"Clear",null);
             foreach(var button in new[]{run,pause,reset,clear}) button.GetComponent<LayoutElement>().preferredWidth=85;
-            var pencil=UiFactory.Button("EquationEdit",top,font,"",null); pencil.GetComponent<LayoutElement>().preferredWidth=55; pencil.interactable=false;
-            var iconRect=UiFactory.Rect("PencilWithSparkles",pencil.transform); UiFactory.Stretch(iconRect); iconRect.offsetMin=new Vector2(6,30); iconRect.offsetMax=new Vector2(-6,-30);
-            var icon=iconRect.gameObject.AddComponent<EquationEditIcon>(); icon.color=new Color(.5f,.5f,.5f); icon.raycastTarget=false;
             var back=UiFactory.Button("BackToTitle",top,font,"Back to title",navigator.BackToTitle); back.GetComponent<LayoutElement>().preferredWidth=125;
             UnityEventTools.AddPersistentListener(back.onClick,navigator.BackToTitle);
             var paletteTitle=UiFactory.Text("PaletteHeading",Panel("PaletteTitle",canvas.transform,new Vector2(.01f,.83f),new Vector2(.23f,.88f)),font,"BLOCKS  ·  drag a header",18); UiFactory.Stretch(paletteTitle.rectTransform);

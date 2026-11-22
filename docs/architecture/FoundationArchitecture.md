@@ -100,3 +100,15 @@ MotionCommotionSession remains the single execution/physics coordinator. It eval
 The session's Completed execution state is distinct from LevelAttempt's Won/Lost outcome. Only Wait advances time. Opening Settings or Hint pauses execution; closing an overlay never resumes it. Scene replacement destroys the session and its subscriptions. Title-screen view selection is transient navigation intent, not saved progression.
 
 The default-asset generator includes pass 2 and remains an explicit overwrite operation. Existing asset GUIDs and the five assembly boundaries remain in place. See [README](../../README.md) for current entry points and verification commands.
+
+## Standalone equation execution
+
+The [standalone equation contract](../design/standalone-equation-actions.md) defines the current behavior and supersedes older nested-only restrictions.
+
+`EquationCommands` maps the five formula identities to Velocity, Acceleration, Position, Force, and Weight command kinds. `ProgramValidator` checks dimensions, output ranges, and fresh Direction pairing before execution. `ProgramRunner` emits instantaneous actions at the current timestamp. Only Wait requests physics steps.
+
+`MotionCommotionSession` applies those actions through `BallBody`. Velocity replaces the velocity vector. Commanded acceleration is stored separately from gravity and applied as mass times acceleration before each physics step. Position uses the captured starting origin, checks destination overlap, and clears prior landing-approach history. Physical snapshots include commanded acceleration for Reset.
+
+A nested formula remains a pure scalar value. It does not emit its standalone action. Formula inputs remain entered values rather than automatic references to current body state.
+
+The Blocks panel is also the return/delete target. Primary equation drags resolve to their owning command; linked child equation drags resolve to their source input. Returning a command removes the command and its expression tree. Returning a nested expression clears only its source input.

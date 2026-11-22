@@ -17,9 +17,14 @@
   "y": 0,
   "vx": 0,
   "vy": 0,
+  "accelerationX": 0,
+  "accelerationY": 0,
+  "runtimeError": "",
   "visualX": 0,
   "visualY": 0,
   "commands": 0,
+  "snapIndex": -1,
+  "horizontalScrollers": 0,
   "pointEnabled": true,
   "clickEnabled": true,
   "dragging": false,
@@ -85,15 +90,6 @@
       "enabled": false
     },
     {
-      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/EquationEdit",
-      "text": "",
-      "x": 507.03997802734375,
-      "y": 29,
-      "width": 44,
-      "height": 32,
-      "enabled": false
-    },
-    {
       "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SettingsOpen",
       "text": "",
       "x": 1383,
@@ -112,12 +108,39 @@
       "enabled": true
     },
     {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector",
+      "text": "",
+      "x": 9.8800048828125,
+      "y": 79,
+      "width": 120,
+      "height": 44,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector/SnapTop",
+      "text": "",
+      "x": 58.8800048828125,
+      "y": 79,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector/SnapBottom",
+      "text": "",
+      "x": 58.8800048828125,
+      "y": 123,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
       "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport",
       "text": "",
       "x": 2.8800048828125,
       "y": 72,
       "width": 282.239990234375,
-      "height": 769,
+      "height": 783,
       "enabled": true
     },
     {
@@ -125,8 +148,8 @@
       "text": "",
       "x": 2.8800048828125,
       "y": 72,
-      "width": 14,
-      "height": 14,
+      "width": 282.239990234375,
+      "height": 151,
       "enabled": true
     }
   ]

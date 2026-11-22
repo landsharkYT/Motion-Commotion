@@ -20,9 +20,12 @@ namespace MotionCommotion
             public bool blocksOpen,activeOpen;
             public float zoom,cameraX,cameraY;
             public double time;
-            public float mass, gravity, x, y, vx, vy;
+            public float mass, gravity, x, y, vx, vy, accelerationX, accelerationY;
+            public string runtimeError;
             public float visualX,visualY;
             public int commands;
+            public int snapIndex=-1;
+            public int horizontalScrollers;
             public bool pointEnabled,clickEnabled,dragging;
             public bool physicalStateFinite=true;
             public float mouseX,mouseY;
@@ -58,12 +61,13 @@ namespace MotionCommotion
             foreach(var c in GetComponentsInChildren<Camera>()) if(c.name=="PhysicsCamera") worldCamera=c;
             if(worldCamera) { snapshot.cameraX=worldCamera.transform.position.x; snapshot.cameraY=worldCamera.transform.position.y; }
             var workspace=GetComponent<BlockWorkspace>();
-            if(workspace) { snapshot.dragging=workspace.IsDragging; snapshot.notice=workspace.Notice; }
+            if(workspace) { snapshot.dragging=workspace.IsDragging; snapshot.snapIndex=workspace.SnapIndex; snapshot.notice=workspace.Notice; }
             var hud=GetComponent<SimulationHUD>();
             if(hud) snapshot.measurements=hud.MeasurementText;
             if(session)
             {
                 var ball=session.Simulation.Ball;
+                snapshot.runtimeError=session.RuntimeError; snapshot.accelerationX=Safe(ball.CommandedAcceleration.x); snapshot.accelerationY=Safe(ball.CommandedAcceleration.y);
                 snapshot.state=session.State.ToString(); snapshot.time=session.Time; snapshot.mass=Safe(ball.Mass); snapshot.gravity=Safe(ball.Gravity);
                 snapshot.physicalStateFinite=ball.IsFinite;
                 snapshot.x=Safe(ball.Position.x); snapshot.y=Safe(ball.Position.y); snapshot.vx=Safe(ball.Velocity.x); snapshot.vy=Safe(ball.Velocity.y); snapshot.commands=session.Program.Commands.Count;
@@ -74,11 +78,18 @@ namespace MotionCommotion
             foreach(var selectable in GetComponentsInChildren<Selectable>()) Add(snapshot,selectable.transform as RectTransform,selectable.IsInteractable());
             foreach(var header in GetComponentsInChildren<BlockDrag>()) Add(snapshot,header.transform as RectTransform,true);
             foreach(var slot in GetComponentsInChildren<FormulaDrop>()) Add(snapshot,slot.transform as RectTransform,true);
-            foreach(var scroll in GetComponentsInChildren<ScrollRect>()) { Add(snapshot,scroll.viewport,true); Add(snapshot,scroll.content,true); if(scroll.horizontalScrollbar) Add(snapshot,scroll.horizontalScrollbar.handleRect,true); }
+            foreach(var rect in GetComponentsInChildren<RectTransform>()) if(rect.name=="OwnerTrace" || rect.name=="StartConnector" || rect.name=="SnapPreview" || rect.name=="Surface" || rect.name=="Output" || rect.name=="Equals" || rect.name=="Exponent" || rect.name=="Operator" || rect.name=="MeanBar" || rect.name=="FractionBar") { Add(snapshot,rect,true); if(rect.name=="Surface" || rect.name=="StartConnector") { AddConnector(snapshot,rect,true); AddConnector(snapshot,rect,false); } }
+            foreach(var scroll in GetComponentsInChildren<ScrollRect>()) { if(scroll.horizontal) snapshot.horizontalScrollers++; Add(snapshot,scroll.viewport,true); Add(snapshot,scroll.content,true); if(scroll.horizontalScrollbar) Add(snapshot,scroll.horizontalScrollbar.handleRect,true); }
 #if UNITY_WEBGL && !UNITY_EDITOR
             MC_Report(JsonUtility.ToJson(snapshot));
 #endif
 #endif
+        }
+        private static void AddConnector(Snapshot snapshot,RectTransform rect,bool top)
+        {
+            var point=rect.TransformPoint(new Vector2(rect.rect.xMin+49,top?rect.rect.yMax:rect.rect.yMin));
+            string path=rect.name; for(var parent=rect.parent;parent;parent=parent.parent) path=parent.name+"/"+path;
+            snapshot.controls.Add(new Control { name=path+(top?"/SnapTop":"/SnapBottom"),text="",x=point.x,y=Screen.height-point.y,width=0,height=0,enabled=true });
         }
         private static float Safe(float value) => MotionCommotion.Core.FormulaEvaluator.Finite(value)?value:0;
         private static void Add(Snapshot snapshot,RectTransform rect,bool enabled)
@@ -87,8 +98,8 @@ namespace MotionCommotion
             var corners=new Vector3[4]; rect.GetWorldCorners(corners);
             string path=rect.name; var parent=rect.parent;
             while(parent) { path=parent.name+"/"+path; parent=parent.parent; }
-            var text=rect.GetComponentInChildren<Text>();
-            snapshot.controls.Add(new Control {name=path,text=text?text.text:"",x=corners[0].x,y=Screen.height-corners[2].y,width=corners[2].x-corners[0].x,height=corners[2].y-corners[0].y,enabled=enabled});
+            var text=rect.GetComponentInChildren<Text>(); var input=rect.GetComponent<InputField>();
+            snapshot.controls.Add(new Control {name=path,text=input?input.text:text?text.text:"",x=corners[0].x,y=Screen.height-corners[2].y,width=corners[2].x-corners[0].x,height=corners[2].y-corners[0].y,enabled=enabled});
         }
     }
 }

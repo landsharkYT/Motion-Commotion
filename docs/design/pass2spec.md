@@ -1,6 +1,8 @@
 # Pass 2 specification
 
-Status: implemented and verified. Independent adversarial review passed at 9.2/10 with no substantive missing features.
+Later behavior authority: the [standalone equation contract](standalone-equation-actions.md) supersedes the first three equations' nested-only restriction. It defines current action semantics and implementation status.
+
+Status: implemented. The initial pass 2 review passed at 9.2/10. Per-equation pencil placement was subsequently clarified and corrected; see the [correction evidence](../verification/reports/equation-edit-affordance.md).
 
 ## 1. Purpose and authority
 
@@ -114,7 +116,7 @@ At the reference desktop size, sidebar widths may vary slightly to accommodate b
 
 ### 4.3 World controls
 
-Place the hamburger and compact execution controls within the world header area. Keep the pencil-with-sparkles affordance near this area. Settings and Hint are separate buttons at the upper right, with Settings above Hint as indicated by the supplemental sketch.
+Place the hamburger and compact execution controls within the world header area. Do not place an equation-edit pencil in the world header; pencils belong beside individual equation blocks. Settings and Hint are separate buttons at the upper right, with Settings above Hint as indicated by the supplemental sketch.
 
 Use icon controls for Play/Pause, Reset, and Clear. Active also contains the pictured Play shortcut. Both Play entry points invoke the same validated action and cannot start duplicate execution.
 
@@ -136,24 +138,24 @@ Reset retains its existing restoration semantics and returns to Ready. Clear rem
 Keep exactly these three section headings in order:
 
 1. Direction Blocks
-2. Force Blocks
+2. Equation Blocks
 3. Wait Blocks
 
-Direction Blocks contains the degree-input Direction tile. Force Blocks contains the five equation tiles. Wait Blocks contains the seconds-input Wait tile. There is no separate Formulas heading and no separate generic Force tile.
+Direction Blocks contains the degree-input Direction tile. Equation Blocks contains the five equation tiles. Wait Blocks contains the seconds-input Wait tile. There is no separate Formulas heading and no separate generic Force tile.
 
-The Force Blocks heading is the user's category name, not a statement that every equation produces newtons.
+The Equation Blocks category contains five equations with different output units. The current standalone actions are defined in the [equation contract](standalone-equation-actions.md).
 
 | Equation tile | Output | Standalone program behavior | Nested behavior |
 | --- | --- | --- | --- |
-| Average velocity, v avg = delta s / delta t | Velocity | Not an executable command | Supply a compatible velocity input |
-| Average acceleration, a avg = delta v / delta t | Acceleration | Not an executable command | Supply a compatible acceleration input |
-| Motion position, s = s0 + v0*t + 0.5*a*t^2 | Length | Not an executable command | Supply a compatible length input |
+| Average velocity, v avg = delta s / delta t | Velocity | Replace velocity using its own immediately preceding Direction | Supply a compatible velocity input |
+| Average acceleration, a avg = delta v / delta t | Acceleration | Set ongoing acceleration alongside gravity using its own Direction | Supply a compatible acceleration input |
+| Motion position, s = s0 + v0*t + 0.5*a*t^2 | Length | Place the orb instantly from the captured starting origin using its own Direction | Supply a compatible length input |
 | F = m*a | Force | Create a single-kick Force command requiring immediately preceding Direction | Supply a compatible force-valued expression |
 | W = m*g | Force | Create the existing gravity-setting Weight command | Calculate a force value without changing gravity |
 
 Use legible mathematical presentation. The table's ASCII spellings describe meaning and do not require programming operators in the final artwork. Keep output fixed on the left and editable inputs on the right. Display units next to inputs without explanatory paragraphs.
 
-The first three tiles cannot be dropped as executable commands into Active. Rejection must preserve the existing program. All five formulas retain the pass 1 catalog's calculations, defaults, quantities, and input constraints.
+Historical restriction, superseded by [standalone equation actions](standalone-equation-actions.md): the first three tiles were originally nested-only. All five now join the main stack with their documented physical effects. All five formulas retain the pass 1 catalog's calculations, defaults, quantities, and input constraints.
 
 ### 5.2 Force command representation
 
@@ -180,7 +182,11 @@ This is a visual restructuring of existing command/expression semantics, not a n
 
 ### 5.4 Equation editor
 
-Keep a visible pencil-with-sparkles icon, gray and disabled. It must not open a modal, change formulas, or create a block. No help or rearrangement workflow is implied by its presence.
+Each of the five equation tiles in Equation Blocks has a small gray outlined pencil-with-sparkles button immediately beside its right edge. Every displayed equation in Active has the same affordance, including nested expressions. Use one per equation, without duplicating it on an enclosing command wrapper. Direction, Wait, a plain literal-force input, and transient drag previews have none.
+
+Keep the button separate from the equation silhouette, numeric fields, drag grip, and remove control. The basic F = ma inputs and its button must fit inside Active without horizontal scrolling. Remove the world-toolbar pencil.
+
+All equation-edit buttons remain disabled, have no action or keyboard navigation target, and open no menu. They must not change formulas, create a block, or introduce help/rearrangement behavior. See the [confirmed placement correction](equation-edit-affordance.md).
 
 ## 6. World and fixed-zoom camera
 
@@ -302,7 +308,7 @@ The following is the complete fixed player-interface vocabulary, excluding equat
 | Selection heading and outcome navigation | Level Select |
 | Available tile | 1 |
 | Sidebar headings and visibility toggles | Blocks; Active |
-| Palette sections | Direction Blocks; Force Blocks; Wait Blocks |
+| Palette sections | Direction Blocks; Equation Blocks; Wait Blocks |
 | Direction input cue | Degrees |
 | Settings heading | Settings |
 | Settings navigation | Return to title |
@@ -388,7 +394,7 @@ Compare against source images by composition and agreed interpretation. Test pas
 Verify meaningful outcomes rather than exact implementation structure:
 
 - Retained formulas, units, mass synchronization, impulse response, Weight command versus nested value, Direction adjacency, snapshots, Wait timing, Pause, Reset, and lifecycle cleanup.
-- Five equation tiles with correct executable versus nested-only behavior, including rejection of top-level value-only formulas.
+- Five equation tiles with standalone actions and pure compatible nesting, as updated by the standalone equation contract.
 - A successful top landing anywhere across the strip, including its outer colors, without a dwell or zero-speed requirement.
 - Side, underside, and airborne trigger crossings do not win.
 - Fall failure and command-exhaustion failure; kick-only zero-time exhaustion remains possible.

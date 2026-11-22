@@ -49,8 +49,6 @@ namespace MotionCommotion.Editor
             var world=Panel("WorldHUD",content,new Vector2(.4f,0),Vector2.one,false);
             var toolbar=Panel("Controls",world,new Vector2(.02f,.91f),new Vector2(.74f,.99f),false); var controlsLayout=UiFactory.Horizontal(toolbar,5); controlsLayout.childForceExpandHeight=false; controlsLayout.childAlignment=TextAnchor.MiddleLeft;
             var menu=IconButton("Menu",toolbar,IconKind.Menu); var run=IconButton("Run",toolbar,IconKind.Play); var pause=IconButton("Pause",toolbar,IconKind.Pause); var reset=IconButton("Reset",toolbar,IconKind.Reset); var clear=IconButton("Clear",toolbar,IconKind.Clear);
-            var pencil=UiFactory.Button("EquationEdit",toolbar,font,"",null); Width(pencil.gameObject,44); pencil.interactable=false; pencil.transition=Selectable.Transition.None; pencil.GetComponent<Image>().color=Color.clear;
-            var pencilRect=UiFactory.Rect("PencilWithSparkles",pencil.transform); UiFactory.Stretch(pencilRect); pencilRect.offsetMin=new Vector2(8,8); pencilRect.offsetMax=new Vector2(-8,-8); pencilRect.gameObject.AddComponent<EquationEditIcon>().color=new Color(.7f,.7f,.7f);
             var settingsOpen=IconButton("SettingsOpen",world,IconKind.Settings); Place(settingsOpen.transform as RectTransform,Vector2.one,new Vector2(-34,-34),new Vector2(46,46));
             var hintOpen=IconButton("HintOpen",world,IconKind.Hint); Place(hintOpen.transform as RectTransform,Vector2.one,new Vector2(-34,-90),new Vector2(46,46));
             var visibility=Panel("VisibilityMenu",world,new Vector2(.02f,.72f),new Vector2(.31f,.90f)); UiFactory.Vertical(visibility,10,7);
@@ -114,17 +112,12 @@ namespace MotionCommotion.Editor
         }
         private static RectTransform CompactScroll(string name,Transform parent)
         {
-            var rect=Panel(name,parent,new Vector2(.01f,.05f),new Vector2(.99f,.92f),false); var scroll=rect.gameObject.AddComponent<ScrollRect>(); scroll.horizontal=true; scroll.vertical=true; scroll.movementType=ScrollRect.MovementType.Clamped; scroll.scrollSensitivity=28;
+            var rect=Panel(name,parent,new Vector2(.01f,.05f),new Vector2(.99f,.92f),false); var scroll=rect.gameObject.AddComponent<ScrollRect>(); scroll.horizontal=false; scroll.vertical=true; scroll.movementType=ScrollRect.MovementType.Clamped; scroll.scrollSensitivity=28;
             var viewport=Panel("Viewport",rect,Vector2.zero,Vector2.one); viewport.GetComponent<Image>().color=Color.white; viewport.gameObject.AddComponent<RectMask2D>();
-            var content=UiFactory.Rect("Content",viewport); content.anchorMin=content.anchorMax=new Vector2(0,1); content.pivot=new Vector2(0,1);
+            var content=UiFactory.Rect("Content",viewport); content.anchorMin=new Vector2(0,1); content.anchorMax=new Vector2(1,1); content.pivot=new Vector2(0,1); content.sizeDelta=new Vector2(0,100);
             var layout=UiFactory.Vertical(content,7,name=="Program"?-7:4); layout.childControlWidth=true; layout.childForceExpandWidth=false; layout.childAlignment=TextAnchor.UpperLeft;
-            var fit=content.gameObject.AddComponent<ContentSizeFitter>(); fit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; fit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
+            var fit=content.gameObject.AddComponent<ContentSizeFitter>(); fit.horizontalFit=ContentSizeFitter.FitMode.Unconstrained; fit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
             scroll.viewport=viewport; scroll.content=content;
-            var bar=Panel("Horizontal",rect,new Vector2(0,0),new Vector2(1,0)); bar.pivot=new Vector2(.5f,0); bar.sizeDelta=new Vector2(0,12); bar.GetComponent<Image>().color=new Color(.94f,.94f,.94f);
-            var handle=Panel("Handle",bar,Vector2.zero,Vector2.one); handle.GetComponent<Image>().color=new Color(.55f,.55f,.55f);
-            var scrollbar=bar.gameObject.AddComponent<Scrollbar>(); scrollbar.handleRect=handle; scrollbar.targetGraphic=handle.GetComponent<Image>(); scrollbar.direction=Scrollbar.Direction.LeftToRight;
-            scroll.horizontalScrollbar=scrollbar; scroll.horizontalScrollbarVisibility=ScrollRect.ScrollbarVisibility.AutoHide;
-            viewport.offsetMin=new Vector2(0,14);
             return content;
         }
         private static GameObject Modal(string name,Transform parent,string heading,out RectTransform body,out Button close)
@@ -136,19 +129,31 @@ namespace MotionCommotion.Editor
         }
         private static void MakeCompactCard()
         {
-            var root=UiFactory.Rect("BlockCard",null); var vertical=UiFactory.Vertical(root,8,0); vertical.padding=new RectOffset(6,6,10,10); vertical.childForceExpandWidth=false;
+            var root=UiFactory.Rect("BlockCard",null); var outer=UiFactory.Horizontal(root,3); outer.childForceExpandHeight=false; outer.childAlignment=TextAnchor.UpperLeft;
             var fit=root.gameObject.AddComponent<ContentSizeFitter>(); fit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; fit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
-            var card=root.gameObject.AddComponent<BlockCard>(); card.Background=root.gameObject.AddComponent<BlockShape>(); card.Background.color=Color.white;
-            var outline=root.gameObject.AddComponent<Outline>(); outline.effectColor=new Color(0,0,0,.35f); outline.effectDistance=new Vector2(1,-1);
-            card.Header=UiFactory.Rect("DragHandle",root); var row=UiFactory.Horizontal(card.Header,5); row.childForceExpandHeight=false; row.childAlignment=TextAnchor.MiddleLeft;
+            var card=root.gameObject.AddComponent<BlockCard>();
+            var surface=UiFactory.Rect("Surface",root); var vertical=UiFactory.Vertical(surface,8,0); vertical.padding=new RectOffset(6,6,8,8); vertical.childForceExpandWidth=false;
+            var surfaceFit=surface.gameObject.AddComponent<ContentSizeFitter>(); surfaceFit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; surfaceFit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
+            card.Background=surface.gameObject.AddComponent<BlockShape>(); card.Background.color=Color.white;
+            var outline=surface.gameObject.AddComponent<Outline>(); outline.effectColor=new Color(0,0,0,.35f); outline.effectDistance=new Vector2(1,-1);
+            card.Header=UiFactory.Rect("DragHandle",surface); var row=UiFactory.Horizontal(card.Header,2); row.childForceExpandHeight=false; row.childAlignment=TextAnchor.MiddleLeft;
             var headerFit=card.Header.gameObject.AddComponent<ContentSizeFitter>(); headerFit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; headerFit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
             card.Header.gameObject.AddComponent<Image>().color=Color.clear;
-            var grip=UiFactory.Rect("Grip",card.Header); Width(grip.gameObject,10); UiFactory.Height(grip.gameObject,24); grip.gameObject.AddComponent<Image>().color=new Color(0,0,0,.15f);
-            card.Title=UiFactory.Text("Equation",card.Header,font,"",17); UiFactory.Height(card.Title.gameObject,32);
-            card.Body=UiFactory.Rect("Body",card.Header); var bodyRow=UiFactory.Horizontal(card.Body,4); bodyRow.childForceExpandHeight=false; bodyRow.childAlignment=TextAnchor.MiddleLeft;
+            var grip=UiFactory.Rect("Grip",card.Header); Width(grip.gameObject,8); UiFactory.Height(grip.gameObject,24); grip.gameObject.AddComponent<Image>().color=new Color(0,0,0,.15f);
+            card.Title=UiFactory.Text("Equation",card.Header,font,"",16); UiFactory.Height(card.Title.gameObject,26);
+            card.Body=UiFactory.Rect("Body",card.Header); card.Body.gameObject.AddComponent<EquationFlowLayout>();
             var bodyFit=card.Body.gameObject.AddComponent<ContentSizeFitter>(); bodyFit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; bodyFit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
-            card.Remove=IconButton("Remove",card.Header,IconKind.Close); Width(card.Remove.gameObject,24); UiFactory.Height(card.Remove.gameObject,28);
-            card.Error=UiFactory.Text("Error",root,font,"",12); card.Error.color=new Color(.65f,.08f,.08f); UiFactory.Height(card.Error.gameObject,0);
+            card.Error=UiFactory.Text("Error",surface,font,"",12); card.Error.color=new Color(.65f,.08f,.08f); UiFactory.Height(card.Error.gameObject,0);
+            var actions=UiFactory.Rect("Actions",root); var actionLayout=UiFactory.Vertical(actions,0,2); actionLayout.childForceExpandWidth=false; actionLayout.childAlignment=TextAnchor.UpperCenter;
+            var actionFit=actions.gameObject.AddComponent<ContentSizeFitter>(); actionFit.horizontalFit=ContentSizeFitter.FitMode.PreferredSize; actionFit.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
+            card.EquationEdit=UiFactory.Button("EquationEdit",actions,font,"",null); Width(card.EquationEdit.gameObject,24); UiFactory.Height(card.EquationEdit.gameObject,24);
+            card.EquationEdit.interactable=false; card.EquationEdit.transition=Selectable.Transition.None; card.EquationEdit.GetComponent<Image>().color=Color.white;
+            var navigation=new Navigation { mode=Navigation.Mode.None }; card.EquationEdit.navigation=navigation;
+            var border=card.EquationEdit.gameObject.AddComponent<Outline>(); border.effectColor=new Color(.6f,.6f,.6f); border.effectDistance=new Vector2(1,-1);
+            var pencil=UiFactory.Rect("PencilWithSparkles",card.EquationEdit.transform); UiFactory.Stretch(pencil); pencil.offsetMin=new Vector2(2,2); pencil.offsetMax=new Vector2(-2,-2);
+            var graphic=pencil.gameObject.AddComponent<EquationEditIcon>(); graphic.color=new Color(.6f,.6f,.6f); graphic.raycastTarget=false;
+            card.Remove=IconButton("Remove",actions,IconKind.Close); Width(card.Remove.gameObject,24); UiFactory.Height(card.Remove.gameObject,24);
+            card.ShowEquationEdit(false);
             cardPrefab=PrefabUtility.SaveAsPrefabAsset(root.gameObject,Root+"Prefabs/UI/BlockCard.prefab"); Object.DestroyImmediate(root.gameObject);
         }
         private static void BuildTitle()

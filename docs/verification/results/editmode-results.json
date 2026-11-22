@@ -8,10 +8,10 @@
     },
     "result": {
       "status": "completed",
-      "duration": 0.39,
+      "duration": 0.65,
       "summary": {
-        "total": 26,
-        "passed": 26,
+        "total": 36,
+        "passed": 36,
         "failed": 0,
         "skipped": 0,
         "inconclusive": 0
@@ -20,182 +20,252 @@
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageVelocity,3)",
           "status": "Passed",
-          "duration": 0.024026,
+          "duration": 0.0182027,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageAcceleration,3)",
           "status": "Passed",
-          "duration": 0.0002104,
+          "duration": 0.0001184,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(MotionPosition,16)",
           "status": "Passed",
-          "duration": 0.0001458,
+          "duration": 7.84e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Force,20)",
           "status": "Passed",
-          "duration": 0.0001106,
+          "duration": 5.72e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Weight,19.62d)",
           "status": "Passed",
-          "duration": 0.0001145,
+          "duration": 5.29e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CommandsCompileToIndependentSnapshot",
           "status": "Passed",
-          "duration": 0.0021596,
+          "duration": 0.0020899,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"0\")",
           "status": "Passed",
-          "duration": 0.002175,
+          "duration": 0.0054061,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"-1\")",
           "status": "Passed",
-          "duration": 0.0001146,
+          "duration": 0.0001495,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.EveryForceRequiresItsOwnAdjacentDirection",
           "status": "Passed",
-          "duration": 0.0006037,
+          "duration": 0.00118,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.ExtremeFiniteKickIsRejectedWithoutDiscardingDraft",
           "status": "Passed",
-          "duration": 0.0008237,
+          "duration": 0.0015894,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.GameplayPrefabHasPersistentUiInputReferences",
           "status": "Passed",
-          "duration": 0.0172665,
+          "duration": 0.0134017,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.GravityAndCumulativeWaitsRespectOperationalLimits",
           "status": "Passed",
-          "duration": 0.0004281,
+          "duration": 0.0004012,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.IndividuallySupportedKicksCannotExceedCombinedBudget",
           "status": "Passed",
-          "duration": 0.0003932,
+          "duration": 0.0002894,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"\")",
           "status": "Passed",
-          "duration": 0.0003231,
+          "duration": 0.0002635,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"NaN\")",
           "status": "Passed",
-          "duration": 8.89e-05,
+          "duration": 5.67e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"Infinity\")",
           "status": "Passed",
-          "duration": 7.19e-05,
+          "duration": 4.39e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"abc\")",
           "status": "Passed",
-          "duration": 8.31e-05,
+          "duration": 3.56e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"1e999\")",
           "status": "Passed",
-          "duration": 7.49e-05,
+          "duration": 3.66e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidQuantitiesAndCyclesAreRejected",
           "status": "Passed",
-          "duration": 0.0004268,
+          "duration": 0.0003952,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.KicksShareTimestampAndWaitsAdvanceTime",
           "status": "Passed",
-          "duration": 0.0013974,
+          "duration": 0.0014274,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.NestedAccelerationFeedsForceWithoutChangingSource",
           "status": "Passed",
-          "duration": 0.0002132,
+          "duration": 0.0001804,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.PrefabsAndSceneInventoryExist",
           "status": "Passed",
-          "duration": 0.0015431,
+          "duration": 0.001427,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0\",0)",
           "status": "Passed",
-          "duration": 0.0003466,
+          "duration": 0.0002888,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.000000000001\",1)",
           "status": "Passed",
-          "duration": 6.52e-05,
+          "duration": 3.64e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.03\",2)",
           "status": "Passed",
-          "duration": 5.02e-05,
+          "duration": 2.6e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"1\",50)",
           "status": "Passed",
-          "duration": 4.47e-05,
+          "duration": 1.97e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.DirectionIsConsumedByEachDirectedEquation",
+          "status": "Passed",
+          "duration": 0.000861,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Velocity,Velocity,3)",
+          "status": "Passed",
+          "duration": 0.0030461,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Acceleration,Acceleration,3)",
+          "status": "Passed",
+          "duration": 0.0002417,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Position,Position,16)",
+          "status": "Passed",
+          "duration": 0.0001651,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Velocity,\"-12\",-3)",
+          "status": "Passed",
+          "duration": 0.0010394,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Acceleration,\"-6\",-3)",
+          "status": "Passed",
+          "duration": 0.0001614,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Position,\"-100\",-86)",
+          "status": "Passed",
+          "duration": 9.5e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Velocity)",
+          "status": "Passed",
+          "duration": 0.000858,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Acceleration)",
+          "status": "Passed",
+          "duration": 0.0001388,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Position)",
+          "status": "Passed",
+          "duration": 0.0001052,
           "message": null,
           "stackTrace": null
         }

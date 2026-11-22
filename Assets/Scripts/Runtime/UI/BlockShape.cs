@@ -6,6 +6,7 @@ namespace MotionCommotion
 {
     public sealed class BlockShape : Image
     {
+        public const float ConnectorStart=30, ConnectorEnd=68, ConnectorDepth=7;
         public bool Stack = true;
         protected override void OnPopulateMesh(VertexHelper vh)
         {
@@ -14,7 +15,7 @@ namespace MotionCommotion
             var points=new List<Vector2>();
             if(Stack)
             {
-                float a=Mathf.Min(30,w*.2f),b=Mathf.Min(68,w*.45f),n=7;
+                float a=ConnectorStart,b=ConnectorEnd,n=ConnectorDepth;
                 points.AddRange(new[]{new Vector2(0,n),new Vector2(a,n),new Vector2(a+5,0),new Vector2(b-5,0),new Vector2(b,n),new Vector2(w,n),new Vector2(w,h),new Vector2(b,h),new Vector2(b-5,h-n),new Vector2(a+5,h-n),new Vector2(a,h),new Vector2(0,h)});
             }
             else

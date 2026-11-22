@@ -49,6 +49,8 @@ namespace MotionCommotion
             var ball=simulation.Ball;
             if (!ball.IsFinite || Math.Abs(ball.Velocity.x)>PhysicsLimits.MaximumKickVelocityBudget || Math.Abs(ball.Velocity.y)>PhysicsLimits.MaximumKickVelocityBudget)
                 Validation.Issues.Add(new ValidationIssue("experiment","Starting physical state must be finite, with velocity components at most 10000 m/s."));
+            if(Math.Abs(ball.CommandedAcceleration.x)>PhysicsLimits.MaximumCommandedAcceleration || Math.Abs(ball.CommandedAcceleration.y)>PhysicsLimits.MaximumCommandedAcceleration)
+                Validation.Issues.Add(new ValidationIssue("experiment","Starting commanded acceleration components must be within 10000 m/s²."));
             if (ball.Gravity<0 || ball.Gravity>PhysicsLimits.MaximumGravity)
                 Validation.Issues.Add(new ValidationIssue("experiment","Starting gravity must be between 0 and 10000 m/s²."));
             if (Math.Abs(ball.Position.x)>PhysicsLimits.MaximumStartingPosition || Math.Abs(ball.Position.y)>PhysicsLimits.MaximumStartingPosition)
@@ -83,9 +85,23 @@ namespace MotionCommotion
                     simulation.Ball.SetGravity((float)action.Value);
                     Log(string.Format(CultureInfo.InvariantCulture, "t={0:G5}s  Gravity → {1:G5} m/s² downward; no kick", action.Time, action.Value));
                     break;
+                case ActionKind.Velocity:
+                    simulation.Ball.SetVelocity(Directed(action.Value,action.Angle)); Log($"t={action.Time:G5}s Velocity → {action.Value:G5} m/s at {action.Angle:G5}°"); break;
+                case ActionKind.Acceleration:
+                    simulation.Ball.SetCommandedAcceleration(Directed(action.Value,action.Angle)); Log($"t={action.Time:G5}s Commanded acceleration → {action.Value:G5} m/s² at {action.Angle:G5}°"); break;
+                case ActionKind.Position:
+                    var destination=snapshot.Position+Directed(action.Value,action.Angle);
+                    if(Math.Abs(destination.x)>PhysicsLimits.MaximumStartingPosition || Math.Abs(destination.y)>PhysicsLimits.MaximumStartingPosition)
+                        throw new InvalidOperationException("Position destination exceeds the supported world bounds.");
+                    simulation.Ball.Place(destination);
+                    if(Attempt) Attempt.PositionChanged();
+                    Log($"t={action.Time:G5}s Position → ({destination.x:G5}, {destination.y:G5}) m");
+                    break;
                 default: throw new ArgumentOutOfRangeException();
             }
         }
+        private static Vector2 Directed(double value,double angle)
+        { double radians=angle*Math.PI/180; return new Vector2((float)(value*Math.Cos(radians)),(float)(value*Math.Sin(radians))); }
         private void Log(string message) { Feedback.Add(message); if (Feedback.Count > 12) Feedback.RemoveAt(0); }
         public void TogglePause()
         {

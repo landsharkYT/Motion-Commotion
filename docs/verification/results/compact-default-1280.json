@@ -1,0 +1,957 @@
+{
+  "scene": "InGame",
+  "state": "Ready",
+  "validation": "Drag commands here to begin.",
+  "view": "",
+  "outcome": "None",
+  "modal": "",
+  "blocksOpen": true,
+  "activeOpen": true,
+  "zoom": 5,
+  "cameraX": 0,
+  "cameraY": 2.5,
+  "time": 0,
+  "mass": 1,
+  "gravity": 9.8100004196167,
+  "x": 0,
+  "y": 0,
+  "vx": 0,
+  "vy": 0,
+  "accelerationX": 0,
+  "accelerationY": 0,
+  "runtimeError": "",
+  "visualX": 0,
+  "visualY": 0,
+  "commands": 0,
+  "snapIndex": -1,
+  "horizontalScrollers": 0,
+  "pointEnabled": true,
+  "clickEnabled": true,
+  "dragging": false,
+  "physicalStateFinite": true,
+  "mouseX": 478,
+  "mouseY": 744,
+  "hit": "none",
+  "notice": "",
+  "measurements": "Ready   t = 0 s\nPosition (0, 0) m\nVelocity (0, 0) m/s\nMass  1 kg    Gravity  9.81",
+  "controls": [
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface/DragHandle/Body/Slot_angle/DropError",
+      "text": "",
+      "x": 83.5142822265625,
+      "y": 120.00225830078125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/Fraction/Slot_ds/DropError",
+      "text": "",
+      "x": 47.25347900390625,
+      "y": 187.46417236328125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/Fraction/Slot_dt/DropError",
+      "text": "",
+      "x": 50.2049560546875,
+      "y": 214.448974609375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/Fraction/Slot_dv/DropError",
+      "text": "",
+      "x": 48.09674072265625,
+      "y": 254.08282470703125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/Fraction/Slot_dt/DropError",
+      "text": "",
+      "x": 55.68621826171875,
+      "y": 281.067626953125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/InitialPosition/Slot_s0/DropError",
+      "text": "",
+      "x": 47.25347900390625,
+      "y": 333.3506164550781,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/Slot_v0/DropError",
+      "text": "",
+      "x": 94.476806640625,
+      "y": 333.3506164550781,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/Slot_t/DropError",
+      "text": "",
+      "x": 150.13290405273438,
+      "y": 333.3506164550781,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/Slot_a/DropError",
+      "text": "",
+      "x": 92.790283203125,
+      "y": 371.2979431152344,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/TimeSquared/Slot_t/DropError",
+      "text": "",
+      "x": 148.44638061523438,
+      "y": 371.2979431152344,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/Slot_m/DropError",
+      "text": "",
+      "x": 47.25347900390625,
+      "y": 423.5809326171875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/Slot_a/DropError",
+      "text": "",
+      "x": 96.16339111328125,
+      "y": 423.5809326171875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/Slot_m/DropError",
+      "text": "",
+      "x": 53.1563720703125,
+      "y": 475.8639221191406,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/Slot_g/DropError",
+      "text": "",
+      "x": 102.0662841796875,
+      "y": 475.8639221191406,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface/DragHandle/Body/Slot_wait/DropError",
+      "text": "",
+      "x": 21.95526123046875,
+      "y": 542.4825439453125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/CollapseBlocks",
+      "text": "",
+      "x": 221.42572021484375,
+      "y": 12.64910888671875,
+      "width": 28.67132568359375,
+      "height": 28.6712646484375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface/DragHandle/Body/Slot_angle/Row/Input_angle",
+      "text": "0",
+      "x": 83.51424407958984,
+      "y": 97.23382568359375,
+      "width": 30.357864379882812,
+      "height": 21.9251708984375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/Fraction/Slot_ds/Row/Input_ds",
+      "text": "12",
+      "x": 82.67098236083984,
+      "y": 164.69573974609375,
+      "width": 30.357864379882812,
+      "height": 21.9251708984375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/Fraction/Slot_dt/Row/Input_dt",
+      "text": "4",
+      "x": 79.7195053100586,
+      "y": 191.6805419921875,
+      "width": 30.357864379882812,
+      "height": 21.925140380859375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Actions/EquationEdit",
+      "text": "",
+      "x": 153.50601196289062,
+      "y": 157.94964599609375,
+      "width": 20.23858642578125,
+      "height": 20.238525390625,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/Fraction/Slot_dv/Row/Input_dv",
+      "text": "6",
+      "x": 92.7903060913086,
+      "y": 231.314453125,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/Fraction/Slot_dt/Row/Input_dt",
+      "text": "2",
+      "x": 85.2008285522461,
+      "y": 258.2992248535156,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Actions/EquationEdit",
+      "text": "",
+      "x": 153.50601196289062,
+      "y": 224.5682373046875,
+      "width": 20.23858642578125,
+      "height": 20.23858642578125,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/InitialPosition/Slot_s0/Row/Input_s0",
+      "text": "2",
+      "x": 47.253501892089844,
+      "y": 310.58221435546875,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/Slot_v0/Row/Input_v0",
+      "text": "3",
+      "x": 94.4768295288086,
+      "y": 310.58221435546875,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/Slot_t/Row/Input_t",
+      "text": "2",
+      "x": 150.13291931152344,
+      "y": 310.58221435546875,
+      "width": 30.357879638671875,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/Slot_a/Row/Input_a",
+      "text": "4",
+      "x": 92.7903060913086,
+      "y": 348.529541015625,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/TimeSquared/Slot_t/Row/Input_t",
+      "text": "2",
+      "x": 148.4463653564453,
+      "y": 348.529541015625,
+      "width": 30.357879638671875,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Actions/EquationEdit",
+      "text": "",
+      "x": 227.2984619140625,
+      "y": 291.1868896484375,
+      "width": 20.23858642578125,
+      "height": 20.23858642578125,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/Slot_m/Row/Input_m",
+      "text": "1",
+      "x": 47.253501892089844,
+      "y": 400.8125305175781,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/Slot_a/Row/Input_a",
+      "text": "10",
+      "x": 96.1633529663086,
+      "y": 400.8125305175781,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Actions/EquationEdit",
+      "text": "",
+      "x": 183.86386108398438,
+      "y": 381.4172058105469,
+      "width": 20.23858642578125,
+      "height": 20.23858642578125,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/Slot_m/Row/Input_m",
+      "text": "1",
+      "x": 53.156394958496094,
+      "y": 453.09552001953125,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/Slot_g/Row/Input_g",
+      "text": "9.81",
+      "x": 102.06632232666016,
+      "y": 453.09552001953125,
+      "width": 36.260780334472656,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Actions/EquationEdit",
+      "text": "",
+      "x": 183.86386108398438,
+      "y": 433.7002258300781,
+      "width": 20.23858642578125,
+      "height": 20.23858642578125,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface/DragHandle/Body/Slot_wait/Row/Input_wait",
+      "text": "1",
+      "x": 21.955284118652344,
+      "y": 519.7141723632812,
+      "width": 30.357864379882812,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/CollapseActive",
+      "text": "",
+      "x": 477.42578125,
+      "y": 12.64910888671875,
+      "width": 28.67132568359375,
+      "height": 28.6712646484375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/ActivePlay",
+      "text": "",
+      "x": 261.9029235839844,
+      "y": 12.64910888671875,
+      "width": 28.67132568359375,
+      "height": 28.6712646484375,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Menu",
+      "text": "",
+      "x": 527.3600463867188,
+      "y": 17.447998046875,
+      "width": 37.10400390625,
+      "height": 37.10400390625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Run",
+      "text": "",
+      "x": 568.6804809570312,
+      "y": 17.447998046875,
+      "width": 37.10400390625,
+      "height": 37.10400390625,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Reset",
+      "text": "",
+      "x": 610.0009155273438,
+      "y": 17.447998046875,
+      "width": 37.10400390625,
+      "height": 37.10400390625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Clear",
+      "text": "",
+      "x": 651.3213500976562,
+      "y": 17.447998046875,
+      "width": 37.10400390625,
+      "height": 37.10400390625,
+      "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SettingsOpen",
+      "text": "",
+      "x": 1231.9334716796875,
+      "y": 9.2760009765625,
+      "width": 38.79052734375,
+      "height": 38.7906494140625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/HintOpen",
+      "text": "",
+      "x": 1231.9334716796875,
+      "y": 56.49932861328125,
+      "width": 38.79052734375,
+      "height": 38.7906494140625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface/DragHandle",
+      "text": "Degrees",
+      "x": 13.522502899169922,
+      "y": 97.23382568359375,
+      "width": 111.31216430664062,
+      "height": 22.7684326171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle",
+      "text": "v",
+      "x": 13.522529602050781,
+      "y": 164.69580078125,
+      "width": 132.39404296875,
+      "height": 49.753173828125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle",
+      "text": "a",
+      "x": 13.522529602050781,
+      "y": 231.314453125,
+      "width": 132.39404296875,
+      "height": 49.753173828125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle",
+      "text": "s",
+      "x": 13.522544860839844,
+      "y": 297.9330749511719,
+      "width": 206.18646240234375,
+      "height": 73.3648681640625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle",
+      "text": "F",
+      "x": 13.522491455078125,
+      "y": 388.16339111328125,
+      "width": 162.75189208984375,
+      "height": 35.41754150390625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle",
+      "text": "W",
+      "x": 13.522491455078125,
+      "y": 440.4464111328125,
+      "width": 162.75189208984375,
+      "height": 35.41749572753906,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface/DragHandle",
+      "text": "1",
+      "x": 13.522529602050781,
+      "y": 519.7141723632812,
+      "width": 74.20811462402344,
+      "height": 22.768402099609375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface",
+      "text": "Degrees",
+      "x": 8.46285629272461,
+      "y": 90.4876708984375,
+      "width": 121.43145751953125,
+      "height": 37.10400390625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 90.4876708984375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Direction/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 127.59173583984375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface",
+      "text": "v",
+      "x": 8.462882995605469,
+      "y": 157.9495849609375,
+      "width": 142.5133056640625,
+      "height": 63.245574951171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 157.9495849609375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 221.19515991210938,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/OutputGroup/Output",
+      "text": "v",
+      "x": 21.95526123046875,
+      "y": 178.60980224609375,
+      "width": 8.4327392578125,
+      "height": 21.9251708984375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/OutputGroup/Output/MeanBar",
+      "text": "",
+      "x": 22.96718978881836,
+      "y": 182.370849609375,
+      "width": 6.408882141113281,
+      "height": 0.84326171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/OutputGroup/Equals",
+      "text": "=",
+      "x": 32.91781997680664,
+      "y": 178.60980224609375,
+      "width": 11.805839538574219,
+      "height": 21.9251708984375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageVelocity/Surface/DragHandle/Body/Fraction/FractionBar",
+      "text": "",
+      "x": 47.25348663330078,
+      "y": 189.1507568359375,
+      "width": 65.77537536621094,
+      "height": 0.84326171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface",
+      "text": "a",
+      "x": 8.462882995605469,
+      "y": 224.56826782226562,
+      "width": 142.5133056640625,
+      "height": 63.24554443359375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 224.5682373046875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 287.8138122558594,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/OutputGroup/Output",
+      "text": "a",
+      "x": 21.95525360107422,
+      "y": 245.22848510742188,
+      "width": 9.276016235351562,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/OutputGroup/Output/MeanBar",
+      "text": "",
+      "x": 23.068376541137695,
+      "y": 248.98947143554688,
+      "width": 7.049770355224609,
+      "height": 0.84326171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/OutputGroup/Equals",
+      "text": "=",
+      "x": 33.76108169555664,
+      "y": 245.22848510742188,
+      "width": 11.805839538574219,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_AverageAcceleration/Surface/DragHandle/Body/Fraction/FractionBar",
+      "text": "",
+      "x": 48.09674072265625,
+      "y": 255.7694091796875,
+      "width": 75.0513916015625,
+      "height": 0.84326171875,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface",
+      "text": "s",
+      "x": 8.462898254394531,
+      "y": 291.1868896484375,
+      "width": 216.3057861328125,
+      "height": 86.85723876953125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 291.1868896484375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 378.04412841796875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/OutputGroup/OutputColumn/Output",
+      "text": "s",
+      "x": 21.95526123046875,
+      "y": 311.00384521484375,
+      "width": 8.4327392578125,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/OutputGroup/EqualsColumn/Equals",
+      "text": "=",
+      "x": 32.91781997680664,
+      "y": 311.00384521484375,
+      "width": 11.805839538574219,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/OperatorColumn/Operator",
+      "text": "+",
+      "x": 80.14115142822266,
+      "y": 311.00384521484375,
+      "width": 11.805831909179688,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/VelocityTerm/OperatorColumn/Operator",
+      "text": "×",
+      "x": 135.7972412109375,
+      "y": 311.00384521484375,
+      "width": 11.80584716796875,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/OperatorColumn/Operator",
+      "text": "+",
+      "x": 47.25345230102539,
+      "y": 348.951171875,
+      "width": 11.805839538574219,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/OperatorColumn/Operator",
+      "text": "½",
+      "x": 61.58912658691406,
+      "y": 348.951171875,
+      "width": 14.335662841796875,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/OperatorColumn/Operator",
+      "text": "×",
+      "x": 78.45462799072266,
+      "y": 348.951171875,
+      "width": 11.805831909179688,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/OperatorColumn/Operator",
+      "text": "×",
+      "x": 134.1107177734375,
+      "y": 348.951171875,
+      "width": 11.80584716796875,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_MotionPosition/Surface/DragHandle/Body/AccelerationTerm/TimeSquared/Exponent",
+      "text": "2",
+      "x": 179.6475067138672,
+      "y": 343.4698791503906,
+      "width": 6.746185302734375,
+      "height": 20.23858642578125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface",
+      "text": "F",
+      "x": 8.462844848632812,
+      "y": 381.4172058105469,
+      "width": 172.87118530273438,
+      "height": 48.909912109375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 381.417236328125,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 430.3271179199219,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/OutputGroup/OutputColumn/Output",
+      "text": "F",
+      "x": 21.95526123046875,
+      "y": 401.2341613769531,
+      "width": 8.4327392578125,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/OutputGroup/EqualsColumn/Equals",
+      "text": "=",
+      "x": 32.91781997680664,
+      "y": 401.2341613769531,
+      "width": 11.805839538574219,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Force/Surface/DragHandle/Body/OperatorColumn/Operator",
+      "text": "×",
+      "x": 81.8277359008789,
+      "y": 401.2341613769531,
+      "width": 11.805831909179688,
+      "height": 21.92510986328125,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface",
+      "text": "W",
+      "x": 8.462844848632812,
+      "y": 433.7001953125,
+      "width": 172.87118530273438,
+      "height": 48.909912109375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 433.7002258300781,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 482.610107421875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/OutputGroup/OutputColumn/Output",
+      "text": "W",
+      "x": 21.955278396606445,
+      "y": 453.51715087890625,
+      "width": 14.335660934448242,
+      "height": 21.925140380859375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/OutputGroup/EqualsColumn/Equals",
+      "text": "=",
+      "x": 38.82071304321289,
+      "y": 453.51715087890625,
+      "width": 11.805839538574219,
+      "height": 21.925140380859375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Weight/Surface/DragHandle/Body/OperatorColumn/Operator",
+      "text": "×",
+      "x": 87.73062896728516,
+      "y": 453.51715087890625,
+      "width": 11.805831909179688,
+      "height": 21.925140380859375,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface",
+      "text": "1",
+      "x": 8.462882995605469,
+      "y": 512.9679565429688,
+      "width": 84.32740783691406,
+      "height": 37.10406494140625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface/SnapTop",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 512.9679565429688,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content/Palette_Wait/Surface/SnapBottom",
+      "text": "",
+      "x": 49.7833251953125,
+      "y": 550.072021484375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector",
+      "text": "",
+      "x": 264.462890625,
+      "y": 63.5029296875,
+      "width": 101.19287109375,
+      "height": 37.10400390625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector/SnapTop",
+      "text": "",
+      "x": 305.7833251953125,
+      "y": 63.5029296875,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content/StartConnector/SnapBottom",
+      "text": "",
+      "x": 305.7833251953125,
+      "y": 100.60693359375,
+      "width": 0,
+      "height": 0,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport",
+      "text": "Direction Blocks",
+      "x": 2.5599365234375,
+      "y": 57.5999755859375,
+      "width": 250.8800048828125,
+      "height": 626.4000244140625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/BlocksPanel/Palette/Viewport/Content",
+      "text": "Direction Blocks",
+      "x": 2.5599365234375,
+      "y": 57.5999755859375,
+      "width": 250.8800048828125,
+      "height": 498.3749694824219,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport",
+      "text": "",
+      "x": 258.5599670410156,
+      "y": 57.5999755859375,
+      "width": 250.8800048828125,
+      "height": 626.4000244140625,
+      "enabled": true
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/ActivePanel/Program/Viewport/Content",
+      "text": "",
+      "x": 258.5599670410156,
+      "y": 57.5999755859375,
+      "width": 250.8800048828125,
+      "height": 127.3343505859375,
+      "enabled": true
+    }
+  ]
+}

@@ -27,6 +27,7 @@ namespace MotionCommotion
             ball.Body.position=definition.Spawn; ball.transform.position=definition.Spawn;
         }
         public void ResetOutcome() { Outcome=AttemptOutcome.None; approachedFromAbove=false; }
+        public void PositionChanged() { approachedFromAbove=false; }
         public void EvaluateStep(Vector2 previous)
         {
             if(!useLevel || Outcome!=AttemptOutcome.None) return;

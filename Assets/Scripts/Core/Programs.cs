@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MotionCommotion.Core
 {
-    public enum CommandKind { Direction, Force, Wait, Weight }
+    public enum CommandKind { Direction, Force, Wait, Weight, Velocity, Acceleration, Position }
     public sealed class ProgramCommand
     {
         public string Id { get; } = Guid.NewGuid().ToString("N");
@@ -13,8 +13,36 @@ namespace MotionCommotion.Core
         {
             Kind = kind;
             Value = new NumericInput(kind == CommandKind.Wait ? "1" : "0");
-            if (kind == CommandKind.Force) Value.Expression = new FormulaExpression(FormulaId.Force);
-            if (kind == CommandKind.Weight) Value.Expression = new FormulaExpression(FormulaId.Weight);
+            if (EquationCommands.IsEquation(kind)) Value.Expression = new FormulaExpression(EquationCommands.FormulaFor(kind));
+        }
+    }
+    public static class EquationCommands
+    {
+        public static bool IsEquation(CommandKind kind)=>kind!=CommandKind.Direction && kind!=CommandKind.Wait;
+        public static bool RequiresDirection(CommandKind kind)=>IsEquation(kind) && kind!=CommandKind.Weight;
+        public static CommandKind ForFormula(FormulaId formula)
+        {
+            switch(formula)
+            {
+                case FormulaId.AverageVelocity:return CommandKind.Velocity;
+                case FormulaId.AverageAcceleration:return CommandKind.Acceleration;
+                case FormulaId.MotionPosition:return CommandKind.Position;
+                case FormulaId.Force:return CommandKind.Force;
+                case FormulaId.Weight:return CommandKind.Weight;
+                default:throw new ArgumentOutOfRangeException(nameof(formula));
+            }
+        }
+        public static FormulaId FormulaFor(CommandKind kind)
+        {
+            switch(kind)
+            {
+                case CommandKind.Velocity:return FormulaId.AverageVelocity;
+                case CommandKind.Acceleration:return FormulaId.AverageAcceleration;
+                case CommandKind.Position:return FormulaId.MotionPosition;
+                case CommandKind.Force:return FormulaId.Force;
+                case CommandKind.Weight:return FormulaId.Weight;
+                default:throw new ArgumentOutOfRangeException(nameof(kind));
+            }
         }
     }
     public sealed class BlockProgram
@@ -62,17 +90,17 @@ namespace MotionCommotion.Core
                 try
                 {
                     double value, gravity = 0;
+                    if(EquationCommands.RequiresDirection(command.Kind) && (i==0 || program.Commands[i-1].Kind!=CommandKind.Direction))
+                        throw new FormulaError(command.Id,"This equation needs its own immediately preceding Direction.");
                     switch (command.Kind)
                     {
                         case CommandKind.Direction:
-                            if (i + 1 == program.Commands.Count || program.Commands[i + 1].Kind != CommandKind.Force)
-                                throw new FormulaError(command.Id, "Direction must be immediately followed by Force.");
+                            if (i + 1 == program.Commands.Count || !EquationCommands.RequiresDirection(program.Commands[i + 1].Kind))
+                                throw new FormulaError(command.Id, "Direction must be immediately followed by a directed equation.");
                             value = FormulaEvaluator.Read(command.Value, new InputDefinition("angle", Dimension.Angle, "0"), program.Mass, command.Id);
                             value = ((value % 360) + 360) % 360;
                             break;
                         case CommandKind.Force:
-                            if (i == 0 || program.Commands[i - 1].Kind != CommandKind.Direction)
-                                throw new FormulaError(command.Id, "Force needs its own immediately preceding Direction.");
                             value = FormulaEvaluator.Read(command.Value, new InputDefinition("force", Dimension.Force, "0", nonnegative: true), program.Mass, command.Id);
                             double velocityChange=value*ProgramRunner.KickEquivalentSeconds/mass;
                             if (!FormulaEvaluator.Finite(velocityChange) || velocityChange > PhysicsLimits.MaximumKickVelocityBudget)
@@ -80,6 +108,15 @@ namespace MotionCommotion.Core
                             kickVelocityBudget+=velocityChange;
                             if (kickVelocityBudget > PhysicsLimits.MaximumKickVelocityBudget)
                                 throw new FormulaError(command.Id,"Combined kicks exceed the supported 10000 m/s total velocity-change budget.");
+                            break;
+                        case CommandKind.Velocity:
+                        case CommandKind.Acceleration:
+                        case CommandKind.Position:
+                            if(command.Value.Expression==null || command.Value.Expression.Formula!=EquationCommands.FormulaFor(command.Kind))
+                                throw new FormulaError(command.Id,"This action requires its predefined equation.");
+                            value=FormulaEvaluator.Evaluate(command.Value.Expression,program.Mass);
+                            double limit=command.Kind==CommandKind.Velocity?PhysicsLimits.MaximumAssignedVelocity:command.Kind==CommandKind.Acceleration?PhysicsLimits.MaximumCommandedAcceleration:PhysicsLimits.MaximumStartingPosition;
+                            if(Math.Abs(value)>limit) throw new FormulaError(command.Id,"Equation output exceeds the supported physical range.");
                             break;
                         case CommandKind.Wait:
                             value = FormulaEvaluator.Read(command.Value, new InputDefinition("wait", Dimension.Time, "1", nonnegative: true), program.Mass, command.Id);

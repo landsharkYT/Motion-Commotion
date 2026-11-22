@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "duration": 2.13,
+  "summary": {
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "fullName": "MotionCommotion.Tests.BlockInteractionTests.AllFiveEquationPaletteTilesHaveBlockConnectors",
+      "status": "Failed",
+      "duration": 0.9309119,
+      "message": "  Palette_AverageVelocity needs block connectors.\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at MotionCommotion.Tests.BlockInteractionTests+<AllFiveEquationPaletteTilesHaveBlockConnectors>d__7.MoveNext () [0x0005f] in /home/vincenth/MotionCommotion/Assets/Scripts/Tests/PlayMode/BlockInteractionTests.cs:55\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@f63be82e0d2e/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44\n"
+    },
+    {
+      "fullName": "MotionCommotion.Tests.BlockInteractionTests.DroppingAnActiveCommandOnThePaletteDeletesIt",
+      "status": "Failed",
+      "duration": 0.5914134,
+      "message": "  The Blocks panel must accept a return/delete drop.\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at MotionCommotion.Tests.BlockInteractionTests+<DroppingAnActiveCommandOnThePaletteDeletesIt>d__5.MoveNext () [0x00155] in /home/vincenth/MotionCommotion/Assets/Scripts/Tests/PlayMode/BlockInteractionTests.cs:41\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@f63be82e0d2e/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44\n"
+    },
+    {
+      "fullName": "MotionCommotion.Tests.BlockInteractionTests.TheVisiblePrimaryEquationDragsItsWholeCommand",
+      "status": "Failed",
+      "duration": 0.5658559,
+      "message": "  Dragging the main equation must move/delete the command, not detach its formula.\n  Expected: same as <MotionCommotion.Core.ProgramCommand>\n  But was:  null\n",
+      "stackTrace": "at MotionCommotion.Tests.BlockInteractionTests+<TheVisiblePrimaryEquationDragsItsWholeCommand>d__6.MoveNext () [0x0008d] in /home/vincenth/MotionCommotion/Assets/Scripts/Tests/PlayMode/BlockInteractionTests.cs:49\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@f63be82e0d2e/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44\n"
+    }
+  ]
+}

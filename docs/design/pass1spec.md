@@ -1,5 +1,7 @@
 # Motion Commotion pass 1 specification
 
+Later behavior authority: the [standalone equation contract](standalone-equation-actions.md) supersedes the first three equations' nested-only restriction. It defines current action semantics and implementation status.
+
 ## 1. Purpose and status
 
 Pass 1 establishes the reusable runtime foundation of Motion Commotion, a physics teaching game built around visual coding blocks. It delivers primitive mechanics demonstrations, not a designed puzzle or a finished game.

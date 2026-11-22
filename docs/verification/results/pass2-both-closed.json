@@ -17,16 +17,21 @@
   "y": 0,
   "vx": 0,
   "vy": 0,
+  "accelerationX": 0,
+  "accelerationY": 0,
+  "runtimeError": "",
   "visualX": 0,
   "visualY": 0,
   "commands": 0,
+  "snapIndex": -1,
+  "horizontalScrollers": 0,
   "pointEnabled": true,
   "clickEnabled": true,
   "dragging": false,
   "physicalStateFinite": true,
   "mouseX": 264,
   "mouseY": 867,
-  "hit": "EquationEdit",
+  "hit": "none",
   "notice": "",
   "measurements": "Ready   t = 0 s\nPosition (0, 0) m\nVelocity (0, 0) m/s\nMass  1 kg    Gravity  9.81",
   "controls": [
@@ -64,15 +69,6 @@
       "y": 23,
       "width": 44,
       "height": 44,
-      "enabled": false
-    },
-    {
-      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/EquationEdit",
-      "text": "",
-      "x": 224.79998779296875,
-      "y": 29,
-      "width": 44,
-      "height": 32,
       "enabled": false
     },
     {

@@ -91,6 +91,36 @@ namespace MotionCommotion.Tests
                 Assert.That(session.GetComponentsInChildren<Text>().Any(x=>x.name=="Error" && x.text=="Must be positive"),Is.True);
             }
         }
+        [UnityTest] public IEnumerator EquationEditButtonsArePerEquationDisabledAndInert()
+        {
+            var equationTiles=new[]{"Palette_AverageVelocity","Palette_AverageAcceleration","Palette_MotionPosition","Palette_Force","Palette_Weight"};
+            foreach(var card in session.GetComponentsInChildren<BlockCard>())
+                Assert.That(card.EquationEdit.gameObject.activeSelf,Is.EqualTo(equationTiles.Contains(card.name)),card.name);
+            Assert.That(session.GetComponentsInChildren<Button>().Count(x=>x.name=="EquationEdit"),Is.EqualTo(5));
+            Program(); var force=session.Program.Commands[1];
+            force.Value.Expression.Inputs[1].Expression=new FormulaExpression(FormulaId.AverageAcceleration);
+            force.Value.Expression.Inputs[1].Expression.Inputs[0].Expression=new FormulaExpression(FormulaId.AverageVelocity);
+            var workspace=session.GetComponent<BlockWorkspace>(); workspace.Rebuild(); yield return null;
+            foreach(var card in workspace.ProgramContainer.GetComponentsInChildren<BlockCard>())
+                Assert.That(card.EquationEdit.gameObject.activeSelf,Is.EqualTo(card.name.StartsWith("Formula_")),card.name);
+            var buttons=session.GetComponentsInChildren<Button>().Where(x=>x.name=="EquationEdit").ToArray();
+            Assert.That(buttons.Length,Is.EqualTo(8)); var position=session.Simulation.Ball.Position;
+            foreach(var button in buttons)
+            {
+                Assert.That(button.interactable,Is.False); Assert.That(button.onClick.GetPersistentEventCount(),Is.Zero);
+                button.onClick.Invoke();
+                var card=button.GetComponentInParent<BlockCard>(); var surface=new Vector3[4]; var badge=new Vector3[4];
+                card.Background.rectTransform.GetWorldCorners(surface); (button.transform as RectTransform).GetWorldCorners(badge);
+                Assert.That(badge[0].x,Is.GreaterThanOrEqualTo(surface[3].x),card.name);
+            }
+            Assert.That(session.GetComponent<GameplayScreen>().OpenModal,Is.Empty); Assert.That(session.State,Is.EqualTo(SessionState.Ready));
+            Assert.That(session.Time,Is.Zero); Assert.That(session.Simulation.Ball.Position,Is.EqualTo(position)); Assert.That(session.Program.Commands.Count,Is.EqualTo(3));
+            force.Value.Expression=null; workspace.Rebuild(); yield return null;
+            Assert.That(session.GetComponentsInChildren<Button>().Count(x=>x.name=="EquationEdit"),Is.EqualTo(5));
+            session.Program.Commands.Add(new ProgramCommand(CommandKind.Weight)); workspace.Rebuild(); yield return null;
+            Assert.That(session.GetComponentsInChildren<Button>().Count(x=>x.name=="EquationEdit"),Is.EqualTo(6));
+            Assert.That(session.transform.Find("Canvas/GameplayContent/WorldHUD/Controls/EquationEdit"),Is.Null);
+        }
         [UnityTest] public IEnumerator PanelsReflowWithoutChangingZoomOrPhysics()
         {
             var screen=session.GetComponent<GameplayScreen>(); var camera=session.GetComponent<OrbCamera>(); float zoom=camera.Zoom; var position=session.Simulation.Ball.Position;

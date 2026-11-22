@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "command": "command console get",
+  "data": {
+    "command": "console get",
+    "parameters": {
+      "level": "error",
+      "tail": 8
+    },
+    "result": {
+      "entries": [],
+      "cursor": 0,
+      "session": "55377a30be8a4c0499e99b695aaf6aee",
+      "returned": 0,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "log": 0
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-11-22T04:02:03.121605Z",
+        "ageMs": 112,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 0,
+        "consoleWarnings": 0,
+        "consoleLogs": 0,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/vincenth/MotionCommotion"
+    },
+    "success": true
+  },
+  "errors": [],
+  "warnings": []
+}

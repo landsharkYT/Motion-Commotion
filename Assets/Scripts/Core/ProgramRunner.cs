@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MotionCommotion.Core
 {
-    public enum ActionKind { Kick, Gravity }
+    public enum ActionKind { Kick, Gravity, Velocity, Acceleration, Position }
     public sealed class SimulationAction
     {
         public readonly ActionKind Kind;
@@ -42,6 +42,9 @@ namespace MotionCommotion.Core
                     case CommandKind.Direction: angle = command.Value; break;
                     case CommandKind.Force: Action?.Invoke(new SimulationAction(ActionKind.Kick, command.Value, angle, Time, command.Id)); break;
                     case CommandKind.Weight: Action?.Invoke(new SimulationAction(ActionKind.Gravity, command.Gravity, 270, Time, command.Id)); break;
+                    case CommandKind.Velocity: Action?.Invoke(new SimulationAction(ActionKind.Velocity,command.Value,angle,Time,command.Id)); break;
+                    case CommandKind.Acceleration: Action?.Invoke(new SimulationAction(ActionKind.Acceleration,command.Value,angle,Time,command.Id)); break;
+                    case CommandKind.Position: Action?.Invoke(new SimulationAction(ActionKind.Position,command.Value,angle,Time,command.Id)); break;
                     case CommandKind.Wait: waitSteps = command.Value == 0 ? 0 : Math.Max(1, Math.Ceiling(command.Value / step - 1e-10)); break;
                     default: throw new ArgumentOutOfRangeException();
                 }

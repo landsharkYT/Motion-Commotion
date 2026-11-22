@@ -20,6 +20,7 @@ namespace MotionCommotion
         public void Step(float seconds)
         {
             ball.RequireFiniteState();
+            ball.ApplyCommandedAcceleration();
             if (!Physics2D.Simulate(seconds)) throw new System.InvalidOperationException("Physics step could not execute.");
             ball.RequireFiniteState();
         }

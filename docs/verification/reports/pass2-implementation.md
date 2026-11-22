@@ -67,3 +67,7 @@ The [first independent review](pass2-adversarial-review-round1.md) rated the imp
 ## Final acceptance
 
 The [final independent review](pass2-adversarial-review.md) rates the implementation **9.2/10**, passes the gate, and concludes **No substantive missing features from pass2spec.md. Baseline mechanics retained.** The wording finding is closed. Final evidence is 26 passing EditMode tests, 19 passing PlayMode tests, a completed WebGL build, 13 passing browser interaction groups with no captured errors, and passing layout checks. The final Unity error snapshot also reports zero console errors and no compilation failure.
+
+## Subsequent placement correction
+
+The user subsequently clarified that the disabled pencil belongs beside each equation rather than in the world toolbar. The [per-equation correction report](equation-edit-affordance.md) records the updated placement and newer checks. The independent rating above describes the original reviewed pass 2 state; canonical result files and screenshots now reflect the later correction.

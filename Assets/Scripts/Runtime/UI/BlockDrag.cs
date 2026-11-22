@@ -8,6 +8,8 @@ namespace MotionCommotion
     {
         public PaletteDefinition Palette;
         public ProgramCommand Command;
+        public ProgramCommand TemplateCommand;
+        public FormulaExpression TemplateExpression;
         public FormulaExpression Expression;
         public NumericInput Source;
         public bool IsFormula => Palette ? Palette.IsFormula : Expression != null;
@@ -26,12 +28,19 @@ namespace MotionCommotion
         public BlockWorkspace Workspace;
         public void OnDrop(PointerEventData data) => Workspace.DropCommand(data);
     }
-    public sealed class FormulaDrop : MonoBehaviour, IDropHandler
+    public sealed class PaletteDrop : MonoBehaviour, IDropHandler
+    {
+        public BlockWorkspace Workspace;
+        public void OnDrop(PointerEventData data) { Workspace.DropOnPalette(); data.Use(); }
+    }
+    public sealed class FormulaDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public BlockWorkspace Workspace;
         public NumericInput Input;
         public Dimension Dimension;
         public FormulaExpression Owner;
+        public void OnPointerEnter(PointerEventData data) => Workspace.HighlightInput(this,true);
+        public void OnPointerExit(PointerEventData data) => Workspace.HighlightInput(this,false);
         public void OnDrop(PointerEventData data)
         {
             if (Workspace.IsFormulaDrag) Workspace.DropFormula(Input, Dimension, Owner);

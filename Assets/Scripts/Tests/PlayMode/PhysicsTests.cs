@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using MotionCommotion.Core;
 using NUnit.Framework;
 using UnityEngine;
@@ -68,7 +69,7 @@ namespace MotionCommotion.Tests
             Assert.That(session.State,Is.EqualTo(SessionState.Ready)); Assert.That(session.Simulation.Ball.Gravity,Is.EqualTo(before.Gravity)); yield return null;
         }
         [UnityTest]
-        public IEnumerator SmallPhysicalValuesRemainVisibleInHudAndFormulaPreview()
+        public IEnumerator SmallPhysicalValuesRemainVisibleInTelemetryAndEditableInputs()
         {
             session.EditMass("0.0001"); session.Simulation.Ball.SetGravity(.0001f);
             session.Program.Commands.Add(new ProgramCommand(CommandKind.Direction));
@@ -77,10 +78,9 @@ namespace MotionCommotion.Tests
             var hud=Object.FindFirstObjectByType<SimulationHUD>();
             Assert.That(hud.MeasurementText,Does.Contain("Mass  0.0001 kg"));
             Assert.That(hud.MeasurementText,Does.Contain("Gravity  0.0001"));
-            bool found=false;
-            foreach(var text in session.GetComponentsInChildren<UnityEngine.UI.Text>())
-                if(text.name=="Result" && text.text.Contains("1E-07")) found=true;
-            Assert.That(found,Is.True,"Small formula results must not be displayed as zero.");
+            Assert.That(FormulaEvaluator.Evaluate(force.Value.Expression,session.Program.Mass),Is.EqualTo(1e-7).Within(1e-14));
+            var field=session.GetComponent<BlockWorkspace>().ProgramContainer.GetComponentsInChildren<UnityEngine.UI.InputField>().Single(x=>x.name=="Input_a");
+            Assert.That(field.text,Is.EqualTo("0.001"),"Small draft inputs must remain visible without rounding to zero.");
         }
         [UnityTest]
         public IEnumerator UnsafeKickRejectsWholeProgramBeforeGravityChanges()

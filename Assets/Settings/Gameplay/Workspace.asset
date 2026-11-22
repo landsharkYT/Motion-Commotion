@@ -28,4 +28,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ec0cd9fd7f28bc0d952c194a49e79c2, type: 2}
   CommandColor: {r: 0.88, g: 0.89, b: 0.9, a: 1}
   FormulaColor: {r: 0.91, g: 0.93, b: 0.94, a: 1}
-  Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  Font: {fileID: 12800000, guid: 7d98aafabf81b97d1935d230af9e168e, type: 3}

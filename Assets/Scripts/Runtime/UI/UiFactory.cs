@@ -43,7 +43,7 @@ namespace MotionCommotion
         {
             var rect = Rect(name, parent); var image = rect.gameObject.AddComponent<Image>(); image.color = Color.white;
             var field = rect.gameObject.AddComponent<InputField>(); field.targetGraphic = image;
-            var label = Text("Value", rect, font, value); label.alignment = TextAnchor.MiddleLeft;
+            var label = Text("Value", rect, font, value); label.alignment = TextAnchor.MiddleCenter;
             Stretch(label.rectTransform); label.rectTransform.offsetMin = new Vector2(6,0); label.rectTransform.offsetMax = new Vector2(-6,0);
             field.textComponent = label; field.contentType = InputField.ContentType.Standard; field.text = value;
             field.onValueChanged.AddListener(text => change(text)); Height(rect.gameObject, 30);
