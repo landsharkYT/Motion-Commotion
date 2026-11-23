@@ -1,1 +1,1 @@
-{"name":"MotionCommotion.PlayModeTests","references":["MotionCommotion.Core","MotionCommotion.Runtime","Unity.ugui"],"optionalUnityReferences":["TestAssemblies"]}
+{"name":"MotionCommotion.PlayModeTests","references":["MotionCommotion.Core","MotionCommotion.Runtime","Unity.ugui","Unity.InputSystem"],"optionalUnityReferences":["TestAssemblies"]}

@@ -1,5 +1,7 @@
 # Equation edit affordance correction
 
+The [equation rearrangement contract](equation-rearrangement.md#consolidated-approved-contract) supersedes earlier disabled-pencil and Active-pencil rules. Pencils are functional and appear only in Blocks.
+
 Status: all five recommendations approved, implemented, and verified. The audit below describes the earlier placement.
 
 ## Reported discrepancy

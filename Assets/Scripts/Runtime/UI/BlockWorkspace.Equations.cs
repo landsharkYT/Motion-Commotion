@@ -16,9 +16,9 @@ namespace MotionCommotion
         private readonly Dictionary<Text,Func<float>> traceWidths=new Dictionary<Text,Func<float>>();
         private static float PanelWidth(RectTransform content)=>Mathf.Max(100,((RectTransform)content.parent).rect.width-14);
         private float Available(Transform parent)=>widthBindings.TryGetValue((RectTransform)parent,out var value)?value():((RectTransform)parent).rect.width;
-        private static float FormulaWidth(FormulaId id)=>IsMean(id)?196:id==FormulaId.MotionPosition?1000:232;
+        private static float FormulaWidth(FormulaId id)=>IsMean(id)?196:FormulaVariants.Family(id)==FormulaId.MotionPosition?1000:232;
         private static bool IsMean(FormulaId id)=>id==FormulaId.AverageVelocity || id==FormulaId.AverageAcceleration;
-        private static string OutputSymbol(FormulaId id)=>id==FormulaId.AverageVelocity?"v":id==FormulaId.AverageAcceleration?"a":id==FormulaId.MotionPosition?"s":id==FormulaId.Force?"F":"W";
+        private static string OutputSymbol(FormulaId id)=>id==FormulaId.AverageVelocity?"v":id==FormulaId.AverageAcceleration?"a":id==FormulaId.MotionPosition?"s":id==FormulaId.Force?"F":id==FormulaId.Weight?"W":FormulaNotation.Symbol(FormulaVariants.Output(id));
         private static void ConfigureVerticalScroll(RectTransform content)
         {
             var scroll=content.GetComponentInParent<ScrollRect>(); scroll.horizontal=false; scroll.vertical=true;
@@ -99,18 +99,32 @@ namespace MotionCommotion
         private void PopulateEquation(BlockCard card,FormulaExpression expression,NumericInput source,string commandId)
         {
             var definition=FormulaCatalog.Get(expression.Formula); Title(card,"");
-            card.Error.gameObject.SetActive(false); card.Remove.gameObject.SetActive(source!=null); card.ShowEquationEdit(true);
+            card.Error.gameObject.SetActive(false); card.Remove.gameObject.SetActive(source!=null); card.ShowEquationEdit(false);
             if(source!=null)
             {
                 card.Remove.onClick.AddListener(()=> { if(session.Editable) { source.Expression=null; rebuild=true; } });
                 AddDrag(card.Header,new DragPayload{Expression=expression,Source=source},definition.Label);
             }
+            if((int)expression.Formula>4)
+            {
+                var outputGroup=UiFactory.Rect("OutputGroup",card.Body); FitRow(outputGroup);
+                var outputSymbol=MathText(outputGroup,"Output",OutputSymbol(expression.Formula)); var equalSymbol=MathText(outputGroup,"Equals","=");
+                float rhsIndent=Mathf.Max(30,outputSymbol.preferredWidth+equalSymbol.preferredWidth+8);
+                card.Body.GetComponent<EquationFlowLayout>().ContinuationIndent=rhsIndent;
+                EquationMathLayout.Draw(card.Body,FormulaNotation.Right(expression.Formula),Font,()=>Mathf.Max(40,Available(card.Body)-rhsIndent-3),
+                    (parent,key)=> { int index=Array.FindIndex(definition.Inputs,x=>x.Label==key); DrawInput(parent,expression.Inputs[index],definition.Inputs[index],expression,commandId,true,true); });
+                if(FormulaVariants.IsTimeBranch(expression.Formula))
+                {
+                    var branch=UiFactory.Text("TimeBranch",card.Background.transform,Font,expression.Formula==FormulaId.EarlierTime?"Earlier time":"Later time",14); UiFactory.Height(branch.gameObject,22);
+                }
+                return;
+            }
             bool fraction=IsMean(expression.Formula);
             var output=UiFactory.Rect("OutputGroup",card.Body); FitRow(output);
             var symbol=MathText(output,"Output",OutputSymbol(expression.Formula),!fraction); if(fraction) MeanBar(symbol);
-            MathText(output,"Equals","=",!fraction);
+            var equals=MathText(output,"Equals","=",!fraction);
             const float indent=30;
-            card.Body.GetComponent<EquationFlowLayout>().ContinuationIndent=indent;
+            card.Body.GetComponent<EquationFlowLayout>().ContinuationIndent=Mathf.Max(indent,symbol.preferredWidth+equals.preferredWidth+8);
             if(fraction)
             {
                 var column=UiFactory.Rect("Fraction",card.Body); var group=UiFactory.Vertical(column,0,2); group.childForceExpandWidth=false; group.childAlignment=TextAnchor.MiddleCenter; Fit(column);
@@ -165,7 +179,7 @@ namespace MotionCommotion
         private void SyncFields(NumericInput input,string value)
         {
             if(!fields.TryGetValue(input,out var linked)) return;
-            foreach(var field in linked) if(field && field.gameObject.activeInHierarchy) { field.SetTextWithoutNotify(value); SizeField(field,value); }
+            foreach(var field in linked) if(field && field.transform.IsChildOf(transform)) { field.GetComponent<NumericEditor>().Synchronize(value); SizeField(field,value); }
         }
         private void PruneFields()
         {

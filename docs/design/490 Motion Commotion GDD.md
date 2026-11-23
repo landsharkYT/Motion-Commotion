@@ -3,7 +3,7 @@
 **Game Design Document (GDD)**
 
 **Status:** Working Proposal — Subject to Team Approval  
-**Platform:** Web Application (Browser-Based)  
+**Platform:** Unity  
 **Genre:** Educational Physics Puzzle / Simulation  
 **Target Audience:** Middle School Students (Approximately Ages 11–14)  
 **Development Timeline:** 4 Weeks  
@@ -39,7 +39,7 @@ Timothy So \- Project Management
 
 [4\. Gameplay and Physics Systems	6](#4.-gameplay-and-physics-systems)
 
-[4.1 Physics Puzzles	6](#4.1-physics-puzzles)
+[4.1 Physics Puzzles	6](#heading=h.ywlm9bdegtj0)
 
 [4.2 Simulation Controls	7](#4.2-simulation-controls)
 
@@ -53,41 +53,37 @@ Timothy So \- Project Management
 
 [Hard	8](#hard)
 
-[Attempt-Based Scoring	8](#attempt-based-scoring)
+[Attempt-Based Scoring	9](#attempt-based-scoring)
 
 [Development Considerations	9](#development-considerations)
 
-[6\. Scoring System	9](#6.-scoring-system)
+[6\. Scoring System	9](#heading=h.atxb7pz26zod)
 
-[6.1 Main Puzzle Score	9](#6.1-main-puzzle-score)
+[6.1 Main Puzzle Score	9](#heading=h.bax4dqujpy14)
 
-[6.2 Prediction Accuracy	9](#6.2-prediction-accuracy)
+[6.2 Absolute Outcome Error	10](#heading=h.q4ad3e83v81u)
 
-[6.3 Optional Physics Objectives	10](#6.3-optional-physics-objectives)
+[7\. Level Selection and Replayability	11](#heading=h.azmku6oachlz)
 
-[6.4 Post-Level Bonus Challenges	10](#6.4-post-level-bonus-challenges)
+[Retry and Experimentation	11](#heading=h.iqglblkv301r)
 
-[7\. Challenge Variations and Replayability	10](#7.-challenge-variations-and-replayability)
-
-[Retry	11](#retry)
-
-[New Challenge	11](#new-challenge)
+[Fixed Lesson Variants	11](#heading=h.suzpkv2kdmu2)
 
 [8\. Story and Player Progression	11](#8.-story-and-player-progression)
 
 [Story Progression	11](#story-progression)
 
-[Level Progression	11](#level-progression)
+[Level Progression	12](#level-progression)
 
-[Player Progression (Stretch Goal)	12](#player-progression-\(stretch-goal\))
+[High Scores and Replayability	12](#high-scores-and-replayability)
 
 [Development Scope	12](#development-scope)
 
 [9\. User Interface	12](#9.-user-interface)
 
-[Main Menu	12](#main-menu)
+[Main Menu	13](#main-menu)
 
-[Challenge Screen	12](#challenge-screen)
+[Challenge Screen	13](#challenge-screen)
 
 [Results Screen	13](#results-screen)
 
@@ -95,31 +91,31 @@ Timothy So \- Project Management
 
 [Visual Priorities	13](#visual-priorities)
 
-[11\. Audio Design	13](#11.-audio-design)
+[11\. Audio Design	14](#11.-audio-design)
 
 [12\. Technical Design	14](#12.-technical-design)
 
 [Implementation Priorities	14](#implementation-priorities)
 
-[13\. Minimum Viable Product (MVP)	14](#13.-minimum-viable-product-\(mvp\))
+[13\. Minimum Viable Product (MVP)	15](#13.-minimum-viable-product-\(mvp\))
 
-[Required Features	14](#required-features)
+[Required Features	15](#required-features)
 
 [14\. Stretch Goals	15](#14.-stretch-goals)
 
-[15\. Four-Week Development Plan	15](#15.-four-week-development-plan)
+[15\. Four-Week Development Plan	16](#15.-four-week-development-plan)
 
-[Week 1 — Planning and Core Prototype	15](#week-1-—-planning-and-core-prototype)
+[Week 1 — Planning and Core Prototype	16](#week-1-—-planning-and-core-prototype)
 
-[Week 2 — Prediction and Scoring	16](#week-2-—-prediction-and-scoring)
+[Week 2 — Block Programming and Scoring	16](#week-2-—-block-programming-and-scoring)
 
 [Week 3 — Replayability and Playtesting	16](#week-3-—-replayability-and-playtesting)
 
 [Week 4 — Refinement and Presentation	16](#week-4-—-refinement-and-presentation)
 
-[16\. Playtesting and Evaluation	16](#16.-playtesting-and-evaluation)
+[16\. Playtesting and Evaluation	17](#16.-playtesting-and-evaluation)
 
-[Key Evaluation Questions	16](#key-evaluation-questions)
+[Key Evaluation Questions	17](#key-evaluation-questions)
 
 [17\. Risks and Scope Management	17](#17.-risks-and-scope-management)
 
@@ -129,39 +125,61 @@ Timothy So \- Project Management
 
 [Mathematical Accessibility	17](#mathematical-accessibility)
 
-[Scoring Complexity	17](#scoring-complexity)
+[Scoring Complexity	18](#scoring-complexity)
 
-[Feature Creep	17](#feature-creep)
+[Feature Creep	18](#feature-creep)
 
-[18\. Open Team Decisions	17](#18.-open-team-decisions)
+[18\. Open Team Decisions	18](#18.-open-team-decisions)
 
 [19\. Project Vision	18](#19.-project-vision)
 
-[**Theoretical Foundations and Design Applications	18**](#theoretical-foundations-and-design-applications)
+[**CURRICULUM AND BLOCK SYSTEM — CURRENT DESIGN BLUEPRINT	19**](#curriculum-and-block-system-—-current-design-blueprint)
 
-[Overview	18](#overview)
+[Status and scope	19](#status-and-scope)
 
-[1\. Mechanics, Dynamics, and Aesthetics (MDA)	18](#1.-mechanics,-dynamics,-and-aesthetics-\(mda\))
+[Core interaction and execution	19](#core-interaction-and-execution)
 
-[2\. GameFlow and Flow Theory	19](#2.-gameflow-and-flow-theory)
+[Lesson 1 — Net Force and Acceleration	19](#lesson-1-—-net-force-and-acceleration)
 
-[3\. Self-Determination Theory	20](#3.-self-determination-theory)
+[Lesson 2 — Average Velocity and Time	19](#lesson-2-—-average-velocity-and-time)
 
-[4\. Experiential Learning Theory	20](#4.-experiential-learning-theory)
+[Lesson 3 — Gravity and Inclined Planes	20](#lesson-3-—-gravity-and-inclined-planes)
 
-[5\. Cognitive Load Theory	21](#5.-cognitive-load-theory)
+[Lesson 4 — Projectile Motion	20](#lesson-4-—-projectile-motion)
 
-[Theory-Based Playtesting and Evaluation	21](#theory-based-playtesting-and-evaluation)
+[Lesson 5 — Einstein's Final Exam	20](#lesson-5-—-einstein's-final-exam)
 
-[Conclusion	22](#conclusion)
+[Conditional braking force field — proposed shared target mechanic	20](#conditional-braking-force-field-—-proposed-shared-target-mechanic)
 
-[References	22](#references)
+[Scoring and mathematical validation	21](#scoring-and-mathematical-validation)
+
+[Open implementation decisions	21](#open-implementation-decisions)
+
+[**Theoretical Foundations and Design Applications	21**](#theoretical-foundations-and-design-applications)
+
+[Overview	21](#overview)
+
+[1\. Mechanics, Dynamics, and Aesthetics (MDA)	22](#1.-mechanics,-dynamics,-and-aesthetics-\(mda\))
+
+[2\. GameFlow and Flow Theory	22](#2.-gameflow-and-flow-theory)
+
+[3\. Self-Determination Theory	23](#3.-self-determination-theory)
+
+[4\. Experiential Learning Theory	23](#4.-experiential-learning-theory)
+
+[5\. Cognitive Load Theory	24](#5.-cognitive-load-theory)
+
+[Theory-Based Playtesting and Evaluation	24](#theory-based-playtesting-and-evaluation)
+
+[Conclusion	25](#conclusion)
+
+[References	25](#references)
 
 ## **1\. Game Overview** {#1.-game-overview}
 
-*Motion Commotion\!* is an educational physics puzzle game designed to introduce middle school students to foundational physics concepts through interactive experimentation, prediction, and problem-solving.
+*Motion Commotion\! is an educational physics puzzle game designed to introduce middle school students to foundational physics concepts through block-based simulation, experimentation, and problem-solving.*
 
-Players encounter physics-based challenges in which they adjust variables, calculate predicted outcomes, and run simulations to test their understanding.
+Players solve fixed physics challenges by arranging configurable Direction, Force, Duration, and Wait instruction blocks, running a simulation, and revising their sequence based on observed motion.
 
 The game emphasizes learning through experimentation rather than memorization. Students are encouraged to develop confidence with physics equations, mathematical reasoning, and algebraic manipulation in a playful, low-pressure environment.
 
@@ -170,9 +188,9 @@ Set in the whimsical town of Motionville on the planet Inertia, *Motion Commotio
 ### **Design Pillars** {#design-pillars}
 
 1. **Learn by Experimenting:** Students observe how changing physical variables affects outcomes.  
-2. **Predict, Test, Improve:** Students practice calculations and compare predictions against simulated results.  
+2. **Construct, Test, Improve: Students use physics formulas to plan block sequences, observe simulated outcomes, and refine their solutions.**  
 3. **Accessible Learning:** Formulas, variable definitions, and hints support students without requiring prior physics expertise.  
-4. **Reward Understanding:** Scoring emphasizes accuracy, improvement, and optional mastery challenges.  
+4. **Reward Understanding: Scoring emphasizes accurate simulated outcomes, improvement, and personal high scores.**  
 5. **Play Without Punishment:** Unlimited attempts allow students to experiment without being locked out of progression.
 
 ## **2\. Narrative and Setting** {#2.-narrative-and-setting}
@@ -187,17 +205,17 @@ Everyday activities have become chaotic. Objects move at incorrect speeds, deliv
 
 ### **Player Objective** {#player-objective}
 
-Players take on the role of problem-solvers tasked with restoring order to Motionville.
+Players guide a sentient orb through physics challenges to recover five missing formulas and restore the Commotion Engine.
 
-By applying real-world physics principles, players must overcome challenges caused by the malfunctioning Commotion Engine. Each puzzle presents a different situation that requires mathematical reasoning, experimentation, and accurate predictions.
+By applying real-world physics principles, players must overcome challenges caused by the malfunctioning Commotion Engine. Each puzzle presents a different situation that requires mathematical reasoning, programmable instruction blocks, and experimentation.
 
-As players complete challenges, they help restore Motionville's systems and work toward resolving the Commotion Engine's malfunction.
+As players complete lessons, the orb recovers the missing formulas needed to restore the Commotion Engine.
 
 ### **Narrative Integration** {#narrative-integration}
 
 The narrative provides context for the game's educational challenges without interrupting the core gameplay loop.
 
-* Each level presents a physics-related problem affecting Motionville.  
+* Each lesson presents a physics-related obstacle on the orb's journey to recover a missing formula.  
 * Players use calculations and simulations to determine an appropriate solution.  
 * Successful completion represents progress toward restoring order.  
 * More advanced challenges may represent increasingly complicated consequences of the engine's malfunction.
@@ -208,7 +226,7 @@ The game uses a lighthearted, humorous tone and colorful 2D environments. Narrat
 
 **MVP:** Establish Motionville, the planet Inertia, and the malfunctioning Commotion Engine through a brief introduction. Connect the initial physics puzzle to a problem caused by the malfunction.
 
-**Stretch Goals:** Introduce additional locations, recurring characters, humorous dialogue, and a final challenge involving the Commotion Engine itself.
+**Stretch Goals: Add humorous dialogue, environmental storytelling, and a more elaborate Commotion Engine restoration sequence. Einstein's final exam is part of the planned five-lesson curriculum, not an extra combat encounter.**
 
 The narrative supports the educational gameplay while remaining achievable within the four-week development schedule.
 
@@ -218,47 +236,47 @@ Each physics puzzle follows a consistent gameplay sequence.
 
 **Step 1: Present the Challenge**
 
-The player is shown level with an obstacle course and a clear objective to reach. The play is given different block functions and other utilities that assist in moving the object towards that objective. New features are introduced with an tutorial.
+The player sees the fixed lesson environment, a clear positional or timed objective, and the available instruction blocks. A brief tutorial introduces new block functions and physics concepts as needed.
 
-Example: Determine how long a ball will take to travel a specified distance.
+Example: Arrange Direction, Force, Duration, and Wait blocks so the orb reaches a timed gateway at the required time.
 
 **Step 2: Adjust Variables and Design Block-Coded Action Sequence**
 
-The player configures relevant physical parameters through an interactive interface, such as, initial velocity, applied force on the ball, the angle at which the force is applied, or other variables appropriate to the selected physics concept.
+The player arranges and configures available Direction, Force, Duration, and Wait blocks to control the orb's motion. The available blocks and their numerical settings depend on the lesson.
 
 **Step 3: Run the Simulation**
 
-The player starts the simulation and watches the physical interaction unfold. Forces that are acting upon the ball object and its parameters are displayed. The player can view the simulation with playback features.
+The player runs the configured block sequence and observes the orb's motion. Relevant forces and parameters are shown where practical; playback controls are optional polish.
 
 **Step 4: Compare Results**
 
-The game displays the simulated result, prediction accuracy, and points earned (time-based).
+The game displays the simulated result, positional or arrival-time accuracy as appropriate to the lesson, and points earned.
 
 **Step 5: Retry or Continue**
 
-Players may retry the same scenario or continue to the next puzzle.
+Players may retry the same fixed variant, select another difficulty, or continue to the next unlocked lesson. Completing a lesson on any difficulty unlocks the next lesson.
 
-**Proposed:** A post-level mathematical challenge offers additional points for manipulating formulas or converting units.
+**Optional stretch: Formula Flip offers separate equation-rearrangement practice without awarding points or affecting lesson unlocks.**
 
 ## **4\. Gameplay and Physics Systems** {#4.-gameplay-and-physics-systems}
 
-### **4.1 Physics Puzzles** {#4.1-physics-puzzles}
+### 4.1 Physics Puzzles
 
-Each level focuses on a specific physics principle.
+Motion Commotion\! uses five sequential lessons, each with a fixed Easy, Medium, and Hard variant. Players construct sequences of Direction, Force, Duration, and Wait blocks, then run a Unity 2D physics simulation to reach a positional target or timed gateway. Lessons introduce new concepts while retaining previously learned physics where applicable. Each puzzle must be mathematically solvable from the displayed formulas and known parameters.
 
-Potential topics include:
+**Lesson 1 — Net Force and Acceleration (F\_net \= ma).** Easy: level track with low friction. Medium: increased friction. Hard: increased friction plus opposing wind. Goal: reach a positional target.
 
-* Distance, time, and average velocity  
-* Projectile motion  
-* Gravity and acceleration  
-* Friction and inclined surfaces  
-* Momentum and collisions
+**Lesson 2 — Average Velocity and Time (v\_avg \= Δx/Δt).** Easy: short timed gateway with generous arrival tolerance. Medium: farther gateway. Hard: same farther gateway with tighter arrival-time tolerance. Goal: arrive near the specified time.
 
-**Team Decision Required:** Select the physics concept for the initial playable level.
+**Lesson 3 — Gravity and Inclined Planes (F\_parallel \= mg sin θ in a simplified sliding model).** Easy: gentle downhill. Medium: steeper downhill. Hard: downhill followed by uphill. Goal: reach a positional target while accounting for gravity and friction.
 
-For the four-week project, the team will prioritize one complete physics puzzle. Additional physics concepts are stretch goals.
+**Lesson 4 — Projectile Motion (horizontal and vertical displacement).** Easy: short ravine with level landing. Medium: wider ravine. Hard: target at a different elevation. Goal: land within the target zone.
 
-All puzzles should use mathematically valid scenarios, with simulation behavior consistent with the equations being taught.
+**Lesson 5 — Einstein's Final Exam. A single continuous simulation combines prior concepts.** Easy: downhill and short jump. Medium: slope, timed gateway, and jump. Hard: adds opposing wind and tighter landing requirements. Einstein is a narrative boss/puzzle examiner, not a combat enemy.
+
+For position-based objectives, a proposed conditional braking field captures the orb only when its entry speed and remaining stopping distance allow a physically valid stop. Timed gateway scoring instead measures absolute arrival-time error. See “Curriculum and Block System — Current Design Blueprint” for block semantics, capture calculations, detailed variants, and open physics assumptions.
+
+Four-week implementation scope: prioritize one complete, polished, mathematically verified playable lesson as the MVP. The five-lesson sequence and all fifteen variants define the full design; implementation of additional content depends on time and playtesting.
 
 ### **4.2 Simulation Controls** {#4.2-simulation-controls}
 
@@ -269,15 +287,15 @@ Players will interact primarily by configuring experiments rather than directly 
 **Planned Inputs:**
 
 * Mouse controls for buttons, sliders, and numerical fields  
-* Keyboard input for numerical predictions and interface navigation  
+* Keyboard input for block values and interface navigation  
 * A simulation start button  
-* Retry and New Challenge options
+* Retry and Continue options
 
 **Proposed:** Additional keyboard shortcuts for common actions.
 
 ### **4.3 Formula Reference and Hints** {#4.3-formula-reference-and-hints}
 
-Each prediction screen displays the relevant formula and defines all variables.
+Each challenge displays the relevant physics formula and defines all variables; no numerical prediction-entry mechanic is required.
 
 Example:
 
@@ -291,36 +309,36 @@ Where:
 * d \= displacement (m), for a straight-line scenario  
 * t \= elapsed time (s)
 
-The formula remains visible even when students must rearrange it to solve for a different variable.
+The relevant formula remains visible during block construction and simulation. Formula rearrangement can be practiced separately through optional Formula Flip; it is not a difficulty gate.
 
-A Hint button offers assistance with identifying the unknown variable and rearranging the equation.
+A Hint button helps students identify relevant variables, select useful blocks, and reason through the physical relationships without revealing the full solution.
 
 The intention is to teach students how to work with formulas rather than simply enter memorized answers.
 
 ## **5\. Difficulty System** {#5.-difficulty-system}
 
-*Motion Commotion\!* features three difficulty settings that progressively increase both mathematical complexity and the precision required to complete physics puzzles.
+*Each lesson has three fixed difficulty variants (Easy, Medium, Hard), distinguished by physical conditions, course geometry, and/or outcome tolerance. The variants build on earlier lessons rather than requiring formula rearrangement or unit conversion as difficulty gates. See “Curriculum and Block System — Current Design Blueprint” for the lesson-by-lesson specification.*
 
-Each difficulty uses the same underlying physics principles, objectives, and simulation systems. However, target zones become smaller at higher difficulties, requiring more accurate calculations and predictions.
+All three variants use the same instruction-block mechanics and relevant physics formulas. Difficulty is designed into each fixed scenario, not generated by randomizing numerical inputs. Students build, test, and revise a block sequence; no numerical prediction field is used.
 
 ### **Easy** {#easy}
 
-* Large target zones with generous margins for error.  
-* Formulas are already rearranged to isolate the required variable.  
-* Students substitute provided values and calculate their answers.  
-* All measurements use consistent units.
+* Easy introduces the lesson's new physics principle in the simplest terrain or timing conditions, with forgiving tolerances.  
+* Lesson 1: low-friction level path. Lesson 2: short timed gateway. Lesson 3: gentle downhill slope. Lesson 4: short same-elevation ravine. Lesson 5: downhill slope followed by a short jump.  
+* Students use the displayed formula and known parameters to plan a block sequence and observe its result.  
+* Values and units remain clear and consistent across difficulties.
 
 ### **Medium** {#medium}
 
-* Moderately sized target zones that require greater precision.  
-* Students receive the base formula and must rearrange it to isolate the required variable.  
-* All measurements use consistent units.
+* Medium adds a physical challenge or increases distance relative to Easy.  
+* Lesson 1: higher friction. Lesson 2: farther timed gateway. Lesson 3: steeper downhill. Lesson 4: wider ravine. Lesson 5: slope, timed gateway, and jump in one simulation.  
+* Values and units remain clear and consistent across difficulties.
 
 ### **Hard** {#hard}
 
-* Small target zones that require the greatest precision.  
-* Students receive the base formula and must rearrange it to isolate the required variable.  
-* Some measurements require unit conversion (e.g., centimeters to meters) before calculating.
+* Hard adds another physical condition, more demanding terrain, or tighter accuracy tolerance.  
+* Hard builds on the lesson's prior concepts with more demanding physical conditions or tighter tolerances, as specified below.  
+* Lesson 1: Medium's friction plus opposing wind. Lesson 2: Medium's gateway distance with tighter timing tolerance. Lesson 3: downhill then uphill. Lesson 4: target at different elevation. Lesson 5: timed gateway, opposing wind, and more demanding landing in one simulation.
 
 ### **Attempt-Based Scoring** {#attempt-based-scoring}
 
@@ -330,98 +348,65 @@ All difficulty settings use the same attempt multipliers:
 * Second attempt: 1.5× points  
 * Third and subsequent attempts: 1× points
 
-Players have unlimited attempts regardless of difficulty. Retrying the same challenge advances the attempt counter, while selecting a new challenge variation resets it.
+Players have unlimited attempts regardless of difficulty. Retry replays the same fixed level variant and advances its attempt counter; players may select a different fixed difficulty variant, but there is no randomized New Challenge action.
 
-Prediction accuracy remains a separate scoring consideration, with the previously proposed accuracy multiplier system subject to team approval.
+Outcome accuracy is measured from the simulated resting position or gateway arrival time. Exact thresholds and multipliers remain subject to team approval.
 
 ### **Development Considerations** {#development-considerations}
 
-Difficulty settings will reuse the same level assets, physics simulation, and core mechanics wherever possible. Target sizes, numerical values, and formula presentation can be adjusted through configurable level parameters.
+Difficulty variants should reuse Unity scenes, physics components, block execution, and assets where practical. Configure friction, wind, slopes, distances, target locations, and timing tolerances per fixed variant. See the curriculum blueprint for exact conceptual differences; numerical parameters remain to be verified.
 
 The MVP will prioritize one fully functional physics puzzle and its core learning loop. Additional difficulty configurations may be implemented incrementally as development time allows.
 
-## **6\. Scoring System** {#6.-scoring-system}
+## **6\. Scoring System**
 
-Scoring rewards successful puzzle completion, accurate predictions, and optional objectives.
+Scoring rewards successful completion of the main physics challenge and accurate simulated outcomes. Accuracy uses absolute differences in physical units rather than percentages. Formula Flip is optional practice and does not award separate points.
 
-### **6.1 Main Puzzle Score** {#6.1-main-puzzle-score}
+### **6.1 Main Puzzle Scor**e
 
-**Main Puzzle Score \= (Completion Points \+ Optional Objective Points) × Accuracy Multiplier × Attempt Multiplier**
+Main Puzzle Score \= Completion Points × Outcome Accuracy Multiplier × Attempt Multiplier
 
-The accuracy multiplier applies to the entire main puzzle score.
+Completion points are awarded for a successful run. The outcome accuracy multiplier applies to those points; a failed run does not earn completion points. The attempt multiplier is shared across all difficulties: first attempt 2×, second attempt 1.5×, third and subsequent attempts 1×. Players may retry indefinitely. The best score for each lesson and difficulty variant is retained.
 
-### **6.2 Prediction Accuracy** {#6.2-prediction-accuracy}
+### **6.2 Absolute Outcome Erro**r
 
-| Prediction Accuracy | Proposed Multiplier |
-| ----- | ----- |
-| 90–100% | 2.0× |
-| 80–89% | 1.5× |
-| 70–79% | 1.25× |
-| Below 70% | 1.0× |
+Position-based challenges: Position Error \= \|x\_final − x\_target\|, measured in meters along the relevant scoring axis. For a landing target, use the landing position; for a braking-field target, use the orb's final resting position.
 
-Students do not need a mathematically perfect prediction to receive the maximum multiplier.
+Timed gateways: Time Error \= \|t\_arrival − t\_target\|, measured in seconds.
 
-**Implementation Note:** The team must define how prediction accuracy is calculated, including rounding, tolerances, and cases involving values near zero.
+Absolute value makes overshooting and undershooting by the same amount equally accurate. A target at 10 m yields errors of 1 m at 9 m or 11 m, 2 m at 8 m or 12 m, and 3 m at 7 m or 13 m.
 
-### **6.3 Optional Physics Objectives** {#6.3-optional-physics-objectives}
+### **6.3 Proposed Accuracy Band**s
 
-**Stretch Goal**
+Illustrative positional bands only: error ≤ 1 m earns 2.0×; error \> 1 m and ≤ 2 m earns 1.5×; error \> 2 m and ≤ 3 m earns 1.25×; error \> 3 m earns 1.0× if the run still qualifies as a success. Timed levels use analogous thresholds in seconds, chosen for that specific level. These thresholds and multipliers remain proposals pending physics validation and playtesting.
 
-Levels may feature additional physical conditions that award bonus points.
+Each fixed lesson variant defines its own success conditions and accuracy thresholds. A run can satisfy the level's completion criteria without earning the highest accuracy tier. Conversely, a close result that violates a required condition (such as missing a gateway or failing the physically valid target capture) is not automatically a success. The team must document which position or event is measured, the capture/landing tolerance, and the threshold boundaries.
 
-Examples:
+### **6.4 Implementation and Feedbac**k
 
-* Reach a target while traveling below a specified speed.  
-* Complete a challenge within a specified time.  
-* Land within a designated target zone.
+Display the target value, actual result, absolute error with units, accuracy tier, attempt multiplier, points earned, and personal best. Apply rounding only for display; evaluate thresholds against the unrounded simulation result. Einstein's continuous final exam may need an explicit rule for combining multiple objectives; do not assume one universal distance metric covers both timing and landing.
 
-Optional objectives should reinforce the physics principle rather than reward unrelated actions.
+## **7\. Level Selection and Replayability**
 
-### **6.4 Post-Level Bonus Challenges** {#6.4-post-level-bonus-challenges}
+### **Fixed Lesson Variant**s
 
-**Stretch Goal**
+Motion Commotion\! has five sequential lessons, each with three designed difficulty variants: Easy, Medium, and Hard. Each variant changes relevant terrain, environmental forces, distance, or success tolerance. Section 5 summarizes difficulty progression; Section 4.1 and “Curriculum and Block System — Current Design Blueprint” specify the lesson-by-lesson conditions.
 
-After completing a puzzle, players may attempt an optional mathematical challenge.
+### **Lesson Progressio**n
 
-Examples include:
+Players progress through Lessons 1–5 by successfully completing physics challenges. Each lesson introduces a new concept and may build on mechanics learned earlier. The final lesson is Einstein's continuous multi-concept challenge. Completing a lesson on any difficulty (Easy, Medium, or Hard) unlocks the next lesson. Higher difficulties are optional challenges for improved high scores, not progression gates; no separate leveling system is used.
 
-* Rearranging the level's equation to solve for a different variable  
-* Solving the same equation using different values  
-* Converting meters to centimeters or seconds to minutes
+### **Retry and Experimentatio**n
 
-These challenges award additional points after the main accuracy multiplier.
+Players may retry a fixed lesson variant without an attempt limit. Retry preserves the variant's geometry, physics parameters, and objective so players can revise their Direction, Force, Duration, and Wait blocks and learn from the previous simulation. Each new run advances the attempt counter for that challenge. There is no randomized New Challenge button or automatic parameter reroll.
 
-Each post-level bonus may contribute to progression only once per level to discourage repetitive point farming.
+### **High Score**s
 
-## **7\. Challenge Variations and Replayability** {#7.-challenge-variations-and-replayability}
+Each lesson and difficulty variant retains the player's highest score. Replays can improve that record, but repeated lower-scoring attempts do not accumulate points toward a separate Physics Level. The established attempt multipliers are 2× on the first attempt, 1.5× on the second, and 1× thereafter. Outcome accuracy is based on stopping position for positional targets or arrival-time error for timed gateways; exact score thresholds are still to be confirmed in Section 6\.
 
-Each physics level is designed to support three predefined numerical variations of equivalent mathematical difficulty.
+### **Replayability and Scop**e
 
-For example, an average velocity puzzle could present:
-
-| Variation | Distance | Average Velocity | Expected Time |
-| ----- | ----- | ----- | ----- |
-| A | 12 m | 3 m/s | 4 s |
-| B | 20 m | 4 m/s | 5 s |
-| C | 18 m | 3 m/s | 6 s |
-
-These examples assume constant velocity in a straight line.
-
-### **Retry** {#retry}
-
-* Retains the current challenge variation.  
-* Allows the student to adjust their solution.  
-* Advances the attempt counter for the selected difficulty.  
-* Does not limit the number of attempts.
-
-### **New Challenge** {#new-challenge}
-
-* Selects a different predefined variation.  
-* Resets attempt-bonus eligibility for the new challenge.  
-* Randomly cycles through unplayed variations before repeating them.  
-* Avoids immediately repeating the previous variation.
-
-All variations must be validated to ensure that the physics and mathematical solutions are consistent.
+Replayability comes from trying harder fixed variants, improving block sequences, achieving more accurate results, and beating personal high scores. A leaderboard is optional, not required for progression. The four-week MVP prioritizes a polished, validated lesson and a reliable Retry loop; the full five-lesson, fifteen-variant structure is the intended curriculum rather than a guaranteed four-week deliverable.
 
 ## **8\. Story and Player Progression** {#8.-story-and-player-progression}
 
@@ -435,28 +420,28 @@ Each recovered formula represents a narrative milestone and progress toward rest
 
 ### **Level Progression** {#level-progression}
 
-Players advance through physics challenges by applying mathematical reasoning, predicting outcomes, and successfully completing simulations.
+Players advance sequentially through Lessons 1–5 by applying mathematical reasoning, arranging instruction blocks, and successfully completing simulations. Completing any lesson on Easy, Medium, or Hard unlocks the next lesson; higher difficulties are optional challenges, not progression gates.
 
 Each challenge reinforces a physics concept while contributing to the orb's larger mission.
 
 The narrative provides a sense of purpose and accomplishment without requiring extensive cutscenes, dialogue, or exploration mechanics.
 
-### **Player Progression (Stretch Goal)** {#player-progression-(stretch-goal)}
+### **High Scores and Replayability** {#high-scores-and-replayability}
 
-An optional Physics Level system tracks player mastery through their highest earned scores across completed challenges.
+The game progresses through Lessons 1–5. A high-score system records the best result for each completed lesson and difficulty variant, encouraging replay without adding a separate experience-level system.
 
-* Only the highest score achieved for each level contributes to the player's total.  
-* Improving a previous score adds only the difference.  
-* One-time bonus challenges may contribute additional points.  
-* Replaying challenges does not allow unlimited score farming.
+* Each lesson and difficulty variant retains its own high score; a combined leaderboard or total score is optional and not required for progression.  
+* Replaying a challenge can replace its previous high score when the player performs better.  
+* Scores come exclusively from the main physics challenge, with replayability driven by improved personal high scores. Optional Formula Flip practice is separate from scoring and lesson unlocks.  
+* Repeating a challenge cannot inflate its stored high score; only the best attempt is retained.
 
-Physics Level reflects demonstrated performance rather than controlling access to story content.
+High scores are performance records only. Story progression follows successful completion of the five lessons.
 
 ### **Development Scope** {#development-scope}
 
 **MVP:** Introduce the orb's mission, establish the missing-formula premise, and connect successful puzzle completion to narrative progress.
 
-**Stretch Goals:** Implement the recovery of all five formulas, additional narrative milestones, a completed Commotion Engine restoration sequence, and the optional Physics Level system.
+**Stretch Goals: Expand narrative milestones and the Commotion Engine restoration sequence; offer Formula Flip as an optional equation-rearrangement activity; add a polished high-score display or leaderboard if time allows. Formula Flip does not gate lesson progression or award separate bonus points.**
 
 ## **9\. User Interface** {#9.-user-interface}
 
@@ -468,7 +453,7 @@ The interface should be visually friendly, readable, and approachable for middle
 * Difficulty Selection  
 * Instructions / How to Play
 
-**Stretch:** Physics Level display and progress tracking.
+**High-score display for completed lessons (stretch: leaderboard).**
 
 ### **Challenge Screen** {#challenge-screen}
 
@@ -476,21 +461,21 @@ The interface should be visually friendly, readable, and approachable for middle
 * Interactive 2D simulation area  
 * Adjustable physical variables  
 * Formula reference and variable definitions  
-* Numerical prediction field  
+* Block sequence workspace with configurable values  
 * Hint button  
 * Start Simulation button
 
 ### **Results Screen** {#results-screen}
 
-* Predicted result  
+* Configured block sequence  
 * Actual simulation result  
-* Prediction accuracy  
+* Outcome accuracy  
 * Points earned  
 * Retry button  
-* New Challenge button  
+* Difficulty selection / level selection button  
 * Continue button, when another level is available
 
-**Stretch:** Optional objective results, Formula Flip challenges, and progression animations.
+**Stretch: Optional Formula Flip activity, polished results presentation, high-score feedback, and lesson-unlock animations.**
 
 ## **10\. Art Direction** {#10.-art-direction}
 
@@ -505,7 +490,7 @@ The presentation should be playful, expressive, and easy to understand.
 * Clear platforms, ramps, obstacles, and targets  
 * Readable numerical labels and controls  
 * Simple animations that communicate motion and physical reactions  
-* Visual feedback for successful predictions and completed objectives
+* Visual feedback for successful target capture, timed-gateway arrival, and completed objectives
 
 The art should support the educational experience without overwhelming students with unnecessary visual detail.
 
@@ -522,16 +507,16 @@ Potential audio features include:
 * A short sound when a simulation begins  
 * Collision and bouncing effects  
 * Positive feedback for completing objectives  
-* Distinct sounds for earning bonus points  
+* Distinct sounds for setting a new personal high score  
 * Optional background music
 
 Audio should be supportive rather than distracting.
 
 ## **12\. Technical Design** {#12.-technical-design}
 
-**Target Platform:** Modern desktop web browsers
+**Target Platform:** Modern desktop
 
-**Application Type:** Browser-based interactive game
+**Application Type:** Unity game
 
 **Rendering:** 2D
 
@@ -539,19 +524,19 @@ Audio should be supportive rather than distracting.
 
 **Technology Stack:** To Be Determined by the Team
 
-Potential implementation approaches include JavaScript/TypeScript with HTML5 Canvas and a lightweight 2D game framework.
+Implementation uses Unity 2D; programming language, physics tuning, and supporting architecture are determined by the development team.
 
 The team should select technology based on familiarity, physics requirements, and the four-week development schedule.
 
 ### **Implementation Priorities** {#implementation-priorities}
 
 * Reusable physics puzzle interface  
-* Data-driven numerical challenge configurations  
-* Consistent prediction and results workflow  
+* Data-driven configurations for fixed lesson and difficulty variants  
+* Consistent block construction, simulation, outcome feedback, and Retry workflow  
 * Reliable mathematical calculations  
 * Clear separation between simulation logic and scoring logic
 
-**Proposed:** Challenge configurations can be stored as reusable data objects, allowing the team to add new numerical variations without rebuilding the interface.
+**Proposed: Store fixed lesson and difficulty configurations as reusable Unity data objects, so terrain, forces, timing tolerances, and available blocks can vary without rebuilding the interface.**
 
 ## **13\. Minimum Viable Product (MVP)** {#13.-minimum-viable-product-(mvp)}
 
@@ -562,15 +547,15 @@ The MVP is one complete, playable educational physics puzzle demonstrating the g
 1. One physics concept selected by the team.  
 2. One functioning 2D physics simulation.  
 3. Adjustable physical variables.  
-4. Numerical prediction input.  
+4. Configurable Direction, Force, Duration, and Wait instruction blocks.  
 5. Visible formula reference, variable definitions, and optional hint.  
-6. Simulation results compared against the student's prediction.  
-7. Basic accuracy-based scoring and difficulty-based attempt bonuses.  
+6. Simulation results measured against the target position or target arrival time.  
+7. Basic outcome-accuracy scoring and shared attempt multipliers across all difficulties.  
 8. Unlimited retries.  
-9. Three predefined numerical variations of the same puzzle.  
+9. A mathematically validated fixed challenge; Easy, Medium, and Hard variants are part of the full curriculum blueprint.  
 10. Simple, readable interface with mouse and keyboard support.
 
-**Success Criterion:** A student can understand the challenge, calculate a prediction, run the simulation, interpret the results, and retry without developer assistance.
+**Success Criterion: A student can understand the objective, construct and configure a block sequence, run the simulation, interpret the result, and retry without developer assistance.**
 
 ## **14\. Stretch Goals** {#14.-stretch-goals}
 
@@ -579,10 +564,10 @@ If the MVP is completed and tested, additional features may be implemented in th
 | Priority | Feature |
 | ----- | ----- |
 | High | Additional physics puzzles, targeting three total |
-| High | Optional physics objectives |
-| Medium | Post-level formula manipulation challenges |
-| Medium | Unit conversion challenges |
-| Medium | Physics Level progression and personal-best tracking |
+| High | Optional Formula Flip activity (stretch goal; separate from main challenge scoring) |
+| Medium | Additional interface accessibility and tutorial improvements |
+| Medium | Additional validated fixed difficulty variants |
+| Medium | High-score records and optional leaderboard |
 | Low | Expanded animations and audio |
 | Low | Additional visual customization and polish |
 
@@ -593,27 +578,27 @@ The team may revise these priorities based on development progress and playtesti
 ### **Week 1 — Planning and Core Prototype** {#week-1-—-planning-and-core-prototype}
 
 * Finalize the initial physics concept.  
-* Select the web development framework.  
+* Configure the Unity 2D project and establish the physics simulation architecture.  
 * Define the puzzle's equations and numerical variables.  
 * Establish the basic interface and visual direction.  
 * Create an initial working simulation.
 
 **Milestone:** A basic physics scenario can be configured and simulated.
 
-### **Week 2 — Prediction and Scoring** {#week-2-—-prediction-and-scoring}
+### **Week 2 — Block Programming and Scoring** {#week-2-—-block-programming-and-scoring}
 
-* Implement numerical prediction input.  
+* Implement drag-and-drop Direction, Force, Duration, and Wait blocks with configurable values.  
 * Display formulas, variable definitions, and hints.  
-* Compare predictions with calculated or simulated outcomes.  
-* Implement accuracy-based scoring.  
-* Implement difficulty-based attempt bonuses.
+* Execute block sequences and compare simulated stopping positions or gateway arrival times with the level objective.  
+* Implement outcome-based scoring for target position or gateway arrival time.  
+* Implement shared attempt multipliers and high-score tracking.
 
-**Milestone:** The complete prediction → simulation → feedback loop works.
+**Milestone: The complete block sequence → simulation → outcome feedback → Retry loop works.**
 
 ### **Week 3 — Replayability and Playtesting** {#week-3-—-replayability-and-playtesting}
 
-* Implement three validated challenge variations.  
-* Add Retry and New Challenge functionality.  
+* Validate the chosen MVP challenge mathematically; build additional fixed difficulty variants only if time permits.  
+* Add Retry and fixed difficulty-variant selection functionality.  
 * Test difficulty settings and scoring behavior.  
 * Conduct initial usability testing.  
 * Resolve mathematical inconsistencies and gameplay issues.
@@ -638,12 +623,12 @@ The game should be tested with users representative of its target audience when 
 
 * Can students understand what the puzzle asks them to do?  
 * Are formulas and variable definitions easy to interpret?  
-* Do students understand how to enter predictions?  
-* Can students recognize why their predictions were accurate or inaccurate?  
+* Can students arrange, configure, and run the instruction blocks without assistance?  
+* Can students explain why their simulated outcome met or missed the target?  
 * Do hints support learning without giving away solutions?  
 * Does the scoring system encourage experimentation?  
 * Are the controls and interface intuitive?  
-* Do students feel encouraged to try again after an incorrect prediction?
+* Do students feel encouraged to revise their block sequence after an unsuccessful attempt?
 
 Testing should combine observation with brief player feedback.
 
@@ -665,21 +650,21 @@ Numerical values, rounding requirements, and formulas should be appropriate for 
 
 ### **Scoring Complexity** {#scoring-complexity}
 
-The full scoring system may be difficult to balance within the available development time. A simplified implementation should be considered if necessary.
+Outcome accuracy bands and attempt multipliers may be difficult to balance within the available development time. Simplify scoring if needed while preserving clear feedback and unlimited retries.
 
 ### **Feature Creep** {#feature-creep}
 
-Additional levels, progression systems, and cosmetic features should remain optional until the MVP is stable.
+Additional lesson variants, leaderboard features, and cosmetics should remain optional until the MVP is stable.
 
 ## **18\. Open Team Decisions** {#18.-open-team-decisions}
 
 The following decisions require team discussion and approval:
 
 1. Which physics concept will be implemented first?  
-2. Which web framework and physics tools will be used?  
+2. Which Unity 2D physics components, project settings, and block-execution architecture will be used?  
 3. What specific physical variables can students manipulate in the first puzzle?  
-4. Must students submit a prediction before running a simulation, or can they freely experiment first?  
-5. How will prediction accuracy and numerical tolerances be calculated?  
+4. Which block types and parameter ranges will the MVP lesson provide, and how will the game explain them?  
+5. How will positional and arrival-time accuracy, numerical tolerances, and score thresholds be calculated?  
 6. Which proposed scoring mechanics are essential for the MVP?  
 7. How will tasks be distributed across the development team?  
 8. What stretch features are realistic after the MVP is complete?
@@ -688,11 +673,53 @@ The following decisions require team discussion and approval:
 
 *Motion Commotion\!* aims to make physics approachable by turning abstract equations into interactive, understandable experiences.
 
-Rather than simply telling students how physics works, the game invites them to make predictions, experiment with variables, observe results, and develop confidence through practice.
+Rather than simply telling students how physics works, the game invites them to construct block-based solutions, experiment with forces and timing, observe simulated results, and develop confidence through practice.
 
 **Our goal is not to make students memorize physics equations. It is to help them discover that they can understand and use them.**
 
 The project will prioritize one polished, educationally meaningful gameplay experience over a larger collection of unfinished features.
+
+# CURRICULUM AND BLOCK SYSTEM — CURRENT DESIGN BLUEPRINT {#curriculum-and-block-system-—-current-design-blueprint}
+
+## Status and scope {#status-and-scope}
+
+The full design contains five sequential physics lessons, each with fixed Easy, Medium, and Hard variants (15 variants total). Lessons take the orb progressively deeper into the Earth. The fifth lesson culminates in a continuous boss puzzle featuring Albert Einstein, as selected by the team. This is the full curriculum plan, not a commitment to implement all 15 variants during the four-week project. The MVP remains one polished, playable, mathematically verified physics challenge; additional lessons and variants depend on team capacity and testing.
+
+## Core interaction and execution {#core-interaction-and-execution}
+
+Players assemble and configure a sequence of instruction blocks, run the entire sequence as a physics simulation, observe the result, and revise their solution. The level offers only block types relevant to its challenge, in no prescribed solution order. Players may use multiple copies of any available block. Direction sets or replaces the current force angle in degrees. Force sets or replaces the current applied-force magnitude in newtons. Duration applies the configured force for a specified number of simulation seconds. Wait advances simulation time without additional player-controlled force. Later Direction or Force blocks replace the earlier settings rather than adding to them; changing settings does not reset the orb's existing velocity. Environmental friction, gravity, and wind act independently throughout. Exact block execution edge cases and the per-level palette require prototype verification.
+
+## Lesson 1 — Net Force and Acceleration {#lesson-1-—-net-force-and-acceleration}
+
+Primary equation: F\_net \= ma. Objective: reach a target along a straight, level path. Easy: low friction, no wind. Medium: higher friction, no wind. Hard: the same higher friction as Medium plus opposing wind. Learning progression: apply force; account for friction; combine multiple opposing forces. Target accuracy is positional.
+
+## Lesson 2 — Average Velocity and Time {#lesson-2-—-average-velocity-and-time}
+
+Primary equation: v\_avg \= Δx / Δt for straight-line displacement. Objective: reach an underground gateway close to a specified simulation arrival time. Easy: short straight passage with generous timing tolerance. Medium: more distant gateway. Hard: Medium's distance with tighter arrival-time tolerance. Previously learned friction and force behavior remain relevant. Scoring uses absolute arrival-time error (early and late arrivals are treated symmetrically). Exact target times and tolerance bands remain TBD.
+
+## Lesson 3 — Gravity and Inclined Planes {#lesson-3-—-gravity-and-inclined-planes}
+
+Primary concept: gravity's component along a slope; a simplified sliding model may use F\_parallel \= mg sin(θ), with friction accounted for separately. Easy: gentle downhill slope. Medium: steeper downhill slope. Hard: downhill followed by uphill terrain. Objective: reach the target while accounting for how terrain changes acceleration. Positional accuracy applies. Sliding versus rotational rolling physics must be explicitly aligned with the equations presented to students.
+
+## Lesson 4 — Projectile Motion {#lesson-4-—-projectile-motion}
+
+Primary concepts: horizontal and vertical displacement during flight; simplified equations Δx \= v\_x t and Δy \= v\_y0 t − (1/2)gt², when assumptions apply. Easy: short ravine, landing at the launch elevation. Medium: wider ravine. Hard: target at a different elevation. Objective: configure a launch that lands within the target region. This is the major two-dimensional step in the curriculum; hints and known values should keep the mathematics accessible.
+
+## Lesson 5 — Einstein's Final Exam {#lesson-5-—-einstein's-final-exam}
+
+Albert Einstein is the team's selected final boss. Each difficulty is ONE continuous simulation, not a series of disconnected minigames. The lesson assesses cumulative use of net force, timing, gravity on slopes, and projectile motion. Proposed Easy: incline followed by a short ravine jump. Proposed Medium: slope, timed gateway, and ravine crossing. Proposed Hard: Medium's course plus opposing wind and more precise landing requirements. Einstein's presentation and reactions can convey the boss encounter without a combat system. Exact boss scoring and level geometry remain TBD.
+
+## Conditional braking force field — proposed shared target mechanic {#conditional-braking-force-field-—-proposed-shared-target-mechanic}
+
+For position-based targets, the target region may contain a non-bouncing braking force field. It should capture the orb only if the entry location and speed permit it to stop within the available field distance; otherwise the attempt continues or fails under ordinary physics. In a one-dimensional constant-net-deceleration model, d\_stop \= v\_entry² / (2a\_brake), where a\_brake is a positive deceleration magnitude. Capture is possible when v\_entry² ≤ 2a\_brake d\_available. The field must stop braking at zero velocity so the orb does not reverse. Captured final resting position determines positional accuracy. The field is a simplifying design proposal, not a finalized Unity implementation; angled flight, other environmental forces, and target geometry require explicit treatment. Level 2 gateway arrival timing is measured independently.
+
+## Scoring and mathematical validation {#scoring-and-mathematical-validation}
+
+Successful attempts retain the shared attempt multipliers: first 2×, second 1.5×, third and later 1×, with unlimited retries. Outcome accuracy replaces numerical prediction accuracy: final position relative to the target for position-based levels, and \|t\_arrival − t\_target\| for the timed gateway. Exact accuracy bands and boss combination rules are not yet approved. Each variant must document its learning objective, relevant formula, given values, unknowns, physics assumptions, fixed geometry, available blocks, intended solution sequence, verified calculation, and scoring/capture tolerances. Prefer simple, transparent formulas over trial-and-error-only puzzles. Numerical prediction-entry fields, formula-rearrangement difficulty tiers, and randomized A/B/C numerical scenarios are not part of this design.
+
+## Open implementation decisions {#open-implementation-decisions}
+
+Confirm force application and collision behavior in Unity FixedUpdate; whether the orb slides or rolls with rotational inertia; friction coefficients and wind strength; per-level block palette; force-field braking model and capture geometry; exact timing and positional accuracy tiers; feasibility of all five lessons within the schedule; and Einstein's final scoring. Treat these as design/engineering tasks rather than approved numerical specifications.
 
 # **Theoretical Foundations and Design Applications** {#theoretical-foundations-and-design-applications}
 
@@ -711,7 +738,7 @@ The MDA framework examines games through three interconnected components: mechan
 **Application to Motion Commotion\!:**
 
 * **Mechanics:** Players manipulate physics variables, predict numerical outcomes, run simulations, and earn scores based on performance.  
-* **Dynamics:** Players experiment with different values, compare predictions against simulated results, and refine their calculations through repeated attempts.  
+* **Dynamics: Players experiment with block sequences and values, compare simulated outcomes against level objectives, and refine their solutions through repeated attempts.**  
 * **Aesthetics:** The intended experiences include curiosity, discovery, challenge, accomplishment, and satisfaction from overcoming obstacles.
 
 The narrative reinforces these experiences by giving players a meaningful objective: guiding a sentient orb through Motionville to recover five missing formulas and restore the Commotion Engine.
@@ -728,9 +755,9 @@ GameFlow identifies elements associated with player enjoyment, including clear g
 
 The game's difficulty system is designed to accommodate different levels of mathematical proficiency:
 
-* **Easy:** Rearranged formulas, consistent units, and larger target zones.  
-* **Medium:** Formula rearrangement, consistent units, and smaller target zones.  
-* **Hard:** Formula rearrangement, unit conversions, and the smallest target zones.
+* **Easy: Simpler physical conditions and forgiving target or timing tolerances, with consistent units and visible formulas.**  
+* **Medium: increased distance, friction, slope, or combined mechanics depending on the lesson.**  
+* **Hard: additional environmental forces, more complex terrain, or tighter tolerances depending on the lesson.**
 
 Players can select an appropriate challenge without changing the fundamental physics concept being taught.
 
@@ -748,13 +775,13 @@ Self-Determination Theory identifies autonomy, competence, and relatedness as fu
 
 **Application to Motion Commotion\!:**
 
-**Autonomy:** Players choose their difficulty level, experiment with variables, and decide whether to retry an existing challenge or generate a new variation.
+**Autonomy: Players choose among available difficulty variants, experiment with block sequences and variables, and decide when to retry or replay completed lessons.**
 
-**Competence:** Players receive feedback on prediction accuracy and can improve their scores as their mathematical understanding develops.
+**Competence: Players receive feedback on simulated outcomes and can improve their high scores as their mathematical understanding develops.**
 
 **Relatedness:** The narrative may encourage a sense of connection to the sentient orb and the fictional world of Motionville, although this aspect is less central to the design and would require playtesting to evaluate.
 
-The optional Physics Level system further supports competence by recognizing improvements in personal-best performance rather than rewarding repetitive score farming.
+High-score records support competence by recognizing improved performance without introducing a separate leveling system.
 
 These systems aim to make mathematical problem-solving feel self-directed and rewarding.
 
@@ -766,11 +793,11 @@ Experiential Learning Theory describes learning as a process involving concrete 
 
 **Application to Motion Commotion\!:**
 
-The game's prediction-and-simulation loop encourages players to engage in a similar learning process:
+The game's block-building and simulation loop encourages players to engage in a similar learning process:
 
-1. **Prediction:** Players apply physics concepts and mathematical formulas to anticipate an outcome.  
+1. **Planning: Players use physics concepts and formulas to configure a block sequence.**  
 2. **Experimentation:** Players configure variables and run the simulation.  
-3. **Observation:** Players compare the simulated result with their prediction.  
+3. **Observation: Players inspect motion and compare the outcome with the level's target.**  
 4. **Reflection and Revision:** Players identify discrepancies, reconsider their calculations, and adjust their approach.
 
 Unlimited retries allow this process to repeat as players refine their understanding.
@@ -790,8 +817,8 @@ The game's interface and difficulty settings are designed to manage unnecessary 
 * Relevant formulas remain accessible during challenges, reducing the need to memorize equations before applying them.  
 * Variables are clearly labeled to help players understand their mathematical relationships.  
 * Hints provide guidance without automatically supplying solutions.  
-* Easy difficulty reduces mathematical complexity by presenting rearranged formulas and consistent units.  
-* Medium and Hard progressively introduce algebraic manipulation and unit conversions.
+* Easy difficulty introduces each lesson's new physics principle through simpler terrain and forgiving conditions.  
+* Medium and Hard progressively add physical complexity or tighter outcome tolerances without requiring unrelated algebra or unit conversions.
 
 These features are intended to help players concentrate on the physics concepts being taught rather than struggling with unclear instructions or excessive information.
 
@@ -806,10 +833,10 @@ The development team can use these theoretical foundations to evaluate whether t
 | MDA | Whether mechanics produce experimentation, curiosity, and satisfaction |
 | GameFlow | Whether challenge levels, goals, and feedback support engagement |
 | Self-Determination Theory | Whether players experience choice, competence, and motivation |
-| Experiential Learning | Whether players use feedback to revise predictions and improve understanding |
+| Experiential Learning | Whether players use feedback to revise block sequences and improve understanding |
 | Cognitive Load Theory | Whether instructions, formulas, and interface elements are understandable without unnecessary confusion |
 
-Playtesting may incorporate observation, questionnaires, prediction accuracy, retry patterns, and short conceptual questions.
+Playtesting may incorporate observation, questionnaires, outcome accuracy, retry patterns, and short conceptual questions.
 
 These measures can help identify design weaknesses and inform iterative improvements.
 

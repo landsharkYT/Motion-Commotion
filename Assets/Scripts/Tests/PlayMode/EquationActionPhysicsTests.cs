@@ -21,12 +21,12 @@ namespace MotionCommotion.Tests
         private ProgramCommand Add(CommandKind kind,double angle=0)
         {
             if(EquationCommands.RequiresDirection(kind))
-            { var direction=new ProgramCommand(CommandKind.Direction); direction.Value.Text=angle.ToString(System.Globalization.CultureInfo.InvariantCulture); session.Program.Commands.Add(direction); }
+            { var direction=new ProgramCommand(CommandKind.Direction); direction.Value.Text=angle.ToString("0.###",System.Globalization.CultureInfo.InvariantCulture); session.Program.Commands.Add(direction); }
             var command=new ProgramCommand(kind); session.Program.Commands.Add(command); return command;
         }
         private void PositionValue(ProgramCommand command,double value)
         {
-            var inputs=command.Value.Expression.Inputs; inputs[0].Text=value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var inputs=command.Value.Expression.Inputs; inputs[0].Text=value.ToString("0.###",System.Globalization.CultureInfo.InvariantCulture);
             inputs[1].Text="0"; inputs[2].Text="0"; inputs[3].Text="0";
         }
         private void Wait(string seconds="1") { Add(CommandKind.Wait).Value.Text=seconds; }

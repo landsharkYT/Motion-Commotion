@@ -33,3 +33,4 @@ sysinfo.txt
 Tools/node_modules/
 Tools/__pycache__/
 docs/verification/results/*-start.json
+.opencode

@@ -1,5 +1,6 @@
 # Block presentation and snapping audit
 
+Current numeric editing and speed-cap contract: [input validation](input-validation.md). This supersedes earlier numeric draft and kick-budget rules.
 Later behavior authority: the [standalone equation contract](standalone-equation-actions.md) supersedes the first three equations' nested-only restriction. It defines current action semantics and implementation status.
 
 Status: complete. Implementation, native tests, browser interaction checks, visual inspection, and independent adversarial review passed.

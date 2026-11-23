@@ -18,7 +18,7 @@ namespace MotionCommotion
         private void Update()
         {
             run.gameObject.SetActive(session.Editable); pause.gameObject.SetActive(!session.Editable);
-            run.interactable=session.Editable && session.Program.Commands.Count>0 && session.Validation!=null && session.Validation.Valid;
+            run.interactable=session.Editable && session.Program.Commands.Count>0 && session.Validation!=null && session.Validation.Valid && !workspace.HasInvalidDraft;
             pause.interactable=session.RuntimeError==null && (session.State==SessionState.Running || session.State==SessionState.Paused);
             var icon=pause.GetComponentInChildren<ControlIcon>(); icon.Kind=session.State==SessionState.Paused?IconKind.Play:IconKind.Pause; icon.SetVerticesDirty();
             reset.interactable=true; clear.interactable=session.Editable && session.Program.Commands.Count>0;

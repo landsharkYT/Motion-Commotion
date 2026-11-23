@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "checks": [
+    "All help rows and icons are reachable; scrollbar responds to arrow keys; touch drag scrolls and touch Back returns to Settings"
+  ],
+  "errors": []
+}

@@ -10,6 +10,7 @@
   "zoom": 5,
   "cameraX": 0,
   "cameraY": 2.5,
+  "cameraMode": "Follow",
   "time": 0,
   "mass": 1,
   "gravity": 9.8100004196167,
@@ -20,6 +21,7 @@
   "accelerationX": 0,
   "accelerationY": 0,
   "runtimeError": "",
+  "speedWarning": "",
   "visualX": 0,
   "visualY": 0,
   "commands": 0,
@@ -35,6 +37,15 @@
   "notice": "",
   "measurements": "Ready   t = 0 s\nPosition (0, 0) m\nVelocity (0, 0) m/s\nMass  1 kg    Gravity  9.81",
   "controls": [
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SpeedWarning",
+      "text": "",
+      "x": 308,
+      "y": 108,
+      "width": 1112,
+      "height": 52,
+      "enabled": true
+    },
     {
       "name": "Gameplay/Canvas/GameplayContent/ActivePanel/CollapseActive",
       "text": "",
@@ -88,6 +99,15 @@
       "width": 44,
       "height": 44,
       "enabled": false
+    },
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/CenterCamera",
+      "text": "",
+      "x": 507.03997802734375,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": true
     },
     {
       "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SettingsOpen",

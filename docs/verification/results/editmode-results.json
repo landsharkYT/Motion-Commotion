@@ -8,10 +8,10 @@
     },
     "result": {
       "status": "completed",
-      "duration": 0.65,
+      "duration": 1.02,
       "summary": {
-        "total": 36,
-        "passed": 36,
+        "total": 85,
+        "passed": 85,
         "failed": 0,
         "skipped": 0,
         "inconclusive": 0
@@ -20,252 +20,595 @@
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageVelocity,3)",
           "status": "Passed",
-          "duration": 0.0182027,
+          "duration": 0.0200755,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(AverageAcceleration,3)",
           "status": "Passed",
-          "duration": 0.0001184,
+          "duration": 0.0002122,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(MotionPosition,16)",
           "status": "Passed",
-          "duration": 7.84e-05,
+          "duration": 0.0001218,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Force,20)",
           "status": "Passed",
-          "duration": 5.72e-05,
+          "duration": 0.0001072,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CatalogCalculatesPhysicalQuantities(Weight,19.62d)",
           "status": "Passed",
-          "duration": 5.29e-05,
+          "duration": 8.4e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.CommandsCompileToIndependentSnapshot",
           "status": "Passed",
-          "duration": 0.0020899,
+          "duration": 0.002218,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"0\")",
           "status": "Passed",
-          "duration": 0.0054061,
+          "duration": 0.0061092,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.DivisionIntervalsMustBePositive(\"-1\")",
           "status": "Passed",
-          "duration": 0.0001495,
+          "duration": 0.0001737,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.EveryForceRequiresItsOwnAdjacentDirection",
           "status": "Passed",
-          "duration": 0.00118,
+          "duration": 0.0008989,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.ExtremeFiniteKickIsRejectedWithoutDiscardingDraft",
           "status": "Passed",
-          "duration": 0.0015894,
+          "duration": 0.0010632,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.GameplayPrefabHasPersistentUiInputReferences",
           "status": "Passed",
-          "duration": 0.0134017,
+          "duration": 0.0139074,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.GravityAndCumulativeWaitsRespectOperationalLimits",
           "status": "Passed",
-          "duration": 0.0004012,
-          "message": null,
-          "stackTrace": null
-        },
-        {
-          "fullName": "MotionCommotion.Tests.CoreTests.IndividuallySupportedKicksCannotExceedCombinedBudget",
-          "status": "Passed",
-          "duration": 0.0002894,
+          "duration": 0.000423,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"\")",
           "status": "Passed",
-          "duration": 0.0002635,
+          "duration": 0.0002692,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"NaN\")",
           "status": "Passed",
-          "duration": 5.67e-05,
+          "duration": 7.32e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"Infinity\")",
           "status": "Passed",
-          "duration": 4.39e-05,
+          "duration": 7.15e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"abc\")",
           "status": "Passed",
-          "duration": 3.56e-05,
+          "duration": 6.24e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidNumericDraftsArePreserved(\"1e999\")",
           "status": "Passed",
-          "duration": 3.66e-05,
+          "duration": 5.99e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.InvalidQuantitiesAndCyclesAreRejected",
           "status": "Passed",
-          "duration": 0.0003952,
+          "duration": 0.000409,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.KicksShareTimestampAndWaitsAdvanceTime",
           "status": "Passed",
-          "duration": 0.0014274,
+          "duration": 0.0015389,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.CoreTests.LargeAndRepeatedKicksAreAllowedForRuntimeClamping",
+          "status": "Passed",
+          "duration": 0.0003013,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.NestedAccelerationFeedsForceWithoutChangingSource",
           "status": "Passed",
-          "duration": 0.0001804,
+          "duration": 0.0001867,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.PrefabsAndSceneInventoryExist",
           "status": "Passed",
-          "duration": 0.001427,
+          "duration": 0.0017283,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0\",0)",
           "status": "Passed",
-          "duration": 0.0002888,
+          "duration": 0.0003305,
           "message": null,
           "stackTrace": null
         },
         {
-          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.000000000001\",1)",
+          "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.001\",1)",
           "status": "Passed",
-          "duration": 3.64e-05,
+          "duration": 4.29e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"0.03\",2)",
           "status": "Passed",
-          "duration": 2.6e-05,
+          "duration": 4.41e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.CoreTests.WaitsRoundUpWithoutEarlyExecution(\"1\",50)",
           "status": "Passed",
-          "duration": 1.97e-05,
+          "duration": 2.91e-05,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.DirectionIsConsumedByEachDirectedEquation",
           "status": "Passed",
-          "duration": 0.000861,
+          "duration": 0.0015611,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Velocity,Velocity,3)",
           "status": "Passed",
-          "duration": 0.0030461,
+          "duration": 0.0025151,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Acceleration,Acceleration,3)",
           "status": "Passed",
-          "duration": 0.0002417,
+          "duration": 0.000234,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationActionsCompileWithFreshDirectionAndDoNotAdvanceTime(Position,Position,16)",
           "status": "Passed",
-          "duration": 0.0001651,
+          "duration": 0.0001501,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Velocity,\"-12\",-3)",
           "status": "Passed",
-          "duration": 0.0010394,
+          "duration": 0.0011641,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Acceleration,\"-6\",-3)",
           "status": "Passed",
-          "duration": 0.0001614,
+          "duration": 0.0002756,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationOutputsRetainTheirSigns(Position,\"-100\",-86)",
           "status": "Passed",
-          "duration": 9.5e-05,
+          "duration": 0.0002305,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Velocity)",
           "status": "Passed",
-          "duration": 0.000858,
+          "duration": 0.0009949,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Acceleration)",
           "status": "Passed",
-          "duration": 0.0001388,
+          "duration": 0.0001832,
           "message": null,
           "stackTrace": null
         },
         {
           "fullName": "MotionCommotion.Tests.EquationActionTests.NewEquationsValidateRangesBeforeAnyCommandExecutes(Position)",
           "status": "Passed",
-          "duration": 0.0001052,
+          "duration": 0.0001316,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.AbsurdValuesAreAllowedButSignsAndDivisorsAreValidated",
+          "status": "Passed",
+          "duration": 0.0023852,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"\")",
+          "status": "Passed",
+          "duration": 0.0004822,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"-\")",
+          "status": "Passed",
+          "duration": 0.0001354,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\".\")",
+          "status": "Passed",
+          "duration": 0.0001037,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"1e3\")",
+          "status": "Passed",
+          "duration": 0.0001756,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\" 3\")",
+          "status": "Passed",
+          "duration": 9.8e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"3 \")",
+          "status": "Passed",
+          "duration": 0.0001311,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"+3\")",
+          "status": "Passed",
+          "duration": 9.9e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"1,000\")",
+          "status": "Passed",
+          "duration": 9.71e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"3kg\")",
+          "status": "Passed",
+          "duration": 0.0001413,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"1.0001\")",
+          "status": "Passed",
+          "duration": 0.0002002,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.InvalidLiteralCannotCrossDomainBoundary(\"1000001\")",
+          "status": "Passed",
+          "duration": 0.0001913,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.OrdinaryDecimalsNormalizeWithoutRoundingArithmetic(\".5\",\"0.5\")",
+          "status": "Passed",
+          "duration": 0.0023255,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.OrdinaryDecimalsNormalizeWithoutRoundingArithmetic(\"5.\",\"5\")",
+          "status": "Passed",
+          "duration": 0.0001063,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.OrdinaryDecimalsNormalizeWithoutRoundingArithmetic(\"0005.120\",\"5.12\")",
+          "status": "Passed",
+          "duration": 0.0001003,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.NumericValidationTests.OrdinaryDecimalsNormalizeWithoutRoundingArithmetic(\"-0\",\"0\")",
+          "status": "Passed",
+          "duration": 0.000101,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.BothTimeBranchesRejectTheirOwnInvalidInputs(\"-2\",\"0\",\"3\",\"2\",\"Time cannot be negative.\")",
+          "status": "Passed",
+          "duration": 0.0022457,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.BothTimeBranchesRejectTheirOwnInvalidInputs(\"2\",\"0\",\"2\",\"-2\",\"No real time.\")",
+          "status": "Passed",
+          "duration": 0.0024881,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.BothTimeBranchesRejectTheirOwnInvalidInputs(\"4\",\"0\",\"0\",\"0\",\"Target cannot be reached.\")",
+          "status": "Passed",
+          "duration": 0.0001876,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.BothTimeBranchesRejectTheirOwnInvalidInputs(\"0\",\"0\",\"0\",\"0\",\"Time is undetermined.\")",
+          "status": "Passed",
+          "duration": 0.0004103,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.BothTimeBranchesRejectTheirOwnInvalidInputs(\"-1\",\"0\",\"2\",\"2\",\"Time cannot be negative.\")",
+          "status": "Passed",
+          "duration": 0.0001847,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.CatalogHasEighteenUniqueCuratedVariants",
+          "status": "Passed",
+          "duration": 0.0097877,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ChronologicalRootsDoNotDependOnAccelerationSign(0,3,-2,2,1,2)",
+          "status": "Passed",
+          "duration": 0.0005042,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ChronologicalRootsDoNotDependOnAccelerationSign(0,2,-2,1,1,1)",
+          "status": "Passed",
+          "duration": 0.0001071,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ChronologicalRootsDoNotDependOnAccelerationSign(0,0,2,1,-1,1)",
+          "status": "Passed",
+          "duration": 0.0001329,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ChronologicalRootsDoNotDependOnAccelerationSign(0,2,-2,0,0,2)",
+          "status": "Passed",
+          "duration": 5.44e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ChronologicalRootsDoNotDependOnAccelerationSign(0,-3,2,-2,1,2)",
+          "status": "Passed",
+          "duration": 6.19e-05,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.CompilationCarriesMassAndRejectsInvalidLaterCommandsWithoutMutatingDraft",
+          "status": "Passed",
+          "duration": 0.0007206,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ForceDraftRequiresInverseMoveThenSwapAndSupportsUndoReset",
+          "status": "Passed",
+          "duration": 0.0011116,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.MotionTermAndFactorPathsReachAllThreeNewNonTimeOutputs",
+          "status": "Passed",
+          "duration": 0.0020743,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.MotionTimeNeedsSelectionAndPreservesItThroughUndoButNotSwap",
+          "status": "Passed",
+          "duration": 0.0010786,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NestedMassIsPureAndCopyPreservesVariantIdentityAndIndependentInputs",
+          "status": "Passed",
+          "duration": 0.0006324,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(Displacement,12)",
+          "status": "Passed",
+          "duration": 0.0004076,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(VelocityTime,4)",
+          "status": "Passed",
+          "duration": 0.0003143,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(VelocityChange,6)",
+          "status": "Passed",
+          "duration": 0.0002045,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(AccelerationTime,2)",
+          "status": "Passed",
+          "duration": 0.0001557,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(ForceMass,1)",
+          "status": "Passed",
+          "duration": 0.0002754,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(ForceAcceleration,10)",
+          "status": "Passed",
+          "duration": 0.0001552,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(WeightMass,1)",
+          "status": "Passed",
+          "duration": 0.0003397,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(Gravity,9.81d)",
+          "status": "Passed",
+          "duration": 0.0003883,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(InitialPosition,2)",
+          "status": "Passed",
+          "duration": 0.0003226,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(InitialVelocity,3)",
+          "status": "Passed",
+          "duration": 0.0003354,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(MotionAcceleration,4)",
+          "status": "Passed",
+          "duration": 0.0002294,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.NewFormsEvaluateTheirDeclaredDefaults(LaterTime,2)",
+          "status": "Passed",
+          "duration": 0.0006179,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.RearrangedDenominatorsAndMassBoundsRejectUndefinedOrUnsupportedValues",
+          "status": "Passed",
+          "duration": 0.0013093,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.StableRootsRetainSmallSolutionAndDoNotRoundCoefficientsToZero",
+          "status": "Passed",
+          "duration": 0.0012843,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.SymbolicCreationCanUseDefaultsWhenSharedStartingMassIsInvalid",
+          "status": "Passed",
+          "duration": 0.0009838,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.TimeHandlesLinearStationaryMissingAndInvalidBranches",
+          "status": "Passed",
+          "duration": 0.0012168,
+          "message": null,
+          "stackTrace": null
+        },
+        {
+          "fullName": "MotionCommotion.Tests.RearrangementTests.ZeroRepeatedLinearAndOutOfRangeTimesPreserveBranchIdentity",
+          "status": "Passed",
+          "duration": 0.0008618,
           "message": null,
           "stackTrace": null
         }

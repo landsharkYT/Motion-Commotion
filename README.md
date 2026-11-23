@@ -1,5 +1,9 @@
 # Motion Commotion
 
+Current equation-editor checkpoint and remaining verification: [continuation note](docs/design/equation-rearrangement-continuation.md).
+
+
+Current numeric editing and speed-cap contract: [input validation](docs/design/input-validation.md). This supersedes earlier numeric draft and kick-budget rules.
 Unity 6000.4.0f1 physics teaching game built around editable equation blocks. Teammates own the final five level designs. Level 1 currently opens a replaceable gap-crossing fixture.
 
 See the [project layout guide](docs/architecture/project-layout.md) for contributor destinations and the [standalone equation contract](docs/design/standalone-equation-actions.md) for the latest approved equation behavior. The pass 1 and pass 2 specifications record earlier baselines.
@@ -14,21 +18,21 @@ The runtime implements these approved meanings, and verification passed. Each di
 
 Open `Assets/Scenes/Application/Title.unity` and press Play. Select PLAY, then tile 1. The other four tiles are locked placeholders.
 
-Blocks and Active are independently collapsible left sidebars. Their edge chevrons close them; the world's hamburger menu reopens them. The camera follows the orb at a fixed zoom. World execution controls remain accessible when both sidebars close.
+Blocks and Active are independently collapsible left sidebars. Their edge chevrons close them; the world's hamburger menu reopens them. The camera follows the orb. Scroll over the map or use a two-finger pinch to zoom. World execution controls remain accessible when both sidebars close.
 
 Drag Direction, F = ma, and Wait into Active. Edit the inline values. Velocity, Acceleration, Position, and Force each need their own immediately preceding Direction. Compatible equations nest into input sockets. Drag a command back to Blocks to delete it; drag a nested formula back to remove that formula. The Active workspace scrolls vertically; compact cards fit its width.
 
 Only Wait advances simulation time and performs physics steps. Force applies a single kick using `impulse = force × 0.1 seconds`. The orb starts at 1 kg; editing an equation's mass input changes the actual physical mass and synchronizes the other mass fields. Standalone W = mg changes gravity without a kick; nested W = mg supplies a force value.
 
-Land on the top of any colored target segment to win. Falling below the fixture boundary or finishing the program without landing fails. A kick without a following Wait can therefore fail immediately at t = 0. The outcome row contains status, Retry, Level Select, and a disabled Next arrow. Retry retains the program and edited starting configuration; selection reentry starts fresh.
+Land on the top of any colored target segment to win. Falling below the fixture boundary or finishing the program without landing fails. A kick without a following Wait can therefore fail immediately at t = 0. Failure shows Try again with Retry and Level Select. Success shows Level complete with Level Select and Replay. Retry and Replay retain the program and edited starting configuration; selection reentry starts fresh.
 
-Settings and Hint pause a running attempt. Closing either leaves it paused until Resume. The volume slider and per-equation pencil buttons are deliberately disabled. Each equation has its own pencil in the palette and in Active, including nested equations; Direction and Wait have none. Textures, audio, scoring, progression, equation rearrangement, and the level editor remain deferred.
+Settings and Hint pause a running attempt. Settings > Controls opens a scrollable reference with Mouse & Keyboard, Trackpad, and Touch tabs. Back or Escape returns to Settings. See the [menu contract](docs/design/outcome-and-controls-menus.md#exact-ui-copy-proposal). Closing either leaves it paused until Resume. The volume slider remains disabled. Equation pencils appear only in Blocks and open the symbolic equation editor. Rearrange using supported variable/term drags, choose an inverse operation, and use Swap to isolate the output on the left. Confirm adds a reusable level-local variant; Undo and Reset affect only the editor draft. Textures, audio, scoring, progression, and the level editor remain deferred. See the [rearrangement contract](docs/design/equation-rearrangement.md#consolidated-approved-contract) for all 18 forms, new output effects, mass sequencing and time-branch edge cases.
 
 `Assets/Scenes/Testing/Sandbox.unity` exercises the shared interface and mechanics with its primitive test chamber and ordinary program-completion behavior. `LevelEditor.unity` remains an inaccessible placeholder.
 
 ## Change configuration and content
 
-- `Assets/Settings/Gameplay/Workspace.asset` controls physical defaults, simulation step, font, and palette definitions.
+- `Assets/Settings/Gameplay/Workspace.asset` controls physical defaults, maximum actual speed, simulation step, font, and palette definitions.
 - `Assets/Data/Levels/PlaceholderLevel.asset` references the replaceable environment, spawn, camera settings, fall boundary, and conceptual hint.
 - `Assets/Prefabs/Levels/GapFixture.prefab` contains the platforms and landing surface reference.
 - `Assets/Prefabs/Gameplay/Gameplay.prefab` supplies shared mechanics and the player interface.
@@ -37,7 +41,7 @@ Settings and Hint pause a running attempt. Closing either leaves it paused until
 
 The supplied title reference is copied into `Assets/Textures/TitleReference.png` for the temporary logo. The title crops out the baked button and places its own functional PLAY control.
 
-The [pass 1 operating limits](docs/verification/reports/coverage.md#numeric-limits) still apply. Player UI shows concise validation; detailed values and logs remain available through development telemetry.
+The [numeric validation contract](docs/design/input-validation.md#approved-implementation-contract) defines decimal editing, per-quantity constraints, and motion clamping. Large valid inputs remain unchanged; reaching the actual-speed cap shows a red warning and play continues. Historical pass 1 kick budgets no longer apply.
 
 ## Generate defaults
 
@@ -96,3 +100,7 @@ The [block presentation and snapping pass](docs/verification/reports/block-prese
 The [compact layout pass](docs/verification/reports/compact-block-layout.md) removes horizontal sidebar scrolling, wraps long equations, and displays nested formulas in bounded linked rows. It passed 52 native tests, 21 browser interaction groups, the WebGL build, layout checks, and independent review at 9.1/10 with no substantive missing features.
 
 The [equation actions and block-return pass](docs/verification/reports/standalone-equation-actions.md) implements all five standalone equations and return-to-Blocks deletion. It passed 74 native tests, 27 browser groups, the WebGL build, layout checks, and independent review at 9.2/10 with no substantive missing features.
+
+Camera zoom settings are on the `OrbCamera` component of `Assets/Prefabs/Gameplay/Gameplay.prefab`, under **Player zoom**. Adjust **Allow Zoom**, **Minimum Size**, **Maximum Size**, **Wheel Sensitivity**, and **Pinch Sensitivity**. See the [map zoom contract](docs/design/map-camera-zoom.md).
+
+Camera panning uses middle-button drag or Space plus left-button drag over the map. Touch uses one-finger pan and combined two-finger pan/pinch. The target icon after the trash returns to ball following without changing zoom. Manual panning stays in Free view until Center or Reset. Configure **Player pan and recenter** on the same `OrbCamera` component. See the [navigation contract](docs/design/camera-pan-and-recenter.md#final-approvals-and-implementation-contract).

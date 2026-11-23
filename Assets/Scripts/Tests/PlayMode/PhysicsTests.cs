@@ -71,21 +71,21 @@ namespace MotionCommotion.Tests
         [UnityTest]
         public IEnumerator SmallPhysicalValuesRemainVisibleInTelemetryAndEditableInputs()
         {
-            session.EditMass("0.0001"); session.Simulation.Ball.SetGravity(.0001f);
+            session.EditMass("0.001"); session.Simulation.Ball.SetGravity(.0001f);
             session.Program.Commands.Add(new ProgramCommand(CommandKind.Direction));
             var force=new ProgramCommand(CommandKind.Force); force.Value.Expression.Inputs[1].Text="0.001"; session.Program.Commands.Add(force);
             Object.FindFirstObjectByType<BlockWorkspace>().Rebuild(); yield return null;
             var hud=Object.FindFirstObjectByType<SimulationHUD>();
-            Assert.That(hud.MeasurementText,Does.Contain("Mass  0.0001 kg"));
+            Assert.That(hud.MeasurementText,Does.Contain("Mass  0.001 kg"));
             Assert.That(hud.MeasurementText,Does.Contain("Gravity  0.0001"));
-            Assert.That(FormulaEvaluator.Evaluate(force.Value.Expression,session.Program.Mass),Is.EqualTo(1e-7).Within(1e-14));
+            Assert.That(FormulaEvaluator.Evaluate(force.Value.Expression,session.Program.Mass),Is.EqualTo(1e-6).Within(1e-14));
             var field=session.GetComponent<BlockWorkspace>().ProgramContainer.GetComponentsInChildren<UnityEngine.UI.InputField>().Single(x=>x.name=="Input_a");
             Assert.That(field.text,Is.EqualTo("0.001"),"Small draft inputs must remain visible without rounding to zero.");
         }
         [UnityTest]
         public IEnumerator UnsafeKickRejectsWholeProgramBeforeGravityChanges()
         {
-            session.EditMass("0.0001"); var weight=new ProgramCommand(CommandKind.Weight); weight.Value.Expression.Inputs[1].Text="0";
+            session.EditMass("0.001"); var weight=new ProgramCommand(CommandKind.Weight); weight.Value.Expression.Inputs[1].Text="0";
             session.Program.Commands.Add(weight); session.Program.Commands.Add(new ProgramCommand(CommandKind.Direction));
             var force=new ProgramCommand(CommandKind.Force); force.Value.Expression.Inputs[1].Text="1e42"; session.Program.Commands.Add(force);
             session.ProgramChanged(); float gravity=session.Simulation.Ball.Gravity;

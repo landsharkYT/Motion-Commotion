@@ -8,8 +8,9 @@
   "blocksOpen": false,
   "activeOpen": false,
   "zoom": 5,
-  "cameraX": 7.053338050842285,
-  "cameraY": 3.3651480674743652,
+  "cameraX": 7.081320285797119,
+  "cameraY": 3.342456817626953,
+  "cameraMode": "Follow",
   "time": 1.28,
   "mass": 3,
   "gravity": 9.8100004196167,
@@ -20,6 +21,7 @@
   "accelerationX": 0,
   "accelerationY": 0,
   "runtimeError": "",
+  "speedWarning": "",
   "visualX": 8.145873069763184,
   "visualY": 0.004374988377094269,
   "commands": 3,
@@ -35,6 +37,15 @@
   "notice": "",
   "measurements": "Completed   t = 1.28 s\nPosition (8.1459, 0.004375) m\nVelocity (6.364, 0) m/s\nMass  3 kg    Gravity  9.81",
   "controls": [
+    {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SpeedWarning",
+      "text": "",
+      "x": 20,
+      "y": 108,
+      "width": 1400,
+      "height": 52,
+      "enabled": true
+    },
     {
       "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/Menu",
       "text": "",
@@ -72,6 +83,15 @@
       "enabled": false
     },
     {
+      "name": "Gameplay/Canvas/GameplayContent/WorldHUD/Controls/CenterCamera",
+      "text": "",
+      "x": 224.79998779296875,
+      "y": 23,
+      "width": 44,
+      "height": 44,
+      "enabled": false
+    },
+    {
       "name": "Gameplay/Canvas/GameplayContent/WorldHUD/SettingsOpen",
       "text": "",
       "x": 1383,
@@ -90,31 +110,22 @@
       "enabled": false
     },
     {
-      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/Retry",
-      "text": "",
-      "x": 617.5,
-      "y": 428,
-      "width": 44,
-      "height": 44,
-      "enabled": true
-    },
-    {
-      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/LevelSelect",
+      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeActions/LevelSelect",
       "text": "Level Select",
-      "x": 683.5,
-      "y": 434,
-      "width": 150,
-      "height": 32,
+      "x": 568,
+      "y": 419.1999816894531,
+      "width": 304,
+      "height": 58,
       "enabled": true
     },
     {
-      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeRow/Next",
-      "text": "",
-      "x": 855.5,
-      "y": 428,
-      "width": 44,
-      "height": 44,
-      "enabled": false
+      "name": "Gameplay/Canvas/OutcomeModal/Body/OutcomeActions/Retry",
+      "text": "Replay",
+      "x": 568,
+      "y": 489.1999816894531,
+      "width": 304,
+      "height": 58,
+      "enabled": true
     }
   ]
 }

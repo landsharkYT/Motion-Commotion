@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "Symbol dragging offers only the inverse operation, popup Escape cancels, Swap isolates output, Undo restores state, and confirmation creates one reusable palette variant",
+    "Time isolation requires a selected branch; invalid numerical examples still permit creation; pure time blocks nest in Wait and reject the main stack; templates survive Retry and Clear",
+    "Calculated mass affects later equations and physical impulses at zero elapsed time; Retry restores mass and level reentry discards created variants",
+    "Touch symbol dragging, inverse selection, Swap and confirmation create the expected variant without panning the camera or advancing time"
+  ],
+  "errors": []
+}

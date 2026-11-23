@@ -7,7 +7,8 @@ namespace MotionCommotion
     public sealed class WorkspaceSettings : ScriptableObject
     {
         [Min(.001f)] public float SimulationStep = .02f;
-        [Min(.0001f)] public float StartingMass = 1;
+        [Range(1,100)] public float MaximumSpeed = 100;
+        [Min(.001f)] public float StartingMass = 1;
         [Min(0)] public float StartingGravity = 9.81f;
         public Vector2 StartingVelocity;
         public PaletteDefinition[] Palette;

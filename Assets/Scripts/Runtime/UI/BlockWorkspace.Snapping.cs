@@ -27,9 +27,10 @@ namespace MotionCommotion
             var source=handler?handler.GetComponentInParent<BlockCard>():null;
             if(payload.Command!=null)
                 foreach(var pair in cards) if(pair.Key==payload.Command.Id) { source=pair.Value; break; }
-            if(!source) return;
+            if(!source || !CommitEdits(source.transform)) return;
+            var error=TemplateError(payload); if(error!=null) { notice.text=error; return; }
             drag=payload;
-            var copy=Instantiate(source,dragLayer); copy.name="DragGhost"; ghost=(RectTransform)copy.transform;
+            var copy=Instantiate(source,dragLayer); copy.name="DragGhost"; copy.ShowEquationEdit(false); ghost=(RectTransform)copy.transform;
             ghost.localScale=new Vector3(source.transform.lossyScale.x/dragLayer.lossyScale.x,source.transform.lossyScale.y/dragLayer.lossyScale.y,1);
             ghost.position=source.transform.position;
             var canvas=ghost.gameObject.AddComponent<CanvasGroup>(); canvas.blocksRaycasts=false; canvas.interactable=false; canvas.alpha=.85f;
@@ -47,7 +48,7 @@ namespace MotionCommotion
             if(!session.Editable) { EndDrag(); return; }
             RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer,data.position,data.pressEventCamera,out var pointer);
             ghost.localPosition=pointer+grabOffset; snapIndex=-1; snapPreview.gameObject.SetActive(false);
-            if(drag.Expression!=null) return;
+            if(drag.Expression!=null || drag.TemplateExpression!=null && FormulaVariants.IsPure(drag.TemplateExpression.Formula)) return;
             var viewport=program.parent as RectTransform;
             if(!RectTransformUtility.RectangleContainsScreenPoint(viewport,data.position,data.pressEventCamera)) return;
             var ghostTop=Connector(ghostSurface,true); var ghostBottom=Connector(ghostSurface,false);

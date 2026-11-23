@@ -18,10 +18,14 @@ namespace MotionCommotion
             public string scene, state, validation;
             public string view, outcome, modal;
             public bool blocksOpen,activeOpen;
+            public string equationVariant;
+            public bool equationPopup;
+            public int availableVariants;
             public float zoom,cameraX,cameraY;
+            public string cameraMode;
             public double time;
             public float mass, gravity, x, y, vx, vy, accelerationX, accelerationY;
-            public string runtimeError;
+            public string runtimeError, speedWarning;
             public float visualX,visualY;
             public int commands;
             public int snapIndex=-1;
@@ -54,14 +58,18 @@ namespace MotionCommotion
                 EventSystem.current.RaycastAll(pointer,hits); snapshot.hit=hits.Count>0?hits[0].gameObject.name:"none";
             }
             var title=GetComponent<TitleScreen>(); if(title) snapshot.view=title.IsSelection?"Level Select":"Title";
-            var screen=GetComponent<GameplayScreen>(); if(screen) { snapshot.blocksOpen=screen.BlocksOpen; snapshot.activeOpen=screen.ActiveOpen; snapshot.modal=screen.OpenModal; }
+            var screen=GetComponent<GameplayScreen>(); if(screen) { snapshot.speedWarning=screen.SpeedWarningText; snapshot.blocksOpen=screen.BlocksOpen; snapshot.activeOpen=screen.ActiveOpen; snapshot.modal=screen.OpenModal; }
             var attempt=GetComponent<LevelAttempt>(); if(attempt) snapshot.outcome=attempt.Outcome.ToString();
-            var camera=GetComponent<OrbCamera>(); if(camera) snapshot.zoom=camera.Zoom;
+            var camera=GetComponent<OrbCamera>(); if(camera) { snapshot.zoom=camera.Zoom; snapshot.cameraMode=camera.Mode.ToString(); }
             var worldCamera=GetComponentInChildren<Camera>();
             foreach(var c in GetComponentsInChildren<Camera>()) if(c.name=="PhysicsCamera") worldCamera=c;
             if(worldCamera) { snapshot.cameraX=worldCamera.transform.position.x; snapshot.cameraY=worldCamera.transform.position.y; }
             var workspace=GetComponent<BlockWorkspace>();
-            if(workspace) { snapshot.dragging=workspace.IsDragging; snapshot.snapIndex=workspace.SnapIndex; snapshot.notice=workspace.Notice; }
+            if(workspace) { foreach(var variant in workspace.AvailableVariants) snapshot.availableVariants++; snapshot.dragging=workspace.IsDragging; snapshot.snapIndex=workspace.SnapIndex; snapshot.notice=workspace.Notice; }
+            var equationEditor=GetComponentInChildren<EquationEditor>();
+            if(equationEditor && equationEditor.Draft!=null) { snapshot.equationVariant=equationEditor.Draft.Variant?.ToString()??""; snapshot.equationPopup=equationEditor.PopupOpen; }
+            foreach(var symbol in GetComponentsInChildren<EquationSymbolDrag>()) Add(snapshot,symbol.transform as RectTransform,true);
+            foreach(var drop in GetComponentsInChildren<EquationEditorDrop>()) Add(snapshot,drop.transform as RectTransform,true);
             var hud=GetComponent<SimulationHUD>();
             if(hud) snapshot.measurements=hud.MeasurementText;
             if(session)
@@ -74,7 +82,7 @@ namespace MotionCommotion
                 snapshot.visualX=Safe(ball.transform.position.x); snapshot.visualY=Safe(ball.transform.position.y);
                 snapshot.validation=session.Validation==null?"":string.Join("; ",session.Validation.Issues.ConvertAll(x=>x.Message));
             }
-            foreach(var label in GetComponentsInChildren<Text>()) if(label.name=="Error" || label.name=="DropError") Add(snapshot,label.rectTransform,true);
+            foreach(var label in GetComponentsInChildren<Text>()) if(label.name=="Error" || label.name=="DropError" || label.name=="SpeedWarning" || label.name=="EditorFeedback" || label.name=="TimeBranch") Add(snapshot,label.rectTransform,true);
             foreach(var selectable in GetComponentsInChildren<Selectable>()) Add(snapshot,selectable.transform as RectTransform,selectable.IsInteractable());
             foreach(var header in GetComponentsInChildren<BlockDrag>()) Add(snapshot,header.transform as RectTransform,true);
             foreach(var slot in GetComponentsInChildren<FormulaDrop>()) Add(snapshot,slot.transform as RectTransform,true);

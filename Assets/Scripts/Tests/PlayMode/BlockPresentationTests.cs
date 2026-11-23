@@ -53,7 +53,7 @@ namespace MotionCommotion.Tests
                 foreach(var field in card.GetComponentsInChildren<InputField>())
                 {
                     Assert.That(field.GetComponent<Image>().color,Is.EqualTo(Color.white)); Assert.That(field.textComponent.alignment,Is.EqualTo(TextAnchor.MiddleCenter));
-                    Assert.That(field.transform.TransformPoint(((RectTransform)field.transform).rect.min).x,Is.GreaterThanOrEqualTo(equalsRight));
+                    Assert.That(field.transform.TransformPoint(((RectTransform)field.transform).rect.min).x,Is.GreaterThanOrEqualTo(equalsRight),card.name+"/"+field.name);
                 }
                 foreach(var label in card.GetComponentsInChildren<Text>().Where(x=>x.name=="Variable"))
                 {
@@ -69,21 +69,21 @@ namespace MotionCommotion.Tests
             Assert.That(Palette("Force").Header.GetComponent<Button>(),Is.Null);
             var scientific=Palette("Force").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_a"); scientific.text="1e42";
             yield return null; Canvas.ForceUpdateCanvases(); yield return null;
-            Assert.That(scientific.textComponent.text,Is.EqualTo(scientific.text),"The visible field must retain the whole scientific value.");
+            Assert.That(scientific.textComponent.text,Is.EqualTo("10"),"Scientific notation is rejected as a whole.");
         }
         [UnityTest] public IEnumerator PaletteDefaultsAreCopiedRepeatedTimeIsLinkedAndMassStaysShared()
         {
             var times=Palette("MotionPosition").GetComponentsInChildren<InputField>().Where(x=>x.name=="Input_t").ToArray();
-            Assert.That(times.Length,Is.EqualTo(2)); times[0].text="7"; Assert.That(times[1].text,Is.EqualTo("7"));
-            times[1].text="3"; Assert.That(times[0].text,Is.EqualTo("3"));
-            var wait=Palette("Wait").GetComponentInChildren<InputField>(); wait.text="4"; yield return Append("Wait");
-            wait.text="9"; Assert.That(session.Program.Commands[0].Value.Text,Is.EqualTo("4")); yield return Append("Wait");
+            Assert.That(times.Length,Is.EqualTo(2)); times[0].text="7"; times[0].onEndEdit.Invoke(times[0].text); Assert.That(times[1].text,Is.EqualTo("7"));
+            times[1].text="3"; times[1].onEndEdit.Invoke(times[1].text); Assert.That(times[0].text,Is.EqualTo("3"));
+            var wait=Palette("Wait").GetComponentInChildren<InputField>(); wait.text="4"; wait.onEndEdit.Invoke(wait.text); yield return Append("Wait");
+            wait.text="9"; wait.onEndEdit.Invoke(wait.text); Assert.That(session.Program.Commands[0].Value.Text,Is.EqualTo("4")); yield return Append("Wait");
             Assert.That(session.Program.Commands[1].Value.Text,Is.EqualTo("9"));
             var paletteMass=Palette("Force").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_m");
             paletteMass.text="0";
-            foreach(var name in new[]{"Force","Weight"})
-                Assert.That(Palette(name).GetComponentsInChildren<Text>().Any(x=>x.name=="DropError" && x.text=="Out of range"),Is.True);
-            paletteMass.text="3";
+            foreach(var name in new[]{"Force"})
+                Assert.That(Palette(name).GetComponentsInChildren<Text>().Any(x=>x.name=="DropError" && x.text.Contains("0.001")),Is.True);
+            paletteMass.text="3"; paletteMass.onEndEdit.Invoke(paletteMass.text);
             foreach(var name in new[]{"Force","Weight"})
                 Assert.That(Palette(name).GetComponentsInChildren<Text>().Where(x=>x.name=="DropError").All(x=>x.text==""),Is.True,"Corrected palette mass must clear transient validation errors after rebuilds");
             Assert.That(Palette("Weight").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_m").text,Is.EqualTo("3")); Assert.That(session.Simulation.Ball.Mass,Is.EqualTo(3));
@@ -145,26 +145,30 @@ namespace MotionCommotion.Tests
             var linked=workspace.ProgramContainer.GetComponentsInChildren<Text>().Where(x=>x.name=="OwnerTrace").ToArray(); Assert.That(linked.Length,Is.EqualTo(12));
             var childCards=workspace.ProgramContainer.GetComponentsInChildren<BlockCard>().Where(x=>x.transform.parent.name.StartsWith("Linked_")).ToArray();
             Assert.That(childCards.Max(x=>x.transform.position.x)-childCards.Min(x=>x.transform.position.x),Is.LessThan(.5f),"Indentation must not grow with expression depth");
-            var number=Palette("Force").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_a"); string value="123456789012345678901234567890"; number.text=value;
+            var number=Palette("Force").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_a"); string value="1000000"; number.text=value;
             yield return null; Canvas.ForceUpdateCanvases(); Assert.That(number.text,Is.EqualTo(value)); Assert.That(((RectTransform)number.transform).rect.width,Is.LessThanOrEqualTo(64)); AssertFits(palette,viewport);
         }
         [UnityTest] public IEnumerator CollapsedPaletteRetainsSizingSharedMassAndLinkedInputBindings()
         {
-            var screen=session.GetComponent<GameplayScreen>(); screen.SetPanels(false,true); workspace.Rebuild(); session.EditMass("7");
+            var screen=session.GetComponent<GameplayScreen>();
+            session.Program.Commands.Add(new ProgramCommand(CommandKind.Direction)); session.Program.Commands.Add(new ProgramCommand(CommandKind.Force)); session.Program.Commands.Add(new ProgramCommand(CommandKind.Wait));
+            screen.SetPanels(false,false); workspace.Rebuild(); session.EditMass("7");
             screen.SetPanels(true,true); yield return null; Canvas.ForceUpdateCanvases(); yield return null;
+            Assert.That(workspace.ProgramContainer.GetComponentsInChildren<BlockCard>().Count(x=>x.name.StartsWith("Command_")),Is.EqualTo(3));
+            Assert.That(workspace.ProgramContainer.GetComponentsInChildren<InputField>().Any(x=>x.name=="Input_wait"),Is.True);
             Assert.That(Palette("Force").GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_m").text,Is.EqualTo("7"));
-            var times=Palette("MotionPosition").GetComponentsInChildren<InputField>().Where(x=>x.name=="Input_t").ToArray(); times[0].text="9"; Assert.That(times[1].text,Is.EqualTo("9"));
+            var times=Palette("MotionPosition").GetComponentsInChildren<InputField>().Where(x=>x.name=="Input_t").ToArray(); times[0].text="9"; times[0].onEndEdit.Invoke(times[0].text); Assert.That(times[1].text,Is.EqualTo("9"));
             AssertFits(Palette("Direction").transform.parent,(RectTransform)Palette("Direction").transform.parent.parent);
         }
         [UnityTest] public IEnumerator CompatibleInputHighlightsAndNestingCopiesThePaletteTemplate()
         {
             yield return Append("Direction"); yield return Append("Force");
             var slot=workspace.ProgramContainer.GetComponentsInChildren<FormulaDrop>().Single(x=>x.Dimension==Dimension.Acceleration);
-            var template=Palette("AverageAcceleration"); template.GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_dv").text="14";
+            var template=Palette("AverageAcceleration"); var templateField=template.GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_dv"); templateField.text="14"; templateField.onEndEdit.Invoke(templateField.text);
             var data=Begin(template); workspace.HighlightInput(slot,true); Assert.That(slot.GetComponent<Image>().color.a,Is.GreaterThan(0));
             workspace.DropFormula(slot.Input,slot.Dimension,slot.Owner); workspace.EndDrag(); yield return null; yield return null;
             Assert.That(session.Program.Commands[1].Value.Expression.Inputs[1].Expression.Inputs[0].Text,Is.EqualTo("14"));
-            template.GetComponentsInChildren<InputField>().Single(x=>x.name=="Input_dv").text="20";
+            templateField.text="20"; templateField.onEndEdit.Invoke(templateField.text);
             Assert.That(session.Program.Commands[1].Value.Expression.Inputs[1].Expression.Inputs[0].Text,Is.EqualTo("14"));
             var mass=workspace.ProgramContainer.GetComponentsInChildren<FormulaDrop>().Single(x=>x.Dimension==Dimension.Mass);
             data=Begin(template); workspace.HighlightInput(mass,true); Assert.That(mass.GetComponent<Image>().color.a,Is.Zero);

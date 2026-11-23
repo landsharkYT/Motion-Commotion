@@ -1,5 +1,7 @@
 # Pass 1 verification coverage
 
+Historical pass 1 report. The later [numeric validation contract](../../design/input-validation.md#approved-implementation-contract) supersedes the input-draft policy and kick/velocity budgets below.
+
 This map connects the acceptance requirements in [docs/design/pass1spec.md](../../design/pass1spec.md) to the implementation and repeatable checks. Test-result files and browser screenshots contain the observed outcomes.
 
 | Requirement | Implementation | Verification |

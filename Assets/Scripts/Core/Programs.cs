@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MotionCommotion.Core
 {
-    public enum CommandKind { Direction, Force, Wait, Weight, Velocity, Acceleration, Position }
+    public enum CommandKind { Direction, Force, Wait, Weight, Velocity, Acceleration, Position, Displacement, VelocityChange, Mass, Gravity }
     public sealed class ProgramCommand
     {
         public string Id { get; } = Guid.NewGuid().ToString("N");
@@ -19,11 +19,16 @@ namespace MotionCommotion.Core
     public static class EquationCommands
     {
         public static bool IsEquation(CommandKind kind)=>kind!=CommandKind.Direction && kind!=CommandKind.Wait;
-        public static bool RequiresDirection(CommandKind kind)=>IsEquation(kind) && kind!=CommandKind.Weight;
+        public static bool RequiresDirection(CommandKind kind)=>kind==CommandKind.Force || kind==CommandKind.Velocity || kind==CommandKind.Acceleration || kind==CommandKind.Position || kind==CommandKind.Displacement || kind==CommandKind.VelocityChange;
         public static CommandKind ForFormula(FormulaId formula)
         {
             switch(formula)
             {
+                case FormulaId.Displacement:return CommandKind.Displacement;
+                case FormulaId.VelocityChange:return CommandKind.VelocityChange;
+                case FormulaId.ForceMass: case FormulaId.WeightMass:return CommandKind.Mass;
+                case FormulaId.ForceAcceleration: case FormulaId.MotionAcceleration:return CommandKind.Acceleration;
+                case FormulaId.Gravity:return CommandKind.Gravity;
                 case FormulaId.AverageVelocity:return CommandKind.Velocity;
                 case FormulaId.AverageAcceleration:return CommandKind.Acceleration;
                 case FormulaId.MotionPosition:return CommandKind.Position;
@@ -36,6 +41,10 @@ namespace MotionCommotion.Core
         {
             switch(kind)
             {
+                case CommandKind.Displacement:return FormulaId.Displacement;
+                case CommandKind.VelocityChange:return FormulaId.VelocityChange;
+                case CommandKind.Mass:return FormulaId.ForceMass;
+                case CommandKind.Gravity:return FormulaId.Gravity;
                 case CommandKind.Velocity:return FormulaId.AverageVelocity;
                 case CommandKind.Acceleration:return FormulaId.AverageAcceleration;
                 case CommandKind.Position:return FormulaId.MotionPosition;
@@ -76,11 +85,11 @@ namespace MotionCommotion.Core
         public static ProgramValidation Validate(BlockProgram program)
         {
             var result = new ProgramValidation();
-            double mass=0, kickVelocityBudget=0, totalSeconds=0;
+            double totalSeconds=0,mass=1;
             try
             {
                 mass=FormulaEvaluator.Parse(program.Mass,"mass");
-                if (mass < PhysicsLimits.MinimumMass || mass > PhysicsLimits.MaximumMass) throw new FormulaError("mass", "Ball mass must be between 0.0001 and 1000000 kg.");
+                NumericRules.Check(mass,new InputDefinition("m",Dimension.Mass,"1",positive:true),"mass");
             }
             catch (FormulaError e) { result.Issues.Add(new ValidationIssue(e.SourceId, e.Message)); }
             if (program.Commands.Count == 0) result.Issues.Add(new ValidationIssue("program", "Drag commands here to begin."));
@@ -97,29 +106,28 @@ namespace MotionCommotion.Core
                         case CommandKind.Direction:
                             if (i + 1 == program.Commands.Count || !EquationCommands.RequiresDirection(program.Commands[i + 1].Kind))
                                 throw new FormulaError(command.Id, "Direction must be immediately followed by a directed equation.");
-                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("angle", Dimension.Angle, "0"), program.Mass, command.Id);
+                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("angle", Dimension.Angle, "0"), mass, command.Id);
                             value = ((value % 360) + 360) % 360;
                             break;
                         case CommandKind.Force:
-                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("force", Dimension.Force, "0", nonnegative: true), program.Mass, command.Id);
-                            double velocityChange=value*ProgramRunner.KickEquivalentSeconds/mass;
-                            if (!FormulaEvaluator.Finite(velocityChange) || velocityChange > PhysicsLimits.MaximumKickVelocityBudget)
-                                throw new FormulaError(command.Id,"Kick exceeds the supported 10000 m/s velocity change. Reduce force or acceleration.");
-                            kickVelocityBudget+=velocityChange;
-                            if (kickVelocityBudget > PhysicsLimits.MaximumKickVelocityBudget)
-                                throw new FormulaError(command.Id,"Combined kicks exceed the supported 10000 m/s total velocity-change budget.");
+                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("force", Dimension.Force, "0", nonnegative: true), mass, command.Id);
                             break;
                         case CommandKind.Velocity:
                         case CommandKind.Acceleration:
                         case CommandKind.Position:
-                            if(command.Value.Expression==null || command.Value.Expression.Formula!=EquationCommands.FormulaFor(command.Kind))
+                        case CommandKind.Displacement:
+                        case CommandKind.VelocityChange:
+                        case CommandKind.Mass:
+                        case CommandKind.Gravity:
+                            if(command.Value.Expression==null || FormulaVariants.IsPure(command.Value.Expression.Formula) || EquationCommands.ForFormula(command.Value.Expression.Formula)!=command.Kind)
                                 throw new FormulaError(command.Id,"This action requires its predefined equation.");
-                            value=FormulaEvaluator.Evaluate(command.Value.Expression,program.Mass);
-                            double limit=command.Kind==CommandKind.Velocity?PhysicsLimits.MaximumAssignedVelocity:command.Kind==CommandKind.Acceleration?PhysicsLimits.MaximumCommandedAcceleration:PhysicsLimits.MaximumStartingPosition;
+                            value=FormulaEvaluator.Evaluate(command.Value.Expression,mass);
+                            double limit=command.Kind==CommandKind.Position || command.Kind==CommandKind.Displacement?PhysicsLimits.MaximumStartingPosition:NumericRules.MaximumResult;
                             if(Math.Abs(value)>limit) throw new FormulaError(command.Id,"Equation output exceeds the supported physical range.");
+                            if(command.Kind==CommandKind.Mass) mass=(double)(float)value;
                             break;
                         case CommandKind.Wait:
-                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("wait", Dimension.Time, "1", nonnegative: true), program.Mass, command.Id);
+                            value = FormulaEvaluator.Read(command.Value, new InputDefinition("wait", Dimension.Time, "1", nonnegative: true), mass, command.Id);
                             totalSeconds+=value;
                             if (totalSeconds > PhysicsLimits.MaximumProgramSeconds)
                                 throw new FormulaError(command.Id,"Total waits cannot exceed 3600 seconds in this prototype.");
@@ -127,9 +135,9 @@ namespace MotionCommotion.Core
                         case CommandKind.Weight:
                             if (command.Value.Expression == null || command.Value.Expression.Formula != FormulaId.Weight)
                                 throw new FormulaError(command.Id, "A weight command requires W = m * g.");
-                            value = FormulaEvaluator.Evaluate(command.Value.Expression, program.Mass);
-                            gravity = FormulaEvaluator.Read(command.Value.Expression.Inputs[1], FormulaCatalog.Get(FormulaId.Weight).Inputs[1], program.Mass, command.Id);
-                            if (gravity > PhysicsLimits.MaximumGravity) throw new FormulaError(command.Id,"Gravity cannot exceed 10000 m/s² in this prototype.");
+                            value = FormulaEvaluator.Evaluate(command.Value.Expression, mass);
+                            gravity = FormulaEvaluator.Read(command.Value.Expression.Inputs[1], FormulaCatalog.Get(FormulaId.Weight).Inputs[1], mass, command.Id);
+                            if (gravity > PhysicsLimits.MaximumGravity) throw new FormulaError(command.Id,"Gravity exceeds the supported numeric range.");
                             break;
                         default: throw new ArgumentOutOfRangeException();
                     }

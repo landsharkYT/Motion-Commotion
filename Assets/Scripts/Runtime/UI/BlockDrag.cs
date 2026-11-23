@@ -12,7 +12,7 @@ namespace MotionCommotion
         public FormulaExpression TemplateExpression;
         public FormulaExpression Expression;
         public NumericInput Source;
-        public bool IsFormula => Palette ? Palette.IsFormula : Expression != null;
+        public bool IsFormula => TemplateExpression!=null || Expression!=null;
     }
     public sealed class BlockDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {

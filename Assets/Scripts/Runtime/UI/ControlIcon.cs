@@ -3,11 +3,12 @@ using UnityEngine.UI;
 
 namespace MotionCommotion
 {
-    public enum IconKind { Play, Pause, Reset, Clear, Menu, Chevron, Settings, Hint, Close, Check, Grid, Next, Lock, Speaker }
+    public enum IconKind { Play, Pause, Reset, Clear, Menu, Chevron, Settings, Hint, Close, Check, Grid, Next, Lock, Speaker, Center, Swap }
     [RequireComponent(typeof(CanvasRenderer))]
     public sealed class ControlIcon : MaskableGraphic
     {
         public IconKind Kind;
+        public bool Active;
         private VertexHelper mesh;
         private void LateUpdate() { var button=GetComponentInParent<Button>(); if(button) color=button.IsInteractable()?new Color(.12f,.13f,.14f):Kind==IconKind.Lock?new Color(.35f,.35f,.35f):new Color(.7f,.7f,.7f); }
         private Vector2 Origin => rectTransform.rect.center;
@@ -24,6 +25,7 @@ namespace MotionCommotion
             vh.Clear(); mesh=vh;
             switch(Kind)
             {
+                case IconKind.Swap: Line(-10,5,10,5); Line(4,11,10,5); Line(10,5,4,-1); Line(10,-5,-10,-5); Line(-4,1,-10,-5); Line(-10,-5,-4,-11); break;
                 case IconKind.Play: { int n=vh.currentVertCount; vh.AddVert(P(-6,-9),color,Vector2.zero); vh.AddVert(P(-6,9),color,Vector2.zero); vh.AddVert(P(10,0),color,Vector2.zero); vh.AddTriangle(n,n+1,n+2); break; }
                 case IconKind.Pause: Line(-5,-9,-5,9,4); Line(5,-9,5,9,4); break;
                 case IconKind.Menu: for(int y=-7;y<=7;y+=7) Line(-10,y,10,y); break;
@@ -37,6 +39,10 @@ namespace MotionCommotion
                 case IconKind.Hint: Circle(11); Line(-4,5,-2,7); Line(-2,7,3,7); Line(3,7,5,4); Line(5,4,0,0); Line(0,0,0,-3); Line(0,-7,0,-8,2.8f); break;
                 case IconKind.Settings: Circle(5); Circle(10); for(int i=0;i<8;i++) { float a=i*Mathf.PI/4; Line(Mathf.Cos(a)*10,Mathf.Sin(a)*10,Mathf.Cos(a)*13,Mathf.Sin(a)*13,3); } break;
                 case IconKind.Lock: Line(-8,-10,8,-10); Line(-8,-10,-8,2); Line(8,-10,8,2); Line(-8,2,8,2); Circle(6,0,180); Line(-6,0,-6,4); Line(6,0,6,4); Line(0,-3,0,-6,2.5f); break;
+                case IconKind.Center:
+                    Line(-10,4,-10,10); Line(-10,10,-4,10); Line(4,10,10,10); Line(10,10,10,4);
+                    Line(-10,-4,-10,-10); Line(-10,-10,-4,-10); Line(4,-10,10,-10); Line(10,-10,10,-4);
+                    Circle(4); if(Active) Quad(P(-2,-2),P(-2,2),P(2,2),P(2,-2)); break;
                 case IconKind.Speaker: Line(-10,-4,-5,-4); Line(-10,-4,-10,4); Line(-10,4,-5,4); Line(-5,-4,2,-9); Line(-5,4,2,9); Line(2,-9,2,9); Line(6,-5,8,0); Line(8,0,6,5); Line(10,-9,13,0); Line(13,0,10,9); break;
             }
         }

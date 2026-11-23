@@ -30,7 +30,7 @@ namespace MotionCommotion.Editor
             AssetDatabase.Refresh();
             font = AssetDatabase.LoadAssetAtPath<Font>(Root + "Fonts/DejaVuSans.ttf");
             settings = Asset<WorkspaceSettings>(Root + "Settings/Gameplay/Workspace.asset"); settings.Font = font;
-            settings.Palette = new PaletteDefinition[4 + FormulaCatalog.All.Count];
+            settings.Palette = new PaletteDefinition[4 + 5];
             string[] commandLabels = { "Direction", "Force · single kick", "Wait", "Weight · set gravity" };
             for (int i = 0; i < 4; i++)
             {
@@ -39,7 +39,7 @@ namespace MotionCommotion.Editor
                 entry.Defaults = i == 0 ? new[] { "0" } : i == 1 ? new[] { "1", "10" } : i == 2 ? new[] { "1" } : new[] { "1", "9.81" };
                 entry.Color = new Color(.83f,.86f,.9f); settings.Palette[i] = entry; EditorUtility.SetDirty(entry);
             }
-            for (int i = 0; i < FormulaCatalog.All.Count; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var definition = FormulaCatalog.All[i];
                 var entry = Asset<PaletteDefinition>(Root + "Data/Blocks/Formulas/" + definition.Id + ".asset");

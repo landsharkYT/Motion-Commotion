@@ -9,6 +9,35 @@ namespace MotionCommotion
     {
         [SerializeField] private Rigidbody2D body;
         public Rigidbody2D Body => body;
+        public float MaximumSpeed { get; private set; } = 100;
+        public float LastSpeedCapTime { get; private set; } = float.NegativeInfinity;
+        public bool SpeedWasCapped => !float.IsNegativeInfinity(LastSpeedCapTime);
+        public void ConfigureSpeedLimit(float maximum)
+        {
+            if(!FormulaEvaluator.Finite(maximum) || maximum<1 || maximum>100) throw new InvalidOperationException("Speed cap must be between 1 and 100 m/s.");
+            MaximumSpeed=maximum;
+        }
+        public void ClearSpeedWarning()=>LastSpeedCapTime=float.NegativeInfinity;
+        public void PrepareStep(float seconds)
+        {
+            var predicted=body.linearVelocity+(CommandedAcceleration+Vector2.down*Gravity)*seconds;
+            var limited=Limit(predicted);
+            bool largeContributions=Math.Abs(CommandedAcceleration.x)*seconds>MaximumSpeed || ((double)Math.Abs(CommandedAcceleration.y)+Gravity)*seconds>MaximumSpeed;
+            if(limited!=predicted || largeContributions)
+            {
+                body.linearVelocity=limited; body.gravityScale=0;
+            }
+            else ApplyCommandedAcceleration();
+        }
+        public void FinishStep()=>body.gravityScale=Gravity;
+        private Vector2 Limit(Vector2 velocity)
+        {
+            double magnitude=Math.Sqrt((double)velocity.x*velocity.x+(double)velocity.y*velocity.y);
+            if(magnitude<=MaximumSpeed) return velocity;
+            LastSpeedCapTime=Time.unscaledTime;
+            return new Vector2((float)(velocity.x/magnitude*MaximumSpeed),(float)(velocity.y/magnitude*MaximumSpeed));
+        }
+        public void ClampSpeed()=>body.linearVelocity=Limit(body.linearVelocity);
         public float Gravity { get; private set; }
         public Vector2 Position => body.position;
         public Vector2 Velocity => body.linearVelocity;
@@ -29,9 +58,9 @@ namespace MotionCommotion
         {
             float radians = angle * Mathf.Deg2Rad;
             body.AddForce(new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * impulse, ForceMode2D.Impulse);
-            RequireFiniteState();
+            RequireFiniteState(); ClampSpeed();
         }
-        public void SetVelocity(Vector2 velocity) { body.linearVelocity=velocity; RequireFiniteState(); }
+        public void SetVelocity(Vector2 velocity) { body.linearVelocity=Limit(velocity); RequireFiniteState(); }
         public void SetCommandedAcceleration(Vector2 acceleration) { CommandedAcceleration=acceleration; RequireFiniteState(); }
         public void ApplyCommandedAcceleration() { body.AddForce(CommandedAcceleration*Mass,ForceMode2D.Force); }
         public void Place(Vector2 destination)
@@ -60,7 +89,7 @@ namespace MotionCommotion
             body.position = snapshot.Position; body.rotation = snapshot.Rotation;
             body.linearVelocity = snapshot.Velocity; body.angularVelocity = snapshot.AngularVelocity;
             SetMass(snapshot.Mass); SetGravity(snapshot.Gravity); SetCommandedAcceleration(snapshot.Acceleration);
-            body.WakeUp(); Physics2D.SyncTransforms();
+            ClearSpeedWarning(); body.WakeUp(); Physics2D.SyncTransforms();
         }
     }
     public readonly struct PhysicalSnapshot

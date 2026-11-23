@@ -9,6 +9,23 @@ namespace MotionCommotion.Editor
 {
     public static partial class FoundationAssets
     {
+        [MenuItem("Motion Commotion/Upgrade camera navigation controls")]
+        public static void UpgradeCameraNavigationControls()
+        {
+            const string path=Root+"Prefabs/Gameplay/Gameplay.prefab";
+            var prefab=PrefabUtility.LoadPrefabContents(path);
+            try
+            {
+                var controls=prefab.transform.Find("Canvas/GameplayContent/WorldHUD/Controls");
+                var existing=controls.Find("CenterCamera");
+                var button=existing?existing.GetComponent<Button>():IconButton("CenterCamera",controls,IconKind.Center);
+                button.transform.SetAsLastSibling();
+                Set(prefab.GetComponent<GameplayScreen>(),"centerCamera",button);
+                PrefabUtility.SaveAsPrefabAsset(prefab,path);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(prefab); }
+        }
+
         private static void BuildPassTwo()
         {
             foreach(var folder in new[]{"Data/Levels","Prefabs/Levels","Textures"}) Directory.CreateDirectory(Root+folder);
@@ -48,7 +65,7 @@ namespace MotionCommotion.Editor
             var notice=UiFactory.Text("DropNotice",active,font,"",12); notice.color=new Color(.65f,.08f,.08f); Anchor(notice.rectTransform,new Vector2(.02f,0),new Vector2(.98f,.045f));
             var world=Panel("WorldHUD",content,new Vector2(.4f,0),Vector2.one,false);
             var toolbar=Panel("Controls",world,new Vector2(.02f,.91f),new Vector2(.74f,.99f),false); var controlsLayout=UiFactory.Horizontal(toolbar,5); controlsLayout.childForceExpandHeight=false; controlsLayout.childAlignment=TextAnchor.MiddleLeft;
-            var menu=IconButton("Menu",toolbar,IconKind.Menu); var run=IconButton("Run",toolbar,IconKind.Play); var pause=IconButton("Pause",toolbar,IconKind.Pause); var reset=IconButton("Reset",toolbar,IconKind.Reset); var clear=IconButton("Clear",toolbar,IconKind.Clear);
+            var menu=IconButton("Menu",toolbar,IconKind.Menu); var run=IconButton("Run",toolbar,IconKind.Play); var pause=IconButton("Pause",toolbar,IconKind.Pause); var reset=IconButton("Reset",toolbar,IconKind.Reset); var clear=IconButton("Clear",toolbar,IconKind.Clear); var centerCamera=IconButton("CenterCamera",toolbar,IconKind.Center);
             var settingsOpen=IconButton("SettingsOpen",world,IconKind.Settings); Place(settingsOpen.transform as RectTransform,Vector2.one,new Vector2(-34,-34),new Vector2(46,46));
             var hintOpen=IconButton("HintOpen",world,IconKind.Hint); Place(hintOpen.transform as RectTransform,Vector2.one,new Vector2(-34,-90),new Vector2(46,46));
             var visibility=Panel("VisibilityMenu",world,new Vector2(.02f,.72f),new Vector2(.31f,.90f)); UiFactory.Vertical(visibility,10,7);
@@ -64,18 +81,15 @@ namespace MotionCommotion.Editor
             var hint=Modal("HintModal",root,"Hint",out var hintBody,out var hintClose);
             var hintText=UiFactory.Text("HintContent",hintBody,font,definition.Hint,24); Anchor(hintText.rectTransform,new Vector2(.12f,.2f),new Vector2(.88f,.73f)); hintText.alignment=TextAnchor.MiddleCenter;
             var outcome=Modal("OutcomeModal",root,"",out var outcomeBody,out var outcomeClose); Object.DestroyImmediate(outcomeClose.gameObject);
-            Anchor(outcomeBody,new Vector2(.25f,.38f),new Vector2(.75f,.62f));
-            var row=Panel("OutcomeRow",outcomeBody,new Vector2(.07f,.2f),new Vector2(.93f,.8f),false); var rowLayout=UiFactory.Horizontal(row,22); rowLayout.childAlignment=TextAnchor.MiddleCenter; rowLayout.childForceExpandHeight=false;
-            var status=UiFactory.Rect("OutcomeStatus",row); Width(status.gameObject,55); status.gameObject.AddComponent<LayoutElement>().preferredHeight=55; var statusIcon=status.gameObject.AddComponent<ControlIcon>(); statusIcon.Kind=IconKind.Check; statusIcon.color=new Color(.12f,.13f,.14f);
-            var retry=IconButton("Retry",row,IconKind.Reset); var select=UiFactory.Button("LevelSelect",row,font,"Level Select",null); Width(select.gameObject,150); var next=IconButton("Next",row,IconKind.Next); next.interactable=false;
             var error=UiFactory.Text("RuntimeError",world,font,"",14); Anchor(error.rectTransform,new Vector2(.05f,.03f),new Vector2(.9f,.09f)); error.color=new Color(.7f,.1f,.1f);
             var workspace=gameplay.AddComponent<BlockWorkspace>(); Set(workspace,"session",session); Set(workspace,"palette",palette); Set(workspace,"program",program); Set(workspace,"cardPrefab",cardPrefab.GetComponent<BlockCard>()); Set(workspace,"dragLayer",dragLayer); Set(workspace,"notice",notice); Set(workspace,"editingGroup",palette.gameObject.AddComponent<CanvasGroup>());
             var gate=program.gameObject.AddComponent<WorkspaceEditingGate>(); Set(gate,"session",session);
             var hud=gameplay.AddComponent<SimulationHUD>(); Set(hud,"session",session); Set(hud,"workspace",workspace); Set(hud,"run",run); Set(hud,"pause",pause); Set(hud,"reset",reset); Set(hud,"clear",clear);
             var screen=gameplay.AddComponent<GameplayScreen>(); Set(screen,"contentGroup",contentGroup);
-            string[] names={"session","workspace","cameraFollow","navigation","blocks","active","world","visibilityMenu","settings","hint","outcome","hintText","runtimeError","outcomeStatus","menu","closeBlocks","closeActive","toggleBlocks","toggleActive","settingsOpen","hintOpen","settingsClose","hintClose","returnTitle","retry","levelSelect","next","activePlay"};
-            Object[] values={session,workspace,follow,navigator,blocks,active,world,visibility.gameObject,settings,hint,outcome,hintText,error,statusIcon,menu,closeBlocks,closeActive,toggleBlocks,toggleActive,settingsOpen,hintOpen,settingsClose,hintClose,returnTitle,retry,select,next,activePlay};
+            string[] names={"session","workspace","cameraFollow","navigation","blocks","active","world","visibilityMenu","settings","hint","outcome","hintText","runtimeError","menu","closeBlocks","closeActive","toggleBlocks","toggleActive","settingsOpen","hintOpen","settingsClose","hintClose","returnTitle","activePlay","centerCamera"};
+            Object[] values={session,workspace,follow,navigator,blocks,active,world,visibility.gameObject,settings,hint,outcome,hintText,error,menu,closeBlocks,closeActive,toggleBlocks,toggleActive,settingsOpen,hintOpen,settingsClose,hintClose,returnTitle,activePlay,centerCamera};
             for(int i=0;i<names.Length;i++) Set(screen,names[i],values[i]);
+            ConfigureOutcomeAndControls(gameplay);
             Set(gameplay.AddComponent<VerificationTelemetry>(),"session",session);
             gameplayPrefab=PrefabUtility.SaveAsPrefabAsset(gameplay,Root+"Prefabs/Gameplay/Gameplay.prefab"); PrefabUtility.UnloadPrefabContents(gameplay);
             BuildTitle();

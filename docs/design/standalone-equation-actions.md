@@ -1,5 +1,6 @@
 # Standalone equation actions
 
+Current numeric editing and speed-cap contract: [input validation](input-validation.md). This supersedes earlier numeric draft and kick-budget rules.
 Status: complete. All physical rules and interaction fixes are implemented and verified. Independent review passed at 9.2/10 with no substantive missing features.
 
 ## Confirmed scope change
@@ -74,7 +75,7 @@ The user accepted the second decision round in full:
 - Position does not directly award success. Landing history is reset after placement, and a later Wait physics step must establish a valid landing approached from above.
 - Commanded acceleration acts alongside gravity during physics steps. Velocity, Force, Position, and Weight do not clear it. A later Acceleration action replaces it; zero turns it off.
 - Reset restores commanded acceleration with the other captured starting physical state. New sessions begin with zero commanded acceleration.
-- New standalone outputs are bounded to 10000 m/s velocity, 10000 m/s² commanded acceleration, and 1000000 m scalar position. Destination coordinates also remain within the existing world-coordinate bounds.
+- The later [numeric validation contract](input-validation.md#approved-implementation-contract) allows exaggerated motion results and caps actual speed with a red warning. Scalar Position and destination coordinates retain their 1000000 m bounds.
 
 All new actions execute instantaneously at the runner's current time. Formula t and Δt inputs never imply elapsed simulation time. Only Wait advances the clock or performs a physics step.
 

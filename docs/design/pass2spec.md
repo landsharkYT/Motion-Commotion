@@ -1,5 +1,11 @@
 # Pass 2 specification
 
+The [equation rearrangement contract](equation-rearrangement.md#consolidated-approved-contract) supersedes earlier disabled-pencil and Active-pencil rules. Pencils are functional and appear only in Blocks.
+
+The later [outcome and Controls contract](outcome-and-controls-menus.md#exact-ui-copy-proposal) supersedes the outcome icon row and defines the Settings > Controls reference.
+
+The later [map zoom contract](map-camera-zoom.md) supersedes the fixed-zoom restriction. Camera following still never changes zoom automatically.
+
 Later behavior authority: the [standalone equation contract](standalone-equation-actions.md) supersedes the first three equations' nested-only restriction. It defines current action semantics and implementation status.
 
 Status: implemented. The initial pass 2 review passed at 9.2/10. Per-equation pencil placement was subsequently clarified and corrected; see the [correction evidence](../verification/reports/equation-edit-affordance.md).

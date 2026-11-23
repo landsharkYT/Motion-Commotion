@@ -5,6 +5,7 @@ using MotionCommotion.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace MotionCommotion
 {
@@ -21,10 +22,27 @@ namespace MotionCommotion
         public bool IsFormulaDrag => drag!=null && drag.IsFormula;
         public string Notice => notice?notice.text:"";
         private readonly List<KeyValuePair<string,BlockCard>> cards=new List<KeyValuePair<string,BlockCard>>();
+        private readonly List<KeyValuePair<BlockCard,DragPayload>> templates=new List<KeyValuePair<BlockCard,DragPayload>>();
         private readonly List<InputField> massFields=new List<InputField>();
         private readonly Dictionary<NumericInput,List<InputField>> fields=new Dictionary<NumericInput,List<InputField>>();
         private readonly Dictionary<NumericInput,Text> errors=new Dictionary<NumericInput,Text>();
         private DragPayload drag;
+        private bool rejectedGesture;
+        private int rejectedFrame=-1;
+        public bool HasInvalidDraft => GetComponentsInChildren<NumericEditor>(true).Any(x=>x.transform.IsChildOf(transform) && x.BlocksRun && x.Invalid);
+        private void RejectedEdit() { rejectedFrame=Time.frameCount; rejectedGesture=PointerHeld(); }
+        private static bool PointerHeld()=>Mouse.current!=null && Mouse.current.leftButton.isPressed || Touchscreen.current!=null && Touchscreen.current.primaryTouch.press.isPressed;
+        public bool CommitEdits(Transform scope=null)
+        {
+            bool valid=true;
+            foreach(var editor in GetComponentsInChildren<NumericEditor>(true)) if((editor.BlocksRun || scope && editor.transform.IsChildOf(scope)) && editor.Dirty && !editor.Commit()) valid=false;
+            return valid && !rejectedGesture && rejectedFrame!=Time.frameCount;
+        }
+        private void DraftChanged()
+        {
+            session.HasInvalidInputDraft=HasInvalidDraft;
+            foreach(var pair in fields) foreach(var field in pair.Value) if(field && fieldWidths.ContainsKey(field)) SizeField(field,field.text);
+        }
         private RectTransform ghost;
         private bool rebuild;
         private Font Font=>session.Settings.Font;
@@ -45,7 +63,7 @@ namespace MotionCommotion
         }
         private void Section(string title)
         { var text=UiFactory.Text(title.Replace(" ",""),palette,Font,title,16); UiFactory.Height(text.gameObject,28); }
-        private void Palette(PaletteDefinition entry)
+        private void Palette(PaletteDefinition entry,FormulaExpression template=null)
         {
             var card=Instantiate(cardPrefab,palette); card.name="Palette_"+entry.name;
             card.Remove.gameObject.SetActive(false); card.Error.gameObject.SetActive(false); card.ShowEquationEdit(entry.IsFormula);
@@ -54,7 +72,7 @@ namespace MotionCommotion
             string label=entry.IsFormula?FormulaCatalog.Get(entry.Formula).Label:entry.Command.ToString();
             if(entry.IsFormula)
             {
-                payload.TemplateExpression=entry.CreateExpression();
+                payload.TemplateExpression=template??entry.CreateExpression();
                 PopulateEquation(card,payload.TemplateExpression,null,null);
             }
             else
@@ -64,6 +82,13 @@ namespace MotionCommotion
                 DrawInput(card.Body,payload.TemplateCommand.Value,new InputDefinition(entry.Command==CommandKind.Direction?"angle":"wait",entry.Command==CommandKind.Direction?Dimension.Angle:Dimension.Time,"0"),null,null,false);
                 if(entry.Command==CommandKind.Wait) MathText(card.Body,"Seconds","s");
             }
+            if(entry.IsFormula)
+            {
+                ((BlockShape)card.Background).Stack=!FormulaVariants.IsPure(entry.Formula);
+                card.ShowEquationEdit(true);
+                card.EquationEdit.onClick.AddListener(()=>GetComponent<GameplayScreen>().OpenEquationEditor(payload.TemplateExpression));
+            }
+            templates.Add(new KeyValuePair<BlockCard,DragPayload>(card,payload));
             AddDrag(card.Header,payload,label);
         }
         private static FormulaExpression CopyExpression(FormulaExpression source)
@@ -78,7 +103,8 @@ namespace MotionCommotion
             var entry=payload.Palette;
             if(entry.IsFormula)
             {
-                var command=new ProgramCommand(EquationCommands.ForFormula(entry.Formula));
+                if(FormulaVariants.IsPure(payload.TemplateExpression.Formula)) return null;
+                var command=new ProgramCommand(EquationCommands.ForFormula(payload.TemplateExpression.Formula));
                 command.Value.Expression=CopyExpression(payload.TemplateExpression); return command;
             }
             var result=new ProgramCommand(entry.Command); result.Value.Text=payload.TemplateCommand.Value.Text; return result;
@@ -90,7 +116,7 @@ namespace MotionCommotion
         }
         private Color PaletteColor(FormulaId formula,CommandKind? command)
         {
-            var entry=session.Settings.Palette.FirstOrDefault(x=>x && (command==CommandKind.Direction || command==CommandKind.Wait ? !x.IsFormula && x.Command==command : x.IsFormula && x.Formula==formula));
+            var entry=session.Settings.Palette.FirstOrDefault(x=>x && (command==CommandKind.Direction || command==CommandKind.Wait ? !x.IsFormula && x.Command==command : x.IsFormula && x.Formula==FormulaVariants.Family(formula)));
             return entry?entry.Color:session.Settings.FormulaColor;
         }
         private static void Width(GameObject go,float width)
@@ -99,9 +125,10 @@ namespace MotionCommotion
         { card.Title.gameObject.SetActive(!string.IsNullOrEmpty(title)); card.Title.text=title; card.Title.alignment=TextAnchor.MiddleCenter; card.Title.horizontalOverflow=HorizontalWrapMode.Overflow; Width(card.Title.gameObject,Mathf.Max(18,card.Title.preferredWidth+4)); }
         private void AddDrag(RectTransform target,DragPayload payload,string label)
         { var handler=target.gameObject.AddComponent<BlockDrag>(); handler.Workspace=this; handler.Payload=payload; handler.Label=label; }
+        private string DisplayedMass=>session.Editable?session.Program.Mass:NumericRules.Normalize(session.Simulation.Ball.Mass);
         private void OnChanged()
-        { foreach(var field in massFields) if(field) { field.SetTextWithoutNotify(session.Program.Mass); SizeField(field,field.text); } foreach(var error in errors.Values) { error.text=""; UiFactory.Height(error.gameObject,0); } UpdateFeedback(); }
-        private void LateUpdate() { if(rebuild) { rebuild=false; Rebuild(); } RefreshWidths(); UpdateFeedback(); }
+        { foreach(var field in massFields) if(field) { if(!field.isFocused) { field.GetComponent<NumericEditor>().Synchronize(DisplayedMass); SizeField(field,field.text); } } UpdateFeedback(); }
+        private void LateUpdate() { if(rebuild) { rebuild=false; Rebuild(); } RefreshWidths(); UpdateFeedback(); if(!PointerHeld()) rejectedGesture=false; }
         public void Rebuild()
         {
             notice.text=""; UiFactory.Clear(program); cards.Clear(); massFields.RemoveAll(x=>!x || !x.transform.IsChildOf(transform)); PruneFields();
@@ -110,7 +137,7 @@ namespace MotionCommotion
             {
                 var card=Instantiate(cardPrefab,program); card.name="Command_"+command.Id;
                 card.ShowEquationEdit(false); PrepareCard(card,()=>PanelWidth(program),command.Kind==CommandKind.Direction?172:command.Kind==CommandKind.Wait?128:1000);
-                card.BaseColor=PaletteColor(EquationCommands.IsEquation(command.Kind)?EquationCommands.FormulaFor(command.Kind):FormulaId.Force,command.Kind);
+                card.BaseColor=PaletteColor(command.Value.Expression!=null?command.Value.Expression.Formula:FormulaId.Force,command.Kind);
                 Title(card,command.Kind==CommandKind.Direction?"Degrees":command.Kind==CommandKind.Wait?"":command.Kind==CommandKind.Force && command.Value.Expression==null?"F =":"");
                 cards.Add(new KeyValuePair<string,BlockCard>(command.Id,card));
                 card.Remove.onClick.AddListener(()=> { if(session.Editable) { session.Program.Commands.Remove(command); rebuild=true; } });
@@ -165,8 +192,12 @@ namespace MotionCommotion
             }
             else
             {
-                var field=UiFactory.Input("Input_"+definition.Label,row,Font,definition.Dimension==Dimension.Mass?session.Program.Mass:input.Text,text=>
-                { if(!session.Editable) return; if(definition.Dimension==Dimension.Mass) session.EditMass(text); else { input.Text=text; SyncFields(input,text); session.ProgramChanged(); } });
+                var field=UiFactory.Input("Input_"+definition.Label,row,Font,definition.Dimension==Dimension.Mass?session.Program.Mass:input.Text,_=>{});
+                var error=CreateInputError(slot,input);
+                field.gameObject.AddComponent<NumericEditor>().Initialize(definition,
+                    ()=>definition.Dimension==Dimension.Mass?session.Program.Mass:input.Text,
+                    text=> { if(!session.Editable) return; if(definition.Dimension==Dimension.Mass) session.EditMass(text); else { input.Text=text; SyncFields(input,text); session.ProgramChanged(); } },
+                    error,commandId!=null || definition.Dimension==Dimension.Mass,DraftChanged,RejectedEdit);
                 field.textComponent.fontSize=14; UiFactory.Height(field.gameObject,26);
                 field.textComponent.rectTransform.offsetMin=new Vector2(5,0); field.textComponent.rectTransform.offsetMax=new Vector2(-5,0);
                 field.GetComponent<LayoutElement>().layoutPriority=2;
@@ -175,31 +206,66 @@ namespace MotionCommotion
                 if(definition.Dimension==Dimension.Mass) massFields.Add(field);
                 if(!label && definition.Dimension==Dimension.Force) MathText(row,"Newtons","N");
             }
-            var error=UiFactory.Text("DropError",slot,Font,"",11); error.color=new Color(.65f,.08f,.08f); UiFactory.Height(error.gameObject,0); errors[input]=error;
+            if(input.Expression!=null) CreateInputError(slot,input);
+        }
+        private Text CreateInputError(Transform slot,NumericInput input)
+        {
+            var card=slot.GetComponentInParent<BlockCard>(true);
+            var error=UiFactory.Text("DropError",card.Background.transform,Font,"",11); error.color=new Color(.65f,.08f,.08f);
+            widthBindings[error.rectTransform]=()=>Mathf.Max(36,SurfaceWidth(card)-12); Width(error.gameObject,widthBindings[error.rectTransform]());
+            UiFactory.Height(error.gameObject,0); error.gameObject.SetActive(false); errors[input]=error; return error;
         }
         private static void FitRow(RectTransform row)
         { var group=UiFactory.Horizontal(row,3); group.childControlHeight=true; group.childForceExpandHeight=false; group.childAlignment=TextAnchor.MiddleLeft; Fit(row); }
         private static string ShortError(string message)
         {
+            if(message=="Time cannot be negative." || message=="Gravity cannot be negative.") return message;
             var text=message.ToLowerInvariant();
             if(text.Contains("direction")) return "Add Direction";
-            if(text.Contains("finite number") || text.Contains("blank")) return "Enter a number";
+            if(text.Contains("finite number") || text.Contains("blank") || text.Contains("decimal number")) return "Enter a number";
             if(text.Contains("greater than zero") || text.Contains("positive")) return text.Contains("nonnegative")?"Must be zero or more":"Must be positive";
             if(text.Contains("nonnegative") || text.Contains("negative")) return "Must be zero or more";
-            return "Out of range";
+            return message;
         }
         private void UpdateFeedback()
         {
-            if(editingGroup) { editingGroup.interactable=session.Editable; editingGroup.blocksRaycasts=true; }
+            session.HasInvalidInputDraft=HasInvalidDraft;
+            if(!session.Editable) foreach(var field in massFields) if(field && !field.isFocused) { field.GetComponent<NumericEditor>().Synchronize(DisplayedMass); SizeField(field,field.text); }
+            foreach(var template in templates)
+            {
+                var error=TemplateError(template.Value); var card=template.Key;
+                card.Error.gameObject.SetActive(error!=null); card.Error.text=error??"";
+                if(error!=null) { Width(card.Error.gameObject,Mathf.Max(36,SurfaceWidth(card)-12)); UiFactory.Height(card.Error.gameObject,Mathf.Max(18,card.Error.preferredHeight)); }
+            }
+            if(editingGroup) { editingGroup.interactable=true; editingGroup.blocksRaycasts=true; }
+            foreach(var field in palette.GetComponentsInChildren<InputField>()) field.interactable=session.Editable;
             var massIssue=session.Validation?.Issues.FirstOrDefault(x=>x.Id=="mass");
-            if(massIssue!=null) foreach(var field in massFields) { var error=field.transform.parent.parent.Find("DropError").GetComponent<Text>(); error.text=ShortError(massIssue.Message); UiFactory.Height(error.gameObject,18); }
+            if(massIssue!=null) foreach(var field in massFields) field.GetComponent<NumericEditor>().ShowFeedback(massIssue.Message);
             foreach(var pair in cards)
             {
                 var issue=session.Validation?.Issues.FirstOrDefault(x=>x.Id==pair.Key);
                 bool active=session.Runner!=null && session.Runner.CurrentId==pair.Key && session.State==SessionState.Running;
                 pair.Value.Background.color=issue!=null?new Color(1,.65f,.64f):active?new Color(.65f,.94f,.6f):pair.Value.BaseColor;
-                pair.Value.Error.text=issue==null?"":ShortError(issue.Message); UiFactory.Height(pair.Value.Error.gameObject,issue==null?0:18);
+                pair.Value.Error.text=issue==null?"":ShortError(issue.Message);
+                Width(pair.Value.Error.gameObject,Mathf.Max(36,SurfaceWidth(pair.Value)-12));
+                UiFactory.Height(pair.Value.Error.gameObject,issue==null?0:Mathf.Max(18,pair.Value.Error.preferredHeight));
             }
+        }
+        private string TemplateError(DragPayload payload)
+        {
+            if(!payload.Palette) return null;
+            try
+            {
+                if(payload.TemplateExpression!=null)
+                {
+                    double result=session.Editable?FormulaEvaluator.Evaluate(payload.TemplateExpression,session.Program.Mass):FormulaEvaluator.Evaluate(payload.TemplateExpression,(double)session.Simulation.Ball.Mass);
+                    if(payload.TemplateExpression.Formula==FormulaId.MotionPosition && Math.Abs(result)>PhysicsLimits.MaximumStartingPosition)
+                        return "Position must be within -1000000 to 1000000 m.";
+                }
+                else FormulaEvaluator.Read(payload.TemplateCommand.Value,new InputDefinition(payload.TemplateCommand.Kind==CommandKind.Wait?"wait":"angle",payload.TemplateCommand.Kind==CommandKind.Wait?Dimension.Time:Dimension.Angle,"0",nonnegative:payload.TemplateCommand.Kind==CommandKind.Wait),session.Program.Mass,"template");
+                return null;
+            }
+            catch(FormulaError e) { return e.Message; }
         }
         public void DropFormula(NumericInput target,Dimension dimension,FormulaExpression owner)
         {
@@ -212,7 +278,7 @@ namespace MotionCommotion
             target.Expression=expression; rebuild=true; notice.text="";
         }
         private void Reject(NumericInput input,string message)
-        { if(errors.TryGetValue(input,out var error)) { error.text=message; UiFactory.Height(error.gameObject,18); } notice.text=message; }
-        private void OnDestroy() { if(session) session.Changed-=OnChanged; }
+        { if(errors.TryGetValue(input,out var error)) { error.gameObject.SetActive(true); error.text=message; UiFactory.Height(error.gameObject,18); } notice.text=message; }
+        private void OnDestroy() { DestroyCreatedEntries(); if(session) session.Changed-=OnChanged; }
     }
 }

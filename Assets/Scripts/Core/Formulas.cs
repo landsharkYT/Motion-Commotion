@@ -6,7 +6,7 @@ using System.Linq;
 namespace MotionCommotion.Core
 {
     public enum Dimension { Length, Time, Velocity, Acceleration, Mass, Force, Angle }
-    public enum FormulaId { AverageVelocity, AverageAcceleration, MotionPosition, Force, Weight }
+    public enum FormulaId { AverageVelocity, AverageAcceleration, MotionPosition, Force, Weight, Displacement, VelocityTime, VelocityChange, AccelerationTime, ForceMass, ForceAcceleration, WeightMass, Gravity, InitialPosition, InitialVelocity, MotionAcceleration, EarlierTime, LaterTime }
 
     public sealed class InputDefinition
     {
@@ -47,7 +47,7 @@ namespace MotionCommotion.Core
                 new InputDefinition("m", Dimension.Mass, "1", positive: true), new InputDefinition("a", Dimension.Acceleration, "10")),
             new FormulaDefinition(FormulaId.Weight, "Weight formula", "W = m * g", Dimension.Force, x => x[0]*x[1],
                 new InputDefinition("m", Dimension.Mass, "1", positive: true), new InputDefinition("g", Dimension.Acceleration, "9.81", nonnegative: true))
-        };
+        }.Concat(FormulaVariants.Additional).ToArray();
         public static FormulaDefinition Get(FormulaId id) => All.Single(x => x.Id == id);
         public static string Unit(Dimension d)
         {
@@ -94,26 +94,38 @@ namespace MotionCommotion.Core
         public static bool Finite(double value) => !double.IsNaN(value) && !double.IsInfinity(value);
         public static double Parse(string text, string source)
         {
-            if (!double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double value) || !Finite(value))
-                throw new FormulaError(source, "Enter a finite number; blank fields are not zero.");
-            return value;
+            return NumericRules.Parse(text, source);
         }
         public static double Evaluate(FormulaExpression expression, string mass)
-        { return Evaluate(expression, mass, new HashSet<FormulaExpression>()); }
-        private static double Evaluate(FormulaExpression expression, string mass, HashSet<FormulaExpression> path)
+        { return Evaluate(expression, Parse(mass,"mass")); }
+        public static double Evaluate(FormulaExpression expression,double mass)
+        { return Evaluate(expression,mass,new HashSet<FormulaExpression>()); }
+        private static double Evaluate(FormulaExpression expression, double mass, HashSet<FormulaExpression> path)
         {
             if (!path.Add(expression)) throw new FormulaError(expression.Id, "A formula cannot contain itself.");
             var definition = FormulaCatalog.Get(expression.Formula);
             var values = new double[definition.Inputs.Length];
             for (int i = 0; i < values.Length; i++) values[i] = Read(expression.Inputs[i], definition.Inputs[i], mass, expression.Id, path);
             path.Remove(expression);
-            double result = definition.Calculate(values);
-            if (!Finite(result)) throw new FormulaError(expression.Id, "Formula result is not finite.");
+            double result;
+            try { result=definition.Calculate(values); }
+            catch(ArithmeticException error) { throw new FormulaError(expression.Id,error.Message); }
+            if (!Finite(result) || Math.Abs(result)>NumericRules.MaximumResult) throw new FormulaError(expression.Id, "Equation result exceeds the supported numeric range.");
+            if(definition.Output==Dimension.Force && result<0) throw new FormulaError(expression.Id,"Force and weight must be zero or more.");
+            if(definition.Output==Dimension.Time)
+            {
+                if(result<0) throw new FormulaError(expression.Id,"Time cannot be negative.");
+                if(result>PhysicsLimits.MaximumProgramSeconds) throw new FormulaError(expression.Id,"Time range: 0–3600 s.");
+            }
+            if(definition.Output==Dimension.Mass) NumericRules.Check(result,new InputDefinition("m",Dimension.Mass,"1",positive:true),expression.Id);
+            if(expression.Formula==FormulaId.Gravity && result<0) throw new FormulaError(expression.Id,"Gravity cannot be negative.");
             return result;
         }
         public static double Read(NumericInput input, InputDefinition slot, string mass, string source)
-        { return Read(input, slot, mass, source, new HashSet<FormulaExpression>()); }
-        private static double Read(NumericInput input, InputDefinition slot, string mass, string source, HashSet<FormulaExpression> path)
+        { return Read(input,slot,Parse(mass,"mass"),source); }
+        public static double Read(NumericInput input,InputDefinition slot,double mass,string source)
+        { return Read(input,slot,mass,source,new HashSet<FormulaExpression>()); }
+        private static double Read(NumericInput input, InputDefinition slot, double mass, string source, HashSet<FormulaExpression> path)
         {
             double value;
             if (input.Expression != null)
@@ -122,9 +134,8 @@ namespace MotionCommotion.Core
                     throw new FormulaError(source, slot.Label + " requires " + FormulaCatalog.Unit(slot.Dimension) + ".");
                 value = Evaluate(input.Expression, mass, path);
             }
-            else value = Parse(slot.Dimension == Dimension.Mass ? mass : input.Text, source);
-            if (slot.Positive && value <= 0) throw new FormulaError(source, slot.Label + " must be greater than zero.");
-            if (slot.Nonnegative && value < 0) throw new FormulaError(source, slot.Label + " cannot be negative.");
+            else value = slot.Dimension==Dimension.Mass?mass:Parse(input.Text,source);
+            NumericRules.Check(value,slot,source);
             return value;
         }
     }

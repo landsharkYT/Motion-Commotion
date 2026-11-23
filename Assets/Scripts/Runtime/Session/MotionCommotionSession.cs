@@ -23,6 +23,7 @@ namespace MotionCommotion
         public WorkspaceSettings Settings => settings;
         public double Time => Runner?.Time ?? 0;
         public double StepSeconds => Math.Round(settings.SimulationStep, 6);
+        public bool HasInvalidInputDraft { get; set; }
         public bool Editable => State == SessionState.Ready;
         private PhysicalSnapshot snapshot;
         private double accumulator;
@@ -30,6 +31,7 @@ namespace MotionCommotion
         private void Awake()
         {
             if (!settings || !simulation) { enabled = false; throw new InvalidOperationException("Session requires settings and simulation references."); }
+            simulation.Ball.ConfigureSpeedLimit(settings.MaximumSpeed);
             Program.Mass = settings.StartingMass.ToString(CultureInfo.InvariantCulture);
             simulation.Ball.SetMass(settings.StartingMass); simulation.Ball.SetGravity(settings.StartingGravity);
             simulation.Ball.Body.linearVelocity = settings.StartingVelocity;
@@ -47,12 +49,12 @@ namespace MotionCommotion
         {
             Validation = ProgramValidator.Validate(Program);
             var ball=simulation.Ball;
-            if (!ball.IsFinite || Math.Abs(ball.Velocity.x)>PhysicsLimits.MaximumKickVelocityBudget || Math.Abs(ball.Velocity.y)>PhysicsLimits.MaximumKickVelocityBudget)
-                Validation.Issues.Add(new ValidationIssue("experiment","Starting physical state must be finite, with velocity components at most 10000 m/s."));
+            if (!ball.IsFinite || Math.Abs(ball.Velocity.x)>PhysicsLimits.MaximumAssignedVelocity || Math.Abs(ball.Velocity.y)>PhysicsLimits.MaximumAssignedVelocity)
+                Validation.Issues.Add(new ValidationIssue("experiment","Starting physical state must be finite and within the supported velocity bounds."));
             if(Math.Abs(ball.CommandedAcceleration.x)>PhysicsLimits.MaximumCommandedAcceleration || Math.Abs(ball.CommandedAcceleration.y)>PhysicsLimits.MaximumCommandedAcceleration)
-                Validation.Issues.Add(new ValidationIssue("experiment","Starting commanded acceleration components must be within 10000 m/s²."));
+                Validation.Issues.Add(new ValidationIssue("experiment","Starting commanded acceleration exceeds the supported numeric range."));
             if (ball.Gravity<0 || ball.Gravity>PhysicsLimits.MaximumGravity)
-                Validation.Issues.Add(new ValidationIssue("experiment","Starting gravity must be between 0 and 10000 m/s²."));
+                Validation.Issues.Add(new ValidationIssue("experiment","Starting gravity must be nonnegative and within the supported numeric range."));
             if (Math.Abs(ball.Position.x)>PhysicsLimits.MaximumStartingPosition || Math.Abs(ball.Position.y)>PhysicsLimits.MaximumStartingPosition)
                 Validation.Issues.Add(new ValidationIssue("experiment","Starting position components must be within 1000000 m."));
             if (!FormulaEvaluator.Finite(StepSeconds) || StepSeconds<.001 || StepSeconds>1)
@@ -61,9 +63,11 @@ namespace MotionCommotion
         public void ProgramChanged() { if (!Editable) return; RefreshValidation(); Changed?.Invoke(); }
         public bool Run()
         {
-            if (!Editable) return false;
+            if (!Editable || HasInvalidInputDraft) return false;
+            var workspace=GetComponent<BlockWorkspace>(); if(workspace && !workspace.CommitEdits()) return false;
             RefreshValidation();
             if (!Validation.Valid) { Changed?.Invoke(); return false; }
+            simulation.Ball.ClearSpeedWarning();
             snapshot = simulation.Ball.Capture(); Feedback.Clear(); RuntimeError = null; accumulator = 0;
             Runner = new ProgramRunner(Validation.Commands, StepSeconds);
             Runner.Action += Apply;
@@ -89,8 +93,11 @@ namespace MotionCommotion
                     simulation.Ball.SetVelocity(Directed(action.Value,action.Angle)); Log($"t={action.Time:G5}s Velocity → {action.Value:G5} m/s at {action.Angle:G5}°"); break;
                 case ActionKind.Acceleration:
                     simulation.Ball.SetCommandedAcceleration(Directed(action.Value,action.Angle)); Log($"t={action.Time:G5}s Commanded acceleration → {action.Value:G5} m/s² at {action.Angle:G5}°"); break;
+                case ActionKind.Mass: simulation.Ball.SetMass((float)action.Value); Log($"t={action.Time:G5}s Mass → {action.Value:G5} kg"); break;
+                case ActionKind.VelocityChange: simulation.Ball.SetVelocity(simulation.Ball.Body.linearVelocity+Directed(action.Value,action.Angle)); Log($"t={action.Time:G5}s Velocity change → {action.Value:G5} m/s at {action.Angle:G5}°"); break;
                 case ActionKind.Position:
-                    var destination=snapshot.Position+Directed(action.Value,action.Angle);
+                case ActionKind.Displacement:
+                    var destination=(action.Kind==ActionKind.Position?snapshot.Position:simulation.Ball.Position)+Directed(action.Value,action.Angle);
                     if(Math.Abs(destination.x)>PhysicsLimits.MaximumStartingPosition || Math.Abs(destination.y)>PhysicsLimits.MaximumStartingPosition)
                         throw new InvalidOperationException("Position destination exceeds the supported world bounds.");
                     simulation.Ball.Place(destination);
